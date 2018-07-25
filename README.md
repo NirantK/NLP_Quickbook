@@ -19,3 +19,6 @@ Each section builds on ideas and code from previous notebooks, but you can fill 
 
 ## Chapter 05
 [Modern Methods for Text Classification](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-05%20Modern%20Text%20Classification.ipynb). Simple Classifiers and How to Optimize Them. This is a handy skill to have. We go further on how to combine and "ensemble" them for increased performance. 
+
+## Chapter 06
+[Deep Learning for NLP](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-06%20Deep%20Learning%20for%20NLP.ipynb), with Text Classification as an example. We use PyTorch and torchtext. This is a from scratch code tutorial, but I assume familiarity with Deep Learning. We write our own data loaders, pre-processing, training loop and other utilities. 
