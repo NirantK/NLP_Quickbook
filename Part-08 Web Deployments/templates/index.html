@@ -1,0 +1,21 @@
+<html> 
+
+<head>
+<title>Text Classification model as a Flask API</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <h1>Movie Sentiment Analysis</h1>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" value="Upload">
+      <input type="submit" value="Predict"> 
+      <p>Prediction: {% if label %} {{ label }} {% endif %}</p>
+    </form>
+
+</body>
+
+</html>

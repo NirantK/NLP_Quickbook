@@ -101,3 +101,5 @@ ENV/
 .mypy_cache/
 data/*
 .data/*
+.vscode/settings.json
+*.pkl

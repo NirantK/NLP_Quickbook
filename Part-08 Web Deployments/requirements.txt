@@ -1,0 +1,7 @@
+Flask==0.12
+Jinja2==2.9.5
+numpy==1.13.1
+scikit-learn==0.18.1
+scipy==0.18.1
+virtualenv==15.1.0
+
