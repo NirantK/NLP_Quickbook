@@ -1,5 +1,8 @@
 Natural Language Processing Notebooks
 --
+
+# Available as a Book: [NLP in Python - Quickstart Guide](https://www.amazon.in/dp/B07L3PLQS1)
+
 ### Written for Practicing Engineers
 
 This work builds on the outstanding work which exists on Natural Language Processing. These range from classics like Jurafsky's Speech and Language Processing to rather modern work in The Deep Learning Book by Ian Goodfellow et al.
