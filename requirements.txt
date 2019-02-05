@@ -61,7 +61,7 @@ PySocks==1.6.8
 python-dateutil==2.7.3
 pytz==2018.5
 pywinpty==0.5.4
-PyYAML==3.12
+pyyaml>=4.2b1
 pyzmq==17.0.0
 regex==2017.11.9
 requests==2.19.1
