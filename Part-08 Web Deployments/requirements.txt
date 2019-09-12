@@ -1,4 +1,4 @@
-flask==0.12.3
+flask==1.0
 Jinja2==2.9.5
 numpy==1.13.1
 scikit-learn==0.18.1
