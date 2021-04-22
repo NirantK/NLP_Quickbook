@@ -28,7 +28,11 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-
+    
+    # Build a table of contents
+    - name: ToC Build
+      run: |
+        jupyter-book toc .
     # Build the book
     - name: Build the book
       run: |
