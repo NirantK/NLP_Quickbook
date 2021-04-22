@@ -1,0 +1,1378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leveraging Linguistics &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="KeyedVectors API" href="Part-04%20Text%20Representations.html" />
+    <link rel="prev" title="Spell Correction" href="Part-02-B.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-01.html">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-B.html">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-03 NLP with spaCy and Textacy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-03 NLP with spaCy and Textacy.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Leveraging Linguistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-started">
+     Getting Started
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#redacting-names-with-named-entity-recognition">
+     Redacting Names with Named Entity Recognition
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#entity-types">
+       Entity Types
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-question-generation">
+     Automatic Question Generation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#part-of-speech-tagging">
+       Part-of-Speech Tagging
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-a-ruleset">
+       Creating a Ruleset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-relationship">
+     Visualizing the Relationship
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="leveraging-linguistics">
+<h1>Leveraging Linguistics<a class="headerlink" href="#leveraging-linguistics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -y spacy 
+<span class="c1"># !pip install spacy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python -m spacy download en_core_web_lg
+</pre></div>
+</div>
+</div>
+</div>
+<p>If there is an error above, you can use the smaller model as well.</p>
+<p>Try:</p>
+<ul class="simple">
+<li><p>Windows Shell:<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span></code> as <strong>Administrator</strong></p></li>
+<li><p>Linux Terminal:<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span> </code></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">from</span> <span class="nn">spacy</span> <span class="kn">import</span> <span class="n">displacy</span> <span class="c1"># for visualization</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en_core_web_lg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spacy</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2.0.11&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Introducing textacy</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -c conda-forge textacy 
+<span class="c1"># !pip install textacy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">textacy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="redacting-names-with-named-entity-recognition">
+<h2>Redacting Names with Named Entity Recognition<a class="headerlink" href="#redacting-names-with-named-entity-recognition" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Madam Pomfrey, the nurse, was kept busy by a sudden spate of colds among the staff and students. Her Pepperup potion worked instantly, though it left the drinker smoking at the ears for several hours afterward. Ginny Weasley, who had been looking pale, was bullied into taking some by Percy.&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parse the text with spaCy. This runs the entire NLP pipeline.</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>‘doc’ now contains a parsed version of text. We can use it to do anything we want!.
+For example, this will print out all the named entities that were detected:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">entity</span><span class="o">.</span><span class="n">label_</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pomfrey (PERSON)
+Pepperup (ORG)
+several hours (TIME)
+Ginny Weasley (PERSON)
+Percy (PERSON)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span><span class="o">.</span><span class="n">ents</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(Pomfrey, Pepperup, several hours, Ginny Weasley, Percy)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entity</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">label_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(378, &#39;PERSON&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In spaCy, all human readable labels etc can also be explained using the simple spacy.explain(label) syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s1">&#39;GPE&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Countries, cities, states&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">redact_names</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">redacted_sentence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;PERSON&quot;</span><span class="p">:</span>
+            <span class="n">redacted_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;[REDACTED]&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">redacted_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">redacted_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">redact_names</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Madam [REDACTED], the nurse, was kept busy by a sudden spate of colds among the staff and students. Her Pepperup potion worked instantly, though it left the drinker smoking at the ears for several hours afterward. [REDACTED][REDACTED], who had been looking pale, was bullied into taking some by [REDACTED].&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">redact_names</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">redacted_sentence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+        <span class="n">ent</span><span class="o">.</span><span class="n">merge</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">ent_type_</span> <span class="o">==</span> <span class="s2">&quot;PERSON&quot;</span><span class="p">:</span>
+            <span class="n">redacted_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;[REDACTED]&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">redacted_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">redacted_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">redact_names</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Madam [REDACTED], the nurse, was kept busy by a sudden spate of colds among the staff and students. Her Pepperup potion worked instantly, though it left the drinker smoking at the ears for several hours afterward. [REDACTED], who had been looking pale, was bullied into taking some by [REDACTED].&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="entity-types">
+<h3>Entity Types<a class="headerlink" href="#entity-types" title="Permalink to this headline">¶</a></h3>
+<p>Let’s look at some examples of above in real world sentences, we will also use the <code class="docutils literal notranslate"><span class="pre">spacy.explain()</span></code> on all entities to build a quick mental model of how these things work.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">explain_text_entities</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">ents</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ent</span><span class="si">}</span><span class="s1">, Label: </span><span class="si">{</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">ent</span><span class="o">.</span><span class="n">label_</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explain_text_entities</span><span class="p">(</span><span class="s1">&#39;Tesla has gained 20% market share in the months since&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tesla, Label: ORG, Companies, agencies, institutions, etc.
+20%, Label: PERCENT, Percentage, including &quot;%&quot;
+the months, Label: DATE, Absolute or relative dates or periods
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explain_text_entities</span><span class="p">(</span><span class="s1">&#39;Taj Mahal built by Mughal Emperor Shah Jahan stands tall on the banks of Yamuna in modern day Agra, India&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Taj Mahal, Label: PERSON, People, including fictional
+Mughal, Label: NORP, Nationalities or religious or political groups
+Shah Jahan, Label: PERSON, People, including fictional
+Yamuna, Label: LOC, Non-GPE locations, mountain ranges, bodies of water
+Agra, Label: GPE, Countries, cities, states
+India, Label: GPE, Countries, cities, states
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explain_text_entities</span><span class="p">(</span><span class="s1">&#39;Ashoka was a great Indian king&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashoka, Label: PERSON, People, including fictional
+Indian, Label: NORP, Nationalities or religious or political groups
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explain_text_entities</span><span class="p">(</span><span class="s1">&#39;The Ashoka University sponsors the Young India Fellowship&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ashoka University, Label: ORG, Companies, agencies, institutions, etc.
+the Young India Fellowship, Label: ORG, Companies, agencies, institutions, etc.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="automatic-question-generation">
+<h2>Automatic Question Generation<a class="headerlink" href="#automatic-question-generation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="part-of-speech-tagging">
+<h3>Part-of-Speech Tagging<a class="headerlink" href="#part-of-speech-tagging" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">example_text</span> <span class="o">=</span> <span class="s1">&#39;Bansoori is an Indian classical instrument. Tom plays Bansoori and Guitar.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">example_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need noun chunks. Noun chunks are <em>noun phrases</em> - not a single word, but a short phrase which describes the noun. For example, “the blue skies” or “the world’s largest conglomerate”.</p>
+<p>To get the noun chunks in a document, simply iterate over <code class="docutils literal notranslate"><span class="pre">doc.noun_chunks</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">noun</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">noun_chunks</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sentence</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">noun</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sentence1 Bansoori
+sentence1 an Indian classical instrument
+sentence2 Tom
+sentence2 Bansoori
+sentence2 Guitar
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our example text has two sentences, we can pull out noun phrase chunks from each sentence. We pull out noun phrases instead of single words. This means, we are able to pull out ‘an Indian classical instrument’ as one noun. This is quite useful as we will see in a moment.</p>
+<p>Next, let’s take a quick look at all parts-of-speech tags in our example text. We will use the verbs and adjectives to write some simple question generating logic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">tag_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bansoori PROPN NNP
+is VERB VBZ
+an DET DT
+Indian ADJ JJ
+classical ADJ JJ
+instrument NOUN NN
+. PUNCT .
+Tom PROPN NNP
+plays VERB VBZ
+Bansoori PROPN NNP
+and CCONJ CC
+Guitar PROPN NNP
+. PUNCT .
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that here ‘instrument’ is tagged as a NOUN while ‘Indian’ and ‘classical’ are tagged as adjectives. This makes sense. Addititionally, Bansoori and Guitar are tagged as PROPN or Proper Nouns.</p>
+<p><strong>Nouns vs Proper Noun</strong>
+Nouns name people, places, and things. Common nouns name general items like waiter, jeans, country. Proper nouns name specific things like Roger, Levi’s, India</p>
+</div>
+<div class="section" id="creating-a-ruleset">
+<h3>Creating a Ruleset<a class="headerlink" href="#creating-a-ruleset" title="Permalink to this headline">¶</a></h3>
+<p>Quite often when using linguistics, you will be writing custom rules. Here is one data structure suggestion to help you store these rules: list of dictionaries. Each dictionary in turn can have elements ranging from simple string lists to lists to strings. Avoid nesting a list of dictionaries inside a dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ruleset</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+        <span class="s1">&#39;req_tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;NNP&#39;</span><span class="p">,</span> <span class="s1">&#39;VBZ&#39;</span><span class="p">,</span> <span class="s1">&#39;NN&#39;</span><span class="p">],</span>
+    <span class="p">},</span> 
+    <span class="p">{</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> 
+        <span class="s1">&#39;req_tags&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;NNP&#39;</span><span class="p">,</span> <span class="s1">&#39;VBZ&#39;</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, I have written two rules. Each rule is simply a collection of part-of-speech tags stored under the ‘req_tags’ key. Each rule comprises of all the tags that I will look for in a particular sentence.</p>
+<p>Depending on ‘id’, I will use a hard coded question template to generate my questions. In practice, you can and should move the question template to your ruleset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ruleset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 1, &#39;req_tags&#39;: [&#39;NNP&#39;, &#39;VBZ&#39;, &#39;NN&#39;]}, {&#39;id&#39;: 2, &#39;req_tags&#39;: [&#39;NNP&#39;, &#39;VBZ&#39;]}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, I need a function to pull out all tokens which match a particular tag. We do this by simply iterating over the entire list of and matching each token against the target tag.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_pos_tag</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">tag</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">tok</span> <span class="k">for</span> <span class="n">tok</span> <span class="ow">in</span> <span class="n">doc</span> <span class="k">if</span> <span class="n">tok</span><span class="o">.</span><span class="n">tag_</span> <span class="o">==</span> <span class="n">tag</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sent_to_ques</span><span class="p">(</span><span class="n">sent</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a question string corresponding to a sentence string using a set of pre-written rules</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+    <span class="n">pos_tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">tag_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rule</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ruleset</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rule</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">pos_tags</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">rule</span><span class="p">[</span><span class="s1">&#39;req_tags&#39;</span><span class="p">]):</span> 
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rule id </span><span class="si">{</span><span class="n">rule</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> matched for sentence: </span><span class="si">{</span><span class="n">sent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">NNP</span> <span class="o">=</span> <span class="n">get_pos_tag</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;NNP&quot;</span><span class="p">)</span>
+                <span class="n">NNP</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">NNP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">VBZ</span> <span class="o">=</span> <span class="n">get_pos_tag</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;VBZ&quot;</span><span class="p">)</span>
+                <span class="n">VBZ</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">VBZ</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">ques</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;What </span><span class="si">{</span><span class="n">VBZ</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">NNP</span><span class="si">}</span><span class="s1">?&#39;</span>
+                <span class="k">return</span><span class="p">(</span><span class="n">ques</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rule</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">key</span> <span class="ow">in</span> <span class="n">pos_tags</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">rule</span><span class="p">[</span><span class="s1">&#39;req_tags&#39;</span><span class="p">]):</span> <span class="c1">#&#39;NNP&#39;, &#39;VBZ&#39; in sentence.</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rule id </span><span class="si">{</span><span class="n">rule</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> matched for sentence: </span><span class="si">{</span><span class="n">sent</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">NNP</span> <span class="o">=</span> <span class="n">get_pos_tag</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;NNP&quot;</span><span class="p">)</span>
+                <span class="n">NNP</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">NNP</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">VBZ</span> <span class="o">=</span> <span class="n">get_pos_tag</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;VBZ&quot;</span><span class="p">)</span>
+                <span class="n">VBZ</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">VBZ</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lemma_</span><span class="p">)</span>
+                <span class="n">ques</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;What does </span><span class="si">{</span><span class="n">NNP</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">VBZ</span><span class="si">}</span><span class="s1">?&#39;</span>
+                <span class="k">return</span><span class="p">(</span><span class="n">ques</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The generated question is: </span><span class="si">{</span><span class="n">sent_to_ques</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">sent</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rule id 1 matched for sentence: Bansoori is an Indian classical instrument.
+The generated question is: What is Bansoori?
+Rule id 2 matched for sentence: Tom plays Bansoori and Guitar.
+The generated question is: What does Tom play?
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="question-generation-using-dependency-parsing">
+<h1>Question Generation using Dependency Parsing<a class="headerlink" href="#question-generation-using-dependency-parsing" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">dep_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bansoori nsubj
+is ROOT
+an det
+Indian amod
+classical amod
+instrument attr
+. punct
+Tom nsubj
+plays ROOT
+Bansoori dobj
+and cc
+Guitar conj
+. punct
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">dep_</span><span class="p">,</span> <span class="n">spacy</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">dep_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bansoori nsubj nominal subject
+is ROOT None
+an det determiner
+Indian amod adjectival modifier
+classical amod adjectival modifier
+instrument attr attribute
+. punct punctuation
+Tom nsubj nominal subject
+plays ROOT None
+Bansoori dobj direct object
+and cc coordinating conjunction
+Guitar conj conjunct
+. punct punctuation
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-the-relationship">
+<h2>Visualizing the Relationship<a class="headerlink" href="#visualizing-the-relationship" title="Permalink to this headline">¶</a></h2>
+<p>spaCy has an inbuilt tool called displacy for displaying simple, but clean and powerful visualizations. It offers two primary modes: Named Entity Recognition and Dependency Parsing. Here we will use the ‘dep’ or dependency mode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="0" class="displacy" width="1975" height="487.0" style="max-width: none; height: 487.0px; color: #000000; background: #ffffff; font-family: Arial"><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="50">Bansoori</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">PROPN</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="225">is</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="225">VERB</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="400">an</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="400">DET</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="575">Indian</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="575">ADJ</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="750">classical</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="750">ADJ</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="925">instrument.</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="925">NOUN</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="1100">Tom</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="1100">PROPN</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="1275">plays</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="1275">VERB</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="1450">Bansoori</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="1450">PROPN</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="1625">and</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="1625">CCONJ</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0"><tspan class="displacy-word" fill="currentColor" x="1800">Guitar.</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="1800">PROPN</tspan></text><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-0" stroke-width="2px" d="M70,352.0 C70,264.5 210.0,264.5 210.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-0" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">nsubj</textPath></text><path class="displacy-arrowhead" d="M70,354.0 L62,342.0 78,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-1" stroke-width="2px" d="M420,352.0 C420,89.5 920.0,89.5 920.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-1" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">det</textPath></text><path class="displacy-arrowhead" d="M420,354.0 L412,342.0 428,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-2" stroke-width="2px" d="M595,352.0 C595,177.0 915.0,177.0 915.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-2" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">amod</textPath></text><path class="displacy-arrowhead" d="M595,354.0 L587,342.0 603,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-3" stroke-width="2px" d="M770,352.0 C770,264.5 910.0,264.5 910.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-3" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">amod</textPath></text><path class="displacy-arrowhead" d="M770,354.0 L762,342.0 778,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-4" stroke-width="2px" d="M245,352.0 C245,2.0 925.0,2.0 925.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-4" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">attr</textPath></text><path class="displacy-arrowhead" d="M925.0,354.0 L933.0,342.0 917.0,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-5" stroke-width="2px" d="M1120,352.0 C1120,264.5 1260.0,264.5 1260.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-5" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">nsubj</textPath></text><path class="displacy-arrowhead" d="M1120,354.0 L1112,342.0 1128,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-6" stroke-width="2px" d="M1295,352.0 C1295,264.5 1435.0,264.5 1435.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-6" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">dobj</textPath></text><path class="displacy-arrowhead" d="M1435.0,354.0 L1443.0,342.0 1427.0,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-7" stroke-width="2px" d="M1470,352.0 C1470,264.5 1610.0,264.5 1610.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-7" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">cc</textPath></text><path class="displacy-arrowhead" d="M1610.0,354.0 L1618.0,342.0 1602.0,342.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-8" stroke-width="2px" d="M1470,352.0 C1470,177.0 1790.0,177.0 1790.0,352.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-8" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">conj</textPath></text><path class="displacy-arrowhead" d="M1790.0,354.0 L1798.0,342.0 1782.0,342.0" fill="currentColor"/></g></svg></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tricky_doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s1">&#39;This is ship-shipping ship, shipping shipping ships&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">tricky_doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="0" class="displacy" width="1450" height="487.0" style="max-width: none; height: 487.0px; color: #000000; background: #ffffff; font-family: Arial">
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="50">This</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">DET</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="225">is</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="225">VERB</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="400">ship-</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="400">NOUN</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="575">shipping</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="575">NOUN</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="750">ship,</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="750">NOUN</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="925">shipping</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="925">VERB</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="1100">shipping</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="1100">NOUN</tspan>
+</text>
+
+<text class="displacy-token" fill="currentColor" text-anchor="middle" y="397.0">
+    <tspan class="displacy-word" fill="currentColor" x="1275">ships</tspan>
+    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="1275">NOUN</tspan>
+</text>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-0" stroke-width="2px" d="M70,352.0 C70,264.5 210.0,264.5 210.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-0" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">nsubj</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M70,354.0 L62,342.0 78,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-1" stroke-width="2px" d="M420,352.0 C420,264.5 560.0,264.5 560.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-1" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">npadvmod</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M420,354.0 L412,342.0 428,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-2" stroke-width="2px" d="M595,352.0 C595,264.5 735.0,264.5 735.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-2" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">compound</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M595,354.0 L587,342.0 603,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-3" stroke-width="2px" d="M245,352.0 C245,89.5 745.0,89.5 745.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-3" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">attr</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M745.0,354.0 L753.0,342.0 737.0,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-4" stroke-width="2px" d="M245,352.0 C245,2.0 925.0,2.0 925.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-4" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">advcl</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M925.0,354.0 L933.0,342.0 917.0,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-5" stroke-width="2px" d="M1120,352.0 C1120,264.5 1260.0,264.5 1260.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-5" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">compound</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M1120,354.0 L1112,342.0 1128,342.0" fill="currentColor"/>
+</g>
+
+<g class="displacy-arrow">
+    <path class="displacy-arc" id="arrow-0-6" stroke-width="2px" d="M945,352.0 C945,177.0 1265.0,177.0 1265.0,352.0" fill="none" stroke="currentColor"/>
+    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
+        <textPath xlink:href="#arrow-0-6" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">dobj</textPath>
+    </text>
+    <path class="displacy-arrowhead" d="M1265.0,354.0 L1273.0,342.0 1257.0,342.0" fill="currentColor"/>
+</g>
+</svg></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">textacy.spacier</span> <span class="kn">import</span> <span class="n">utils</span> <span class="k">as</span> <span class="n">spacy_utils</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">??</span>spacy_utils.get_main_verbs_of_sent
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Signature: spacy_utils.get_main_verbs_of_sent(sent)</span>
+<span class="c1"># Source:   </span>
+<span class="c1"># def get_main_verbs_of_sent(sent):</span>
+<span class="c1">#     &quot;&quot;&quot;Return the main (non-auxiliary) verbs in a sentence.&quot;&quot;&quot;</span>
+<span class="c1">#     return [tok for tok in sent</span>
+<span class="c1">#             if tok.pos == VERB and tok.dep_ not in constants.AUX_DEPS]</span>
+<span class="c1"># File:      d:\miniconda3\envs\nlp\lib\site-packages\textacy\spacier\utils.py</span>
+<span class="c1"># Type:      function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">toy_sentence</span> <span class="o">=</span> <span class="s1">&#39;Shivangi is an engineer&#39;</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">toy_sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>What are the entities in this sentence?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;ent&#39;</span><span class="p">,</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div class="entities" style="line-height: 2.5">
+<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone">
+    Shivangi
+    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
+</mark>
+ is an engineer</div></div></div>
+</div>
+<p>Let’s find out the main verb in this sentence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">verbs</span> <span class="o">=</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_main_verbs_of_sent</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">verbs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[is]
+</pre></div>
+</div>
+</div>
+</div>
+<p>And what are nominal subjects of this verb?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">verb</span> <span class="ow">in</span> <span class="n">verbs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">verb</span><span class="p">,</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_subjects_of_verb</span><span class="p">(</span><span class="n">verb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is [Shivangi]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will notice that this has a reasonable overlap with the noun phrases which we pulled from our part-of-speech tagging but can be different as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">token</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">tag_</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(Shivangi, &#39;NNP&#39;), (is, &#39;VBZ&#39;), (an, &#39;DT&#39;), (engineer, &#39;NN&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tip: As an exercise, extend this approach to at least add Who, Where and When questions as practice.</p>
+</div>
+</div>
+<div class="section" id="level-up-question-and-answer">
+<h1>Level Up: Question and Answer<a class="headerlink" href="#level-up-question-and-answer" title="Permalink to this headline">¶</a></h1>
+<p>So far, we have been trying to generate questions. But if you were trying to make an automated quiz for students, you would also need to mine the right answer.</p>
+<p>The answer in this case will be simply the objects of verb. What is an object of verb?</p>
+<blockquote>
+<div><p>In the sentence, “Give the book to me,” “book” is the direct object of the verb “give,” and “me” is the indirect object. - from the Cambridge English Dictionary</p>
+</div></blockquote>
+<p>Loosely, object is the piece on which our verb acts. This is almost always the answer to our “what”. Let’s write a question to find the objects of any verb — or wait, we can pull it from the <code class="docutils literal notranslate"><span class="pre">textacy.spacier.utils</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_objects_of_verb</span><span class="p">(</span><span class="n">verb</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[engineer]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">verb</span> <span class="ow">in</span> <span class="n">verbs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">verb</span><span class="p">,</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_objects_of_verb</span><span class="p">(</span><span class="n">verb</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>is [engineer]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">displacy</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;dep&#39;</span><span class="p">,</span> <span class="n">jupyter</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="0" class="displacy" width="750" height="312.0" style="max-width: none; height: 312.0px; color: #000000; background: #ffffff; font-family: Arial"><text class="displacy-token" fill="currentColor" text-anchor="middle" y="222.0"><tspan class="displacy-word" fill="currentColor" x="50">Shivangi</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">PROPN</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="222.0"><tspan class="displacy-word" fill="currentColor" x="225">is</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="225">VERB</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="222.0"><tspan class="displacy-word" fill="currentColor" x="400">an</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="400">DET</tspan></text><text class="displacy-token" fill="currentColor" text-anchor="middle" y="222.0"><tspan class="displacy-word" fill="currentColor" x="575">engineer</tspan><tspan class="displacy-tag" dy="2em" fill="currentColor" x="575">NOUN</tspan></text><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-0" stroke-width="2px" d="M70,177.0 C70,89.5 220.0,89.5 220.0,177.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-0" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">nsubj</textPath></text><path class="displacy-arrowhead" d="M70,179.0 L62,167.0 78,167.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-1" stroke-width="2px" d="M420,177.0 C420,89.5 570.0,89.5 570.0,177.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-1" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">det</textPath></text><path class="displacy-arrowhead" d="M420,179.0 L412,167.0 428,167.0" fill="currentColor"/></g><g class="displacy-arrow"><path class="displacy-arc" id="arrow-0-2" stroke-width="2px" d="M245,177.0 C245,2.0 575.0,2.0 575.0,177.0" fill="none" stroke="currentColor"/><text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><textPath xlink:href="#arrow-0-2" class="displacy-label" startOffset="50%" fill="currentColor" text-anchor="middle">attr</textPath></text><path class="displacy-arrowhead" d="M575.0,179.0 L583.0,167.0 567.0,167.0" fill="currentColor"/></g></svg></div></div>
+</div>
+<p>Let’s look at the output of our functions for the example text. The first is the sentence itself, then the root verb, than the lemma form of that verb, followed by subjects of the verb and then objects.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">example_text</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">sentence</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">sentence</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">lemma_</span><span class="p">,</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_subjects_of_verb</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">root</span><span class="p">),</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_objects_of_verb</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">root</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bansoori is an Indian classical instrument. is be [Bansoori] [instrument]
+Tom plays Bansoori and Guitar. plays play [Tom] [Bansoori, Guitar]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s arrange the pieces above into a neat function which we can then re-use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">para_to_ques</span><span class="p">(</span><span class="n">eg_text</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">eg_text</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">:</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">root</span>
+        <span class="n">ask_about</span> <span class="o">=</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_subjects_of_verb</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">answers</span> <span class="o">=</span> <span class="n">spacy_utils</span><span class="o">.</span><span class="n">get_objects_of_verb</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ask_about</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">lemma_</span> <span class="o">==</span> <span class="s2">&quot;be&quot;</span><span class="p">:</span>
+                <span class="n">question</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;What </span><span class="si">{</span><span class="n">root</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">ask_about</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">?&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">question</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;What does </span><span class="si">{</span><span class="n">ask_about</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">root</span><span class="o">.</span><span class="n">lemma_</span><span class="si">}</span><span class="s1">?&#39;</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;question&#39;</span><span class="p">:</span><span class="n">question</span><span class="p">,</span> <span class="s1">&#39;answers&#39;</span><span class="p">:</span><span class="n">answers</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">para_to_ques</span><span class="p">(</span><span class="n">example_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;question&#39;: &#39;What is Bansoori?&#39;, &#39;answers&#39;: [instrument]},
+ {&#39;question&#39;: &#39;What does Tom play?&#39;, &#39;answers&#39;: [Bansoori, Guitar]}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This seems right to me. Let’s run this on a larger sample of sentences. This sample has varying degrees of complexities and sentence structures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">large_example_text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Puliyogare is a South Indian dish made of rice and tamarind. </span>
+<span class="s2">Priya writes poems. Shivangi bakes cakes. Sachin sings in the orchestra.</span>
+
+<span class="s2">Osmosis is the movement of a solvent across a semipermeable membrane toward a higher concentration of solute. In biological systems, the solvent is typically water, but osmosis can occur in other liquids, supercritical liquids, and even gases.</span>
+<span class="s2">When a cell is submerged in water, the water molecules pass through the cell membrane from an area of low solute concentration to high solute concentration. For example, if the cell is submerged in saltwater, water molecules move out of the cell. If a cell is submerged in freshwater, water molecules move into the cell.</span>
+
+<span class="s2">Raja-Yoga is divided into eight steps. The first is Yama. Yama is nonviolence, truthfulness, continence, and non-receiving of any gifts.</span>
+<span class="s2">After Yama, Raja-Yoga has Niyama. cleanliness, contentment, austerity, study, and self - surrender to God.</span>
+<span class="s2">The steps are Yama and Niyama. </span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">para_to_ques</span><span class="p">(</span><span class="n">large_example_text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;question&#39;: &#39;What is Puliyogare?&#39;, &#39;answers&#39;: [dish]},
+ {&#39;question&#39;: &#39;What does Priya write?&#39;, &#39;answers&#39;: [poems]},
+ {&#39;question&#39;: &#39;What does Shivangi bake?&#39;, &#39;answers&#39;: [cakes]},
+ {&#39;question&#39;: &#39;What is Osmosis?&#39;, &#39;answers&#39;: [movement]},
+ {&#39;question&#39;: &#39;What is solvent?&#39;, &#39;answers&#39;: [water]},
+ {&#39;question&#39;: &#39;What is first?&#39;, &#39;answers&#39;: [Yama]},
+ {&#39;question&#39;: &#39;What is Yama?&#39;,
+  &#39;answers&#39;: [nonviolence, truthfulness, continence, of]},
+ {&#39;question&#39;: &#39;What does Yoga have?&#39;, &#39;answers&#39;: [Niyama]},
+ {&#39;question&#39;: &#39;What are steps?&#39;, &#39;answers&#39;: [Yama, Niyama]}]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="facts-extraction-using-semi-structured-sentence-parsing">
+<h1>Facts Extraction using Semi Structured Sentence Parsing<a class="headerlink" href="#facts-extraction-using-semi-structured-sentence-parsing" title="Permalink to this headline">¶</a></h1>
+<p>Introducing textacy,</p>
+<p>Boss mode with co reference resolution</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Part-02-B.html" title="previous page">Spell Correction</a>
+    <a class='right-next' id="next-link" href="Part-04%20Text%20Representations.html" title="next page">KeyedVectors API</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

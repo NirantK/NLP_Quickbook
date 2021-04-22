@@ -1,0 +1,1699 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Classification &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Text Cleaning" href="Part-02-A.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="#">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-B.html">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-01.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-getting-started-tutorial-for-self-learners">
+   A Getting Started Tutorial for Self Learners
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-need-to-convert-text-to-numbers">
+   Why do we need to convert text to numbers?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tricks-of-trade">
+   Tricks of Trade
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removing-stop-words">
+     Removing Stop Words
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exploring-spacy">
+   Exploring spaCy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrating-back-with-our-classifier-pipeline">
+   Integrating back with our classifier pipeline
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="text-classification">
+<h1>Text Classification<a class="headerlink" href="#text-classification" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="a-getting-started-tutorial-for-self-learners">
+<h2>A Getting Started Tutorial for Self Learners<a class="headerlink" href="#a-getting-started-tutorial-for-self-learners" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>  <span class="c1"># import packages which help us download dataset and load intp python</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># numpy package is for fast numerical computation in Python</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the filenames and data from the 20 newsgroups dataset</span>
+<span class="c1"># This will download the datasets if you don&#39;t have them already</span>
+<span class="n">twenty_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="n">twenty_test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is this dataset about? </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the 20 newsgroups by date dataset
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;From: lerxst@wam.umd.edu (where&#39;s my thing)\nSubject: WHAT car is this!?\nNntp-Posting-Host: rac3.wam.umd.edu\nOrganization: University of Maryland, College Park\nLines: 15\n\n I was wondering if anyone out there could enlighten me on this car I saw\nthe other day. It was a 2-door sports car, looked to be from the late 60s/\nearly 70s. It was called a Bricklin. The doors were really small. In addition,\nthe front bumper was separate from the rest of the body. This is \nall I know. If anyone can tellme a model name, engine specs, years\nof production, where this car is made, history, or whatever info you\nhave on this funky looking car, please e-mail.\n\nThanks,\n- IL\n   ---- brought to you by your neighborhood Lerxst ----\n\n\n\n\n&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at what are all the classes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twenty_train</span><span class="o">.</span><span class="n">target_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;alt.atheism&#39;,
+ &#39;comp.graphics&#39;,
+ &#39;comp.os.ms-windows.misc&#39;,
+ &#39;comp.sys.ibm.pc.hardware&#39;,
+ &#39;comp.sys.mac.hardware&#39;,
+ &#39;comp.windows.x&#39;,
+ &#39;misc.forsale&#39;,
+ &#39;rec.autos&#39;,
+ &#39;rec.motorcycles&#39;,
+ &#39;rec.sport.baseball&#39;,
+ &#39;rec.sport.hockey&#39;,
+ &#39;sci.crypt&#39;,
+ &#39;sci.electronics&#39;,
+ &#39;sci.med&#39;,
+ &#39;sci.space&#39;,
+ &#39;soc.religion.christian&#39;,
+ &#39;talk.politics.guns&#39;,
+ &#39;talk.politics.mideast&#39;,
+ &#39;talk.politics.misc&#39;,
+ &#39;talk.religion.misc&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="why-do-we-need-to-convert-text-to-numbers">
+<h2>Why do we need to convert text to numbers?<a class="headerlink" href="#why-do-we-need-to-convert-text-to-numbers" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extracting features from text files</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="n">count_vect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">X_train_counts</span> <span class="o">=</span> <span class="n">count_vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of Term Frequency Matrix: </span><span class="si">{</span><span class="n">X_train_counts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of Term Frequency Matrix: (11314, 130107)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span>
+<span class="n">tfidf_transformer</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">()</span>
+<span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">tfidf_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_counts</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of TFIDF Matrix: </span><span class="si">{</span><span class="n">X_train_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of TFIDF Matrix: (11314, 130107)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Machine Learning</span>
+<span class="c1"># Training Naive Bayes (NB) classifier on training data.</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Building a pipeline: We can write less code and do all of the above, by building a pipeline as follows:</span>
+<span class="n">text_nb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">MultinomialNB</span><span class="p">())])</span>
+<span class="n">text_nb_clf</span> <span class="o">=</span> <span class="n">text_nb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">text_nb_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">naivebayes_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test Accuracy is </span><span class="si">{</span><span class="n">naivebayes_clf_accuracy</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 77.38980350504514 %
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 9.78 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_predicted</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">lr_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lr_predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test Accuracy is </span><span class="si">{</span><span class="n">lr_clf_accuracy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.79341476367499
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+<span class="n">cf</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">lr_predicted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+  [
+    236,
+    2,
+    0,
+    0,
+    1,
+    1,
+    3,
+    0,
+    3,
+    3,
+    1,
+    1,
+    2,
+    9,
+    2,
+    35,
+    3,
+    4,
+    1,
+    12
+  ],
+  [
+    2,
+    304,
+    13,
+    8,
+    8,
+    19,
+    7,
+    1,
+    0,
+    1,
+    0,
+    4,
+    10,
+    1,
+    5,
+    2,
+    1,
+    1,
+    1,
+    1
+  ],
+  [
+    1,
+    21,
+    294,
+    31,
+    12,
+    10,
+    2,
+    2,
+    1,
+    5,
+    0,
+    1,
+    1,
+    2,
+    4,
+    2,
+    0,
+    0,
+    4,
+    1
+  ],
+  [
+    0,
+    12,
+    24,
+    283,
+    22,
+    2,
+    13,
+    3,
+    1,
+    1,
+    1,
+    1,
+    24,
+    0,
+    4,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  [
+    0,
+    5,
+    6,
+    21,
+    319,
+    1,
+    11,
+    1,
+    1,
+    5,
+    1,
+    0,
+    10,
+    0,
+    1,
+    0,
+    0,
+    0,
+    3,
+    0
+  ],
+  [
+    0,
+    41,
+    38,
+    5,
+    4,
+    292,
+    3,
+    0,
+    1,
+    1,
+    0,
+    1,
+    3,
+    2,
+    4,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  [
+    0,
+    3,
+    2,
+    12,
+    7,
+    0,
+    351,
+    3,
+    2,
+    1,
+    1,
+    0,
+    7,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  [
+    0,
+    1,
+    1,
+    4,
+    0,
+    2,
+    12,
+    352,
+    4,
+    2,
+    0,
+    0,
+    13,
+    1,
+    1,
+    0,
+    1,
+    0,
+    2,
+    0
+  ],
+  [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    6,
+    10,
+    379,
+    2,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  [
+    1,
+    0,
+    0,
+    0,
+    2,
+    0,
+    6,
+    1,
+    0,
+    368,
+    15,
+    0,
+    2,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    1
+  ],
+  [
+    0,
+    0,
+    0,
+    1,
+    3,
+    1,
+    2,
+    0,
+    0,
+    9,
+    382,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  [
+    1,
+    7,
+    3,
+    0,
+    3,
+    4,
+    5,
+    2,
+    1,
+    5,
+    0,
+    352,
+    5,
+    0,
+    1,
+    0,
+    4,
+    0,
+    3,
+    0
+  ],
+  [
+    1,
+    9,
+    5,
+    20,
+    9,
+    4,
+    8,
+    5,
+    2,
+    3,
+    0,
+    10,
+    307,
+    4,
+    5,
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  [
+    4,
+    10,
+    1,
+    2,
+    2,
+    2,
+    13,
+    1,
+    5,
+    4,
+    0,
+    0,
+    11,
+    331,
+    0,
+    3,
+    1,
+    3,
+    3,
+    0
+  ],
+  [
+    0,
+    11,
+    0,
+    0,
+    2,
+    1,
+    2,
+    1,
+    0,
+    0,
+    1,
+    0,
+    2,
+    6,
+    363,
+    1,
+    2,
+    0,
+    2,
+    0
+  ],
+  [
+    4,
+    4,
+    2,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2,
+    0,
+    0,
+    2,
+    1,
+    3,
+    371,
+    0,
+    0,
+    0,
+    6
+  ],
+  [
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    5,
+    3,
+    2,
+    4,
+    1,
+    5,
+    1,
+    4,
+    2,
+    0,
+    326,
+    1,
+    7,
+    1
+  ],
+  [
+    7,
+    2,
+    0,
+    0,
+    0,
+    9,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    0,
+    0,
+    0,
+    3,
+    3,
+    333,
+    11,
+    0
+  ],
+  [
+    1,
+    2,
+    0,
+    0,
+    1,
+    1,
+    4,
+    1,
+    2,
+    0,
+    0,
+    2,
+    2,
+    4,
+    8,
+    4,
+    97,
+    2,
+    179,
+    0
+  ],
+  [
+    38,
+    4,
+    0,
+    0,
+    0,
+    0,
+    4,
+    0,
+    0,
+    2,
+    2,
+    0,
+    0,
+    8,
+    3,
+    48,
+    17,
+    2,
+    9,
+    114
+  ]
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="n">linewidths</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Part-01_20_0.png" src="_images/Part-01_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="tricks-of-trade">
+<h2>Tricks of Trade<a class="headerlink" href="#tricks-of-trade" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="removing-stop-words">
+<h3>Removing Stop Words<a class="headerlink" href="#removing-stop-words" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If there is an error above, try:</p>
+<ul class="simple">
+<li><p>Windows:<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span></code> as <strong>Administrator</strong></p></li>
+<li><p>Linux:<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span> </code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="exploring-spacy">
+<h2>Exploring spaCy<a class="headerlink" href="#exploring-spacy" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.lang.en.stop_words</span> <span class="kn">import</span> <span class="n">STOP_WORDS</span>
+<span class="n">STOP_WORDS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;,
+ &#39;about&#39;,
+ &#39;above&#39;,
+ &#39;across&#39;,
+ &#39;after&#39;,
+ &#39;afterwards&#39;,
+ &#39;again&#39;,
+ &#39;against&#39;,
+ &#39;all&#39;,
+ &#39;almost&#39;,
+ &#39;alone&#39;,
+ &#39;along&#39;,
+ &#39;already&#39;,
+ &#39;also&#39;,
+ &#39;although&#39;,
+ &#39;always&#39;,
+ &#39;am&#39;,
+ &#39;among&#39;,
+ &#39;amongst&#39;,
+ &#39;amount&#39;,
+ &#39;an&#39;,
+ &#39;and&#39;,
+ &#39;another&#39;,
+ &#39;any&#39;,
+ &#39;anyhow&#39;,
+ &#39;anyone&#39;,
+ &#39;anything&#39;,
+ &#39;anyway&#39;,
+ &#39;anywhere&#39;,
+ &#39;are&#39;,
+ &#39;around&#39;,
+ &#39;as&#39;,
+ &#39;at&#39;,
+ &#39;back&#39;,
+ &#39;be&#39;,
+ &#39;became&#39;,
+ &#39;because&#39;,
+ &#39;become&#39;,
+ &#39;becomes&#39;,
+ &#39;becoming&#39;,
+ &#39;been&#39;,
+ &#39;before&#39;,
+ &#39;beforehand&#39;,
+ &#39;behind&#39;,
+ &#39;being&#39;,
+ &#39;below&#39;,
+ &#39;beside&#39;,
+ &#39;besides&#39;,
+ &#39;between&#39;,
+ &#39;beyond&#39;,
+ &#39;both&#39;,
+ &#39;bottom&#39;,
+ &#39;but&#39;,
+ &#39;by&#39;,
+ &#39;ca&#39;,
+ &#39;call&#39;,
+ &#39;can&#39;,
+ &#39;cannot&#39;,
+ &#39;could&#39;,
+ &#39;did&#39;,
+ &#39;do&#39;,
+ &#39;does&#39;,
+ &#39;doing&#39;,
+ &#39;done&#39;,
+ &#39;down&#39;,
+ &#39;due&#39;,
+ &#39;during&#39;,
+ &#39;each&#39;,
+ &#39;eight&#39;,
+ &#39;either&#39;,
+ &#39;eleven&#39;,
+ &#39;else&#39;,
+ &#39;elsewhere&#39;,
+ &#39;empty&#39;,
+ &#39;enough&#39;,
+ &#39;even&#39;,
+ &#39;ever&#39;,
+ &#39;every&#39;,
+ &#39;everyone&#39;,
+ &#39;everything&#39;,
+ &#39;everywhere&#39;,
+ &#39;except&#39;,
+ &#39;few&#39;,
+ &#39;fifteen&#39;,
+ &#39;fifty&#39;,
+ &#39;first&#39;,
+ &#39;five&#39;,
+ &#39;for&#39;,
+ &#39;former&#39;,
+ &#39;formerly&#39;,
+ &#39;forty&#39;,
+ &#39;four&#39;,
+ &#39;from&#39;,
+ &#39;front&#39;,
+ &#39;full&#39;,
+ &#39;further&#39;,
+ &#39;get&#39;,
+ &#39;give&#39;,
+ &#39;go&#39;,
+ &#39;had&#39;,
+ &#39;has&#39;,
+ &#39;have&#39;,
+ &#39;he&#39;,
+ &#39;hence&#39;,
+ &#39;her&#39;,
+ &#39;here&#39;,
+ &#39;hereafter&#39;,
+ &#39;hereby&#39;,
+ &#39;herein&#39;,
+ &#39;hereupon&#39;,
+ &#39;hers&#39;,
+ &#39;herself&#39;,
+ &#39;him&#39;,
+ &#39;himself&#39;,
+ &#39;his&#39;,
+ &#39;how&#39;,
+ &#39;however&#39;,
+ &#39;hundred&#39;,
+ &#39;i&#39;,
+ &#39;if&#39;,
+ &#39;in&#39;,
+ &#39;indeed&#39;,
+ &#39;into&#39;,
+ &#39;is&#39;,
+ &#39;it&#39;,
+ &#39;its&#39;,
+ &#39;itself&#39;,
+ &#39;just&#39;,
+ &#39;keep&#39;,
+ &#39;last&#39;,
+ &#39;latter&#39;,
+ &#39;latterly&#39;,
+ &#39;least&#39;,
+ &#39;less&#39;,
+ &#39;made&#39;,
+ &#39;make&#39;,
+ &#39;many&#39;,
+ &#39;may&#39;,
+ &#39;me&#39;,
+ &#39;meanwhile&#39;,
+ &#39;might&#39;,
+ &#39;mine&#39;,
+ &#39;more&#39;,
+ &#39;moreover&#39;,
+ &#39;most&#39;,
+ &#39;mostly&#39;,
+ &#39;move&#39;,
+ &#39;much&#39;,
+ &#39;must&#39;,
+ &#39;my&#39;,
+ &#39;myself&#39;,
+ &#39;name&#39;,
+ &#39;namely&#39;,
+ &#39;neither&#39;,
+ &#39;never&#39;,
+ &#39;nevertheless&#39;,
+ &#39;next&#39;,
+ &#39;nine&#39;,
+ &#39;no&#39;,
+ &#39;nobody&#39;,
+ &#39;none&#39;,
+ &#39;noone&#39;,
+ &#39;nor&#39;,
+ &#39;not&#39;,
+ &#39;nothing&#39;,
+ &#39;now&#39;,
+ &#39;nowhere&#39;,
+ &#39;of&#39;,
+ &#39;off&#39;,
+ &#39;often&#39;,
+ &#39;on&#39;,
+ &#39;once&#39;,
+ &#39;one&#39;,
+ &#39;only&#39;,
+ &#39;onto&#39;,
+ &#39;or&#39;,
+ &#39;other&#39;,
+ &#39;others&#39;,
+ &#39;otherwise&#39;,
+ &#39;our&#39;,
+ &#39;ours&#39;,
+ &#39;ourselves&#39;,
+ &#39;out&#39;,
+ &#39;over&#39;,
+ &#39;own&#39;,
+ &#39;part&#39;,
+ &#39;per&#39;,
+ &#39;perhaps&#39;,
+ &#39;please&#39;,
+ &#39;put&#39;,
+ &#39;quite&#39;,
+ &#39;rather&#39;,
+ &#39;re&#39;,
+ &#39;really&#39;,
+ &#39;regarding&#39;,
+ &#39;same&#39;,
+ &#39;say&#39;,
+ &#39;see&#39;,
+ &#39;seem&#39;,
+ &#39;seemed&#39;,
+ &#39;seeming&#39;,
+ &#39;seems&#39;,
+ &#39;serious&#39;,
+ &#39;several&#39;,
+ &#39;she&#39;,
+ &#39;should&#39;,
+ &#39;show&#39;,
+ &#39;side&#39;,
+ &#39;since&#39;,
+ &#39;six&#39;,
+ &#39;sixty&#39;,
+ &#39;so&#39;,
+ &#39;some&#39;,
+ &#39;somehow&#39;,
+ &#39;someone&#39;,
+ &#39;something&#39;,
+ &#39;sometime&#39;,
+ &#39;sometimes&#39;,
+ &#39;somewhere&#39;,
+ &#39;still&#39;,
+ &#39;such&#39;,
+ &#39;take&#39;,
+ &#39;ten&#39;,
+ &#39;than&#39;,
+ &#39;that&#39;,
+ &#39;the&#39;,
+ &#39;their&#39;,
+ &#39;them&#39;,
+ &#39;themselves&#39;,
+ &#39;then&#39;,
+ &#39;thence&#39;,
+ &#39;there&#39;,
+ &#39;thereafter&#39;,
+ &#39;thereby&#39;,
+ &#39;therefore&#39;,
+ &#39;therein&#39;,
+ &#39;thereupon&#39;,
+ &#39;these&#39;,
+ &#39;they&#39;,
+ &#39;third&#39;,
+ &#39;this&#39;,
+ &#39;those&#39;,
+ &#39;though&#39;,
+ &#39;three&#39;,
+ &#39;through&#39;,
+ &#39;throughout&#39;,
+ &#39;thru&#39;,
+ &#39;thus&#39;,
+ &#39;to&#39;,
+ &#39;together&#39;,
+ &#39;too&#39;,
+ &#39;top&#39;,
+ &#39;toward&#39;,
+ &#39;towards&#39;,
+ &#39;twelve&#39;,
+ &#39;twenty&#39;,
+ &#39;two&#39;,
+ &#39;under&#39;,
+ &#39;unless&#39;,
+ &#39;until&#39;,
+ &#39;up&#39;,
+ &#39;upon&#39;,
+ &#39;us&#39;,
+ &#39;used&#39;,
+ &#39;using&#39;,
+ &#39;various&#39;,
+ &#39;very&#39;,
+ &#39;via&#39;,
+ &#39;was&#39;,
+ &#39;we&#39;,
+ &#39;well&#39;,
+ &#39;were&#39;,
+ &#39;what&#39;,
+ &#39;whatever&#39;,
+ &#39;when&#39;,
+ &#39;whence&#39;,
+ &#39;whenever&#39;,
+ &#39;where&#39;,
+ &#39;whereafter&#39;,
+ &#39;whereas&#39;,
+ &#39;whereby&#39;,
+ &#39;wherein&#39;,
+ &#39;whereupon&#39;,
+ &#39;wherever&#39;,
+ &#39;whether&#39;,
+ &#39;which&#39;,
+ &#39;while&#39;,
+ &#39;whither&#39;,
+ &#39;who&#39;,
+ &#39;whoever&#39;,
+ &#39;whole&#39;,
+ &#39;whom&#39;,
+ &#39;whose&#39;,
+ &#39;why&#39;,
+ &#39;will&#39;,
+ &#39;with&#39;,
+ &#39;within&#39;,
+ &#39;without&#39;,
+ &#39;would&#39;,
+ &#39;yet&#39;,
+ &#39;you&#39;,
+ &#39;your&#39;,
+ &#39;yours&#39;,
+ &#39;yourself&#39;,
+ &#39;yourselves&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">&#39;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">STOP_WORDS</span><span class="p">)</span><span class="si">}</span><span class="s1"> stopwords in spaCy&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;There are 305 stopwords in spaCy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can add your own corpora specific STOPWORDS using the .add syntax</span>
+<span class="n">STOP_WORDS</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;your_additional_stop_word_here&quot;</span><span class="p">)</span>
+<span class="sa">f</span><span class="s1">&#39;After adding your own stop words, spaCy will use </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">STOP_WORDS</span><span class="p">)</span><span class="si">}</span><span class="s1"> stopwords&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;After adding your own stop words, spaCy will use 306 stopwords&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="s2">&quot;I am learning the most important ideas Natural Language Processing ideas using Python&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>  <span class="c1"># doc is a spaCy object which stores the entire document string</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I am learning the most important ideas Natural Language Processing ideas using Python
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>About spaCy objects</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I
+am
+learning
+the
+most
+important
+ideas
+Natural
+Language
+Processing
+ideas
+using
+Python
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simplified_doc</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">token</span><span class="o">.</span><span class="n">is_punct</span> <span class="o">|</span> <span class="n">token</span><span class="o">.</span><span class="n">is_stop</span><span class="p">]</span>
+<span class="n">simplified_doc</span>
+<span class="c1"># please note that .orth_ attribute returns the unicode string representation of the token</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[I, learning, important, ideas, Natural, Language, Processing, ideas, Python]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also check what other things we know about these tags in the simplified_doc:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">simplified_doc</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Token:</span><span class="si">{</span><span class="n">token</span><span class="o">.</span><span class="n">orth_</span><span class="si">}</span><span class="se">\t</span><span class="s1">Lemmatized:</span><span class="si">{</span><span class="n">token</span><span class="o">.</span><span class="n">lemma_</span><span class="si">}</span><span class="se">\t</span><span class="s1">Part-of-Speech-Tag:</span><span class="si">{</span><span class="n">token</span><span class="o">.</span><span class="n">pos_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token:I	Lemmatized:-PRON-	Part-of-Speech-Tag:PRON
+Token:learning	Lemmatized:learn	Part-of-Speech-Tag:VERB
+Token:important	Lemmatized:important	Part-of-Speech-Tag:ADJ
+Token:ideas	Lemmatized:idea	Part-of-Speech-Tag:NOUN
+Token:Natural	Lemmatized:natural	Part-of-Speech-Tag:PROPN
+Token:Language	Lemmatized:language	Part-of-Speech-Tag:PROPN
+Token:Processing	Lemmatized:processing	Part-of-Speech-Tag:PROPN
+Token:ideas	Lemmatized:idea	Part-of-Speech-Tag:NOUN
+Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="integrating-back-with-our-classifier-pipeline">
+<h2>Integrating back with our classifier pipeline<a class="headerlink" href="#integrating-back-with-our-classifier-pipeline" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">??</span>CountVectorizer
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.lang.en</span> <span class="kn">import</span> <span class="n">English</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">English</span><span class="p">()</span><span class="o">.</span><span class="n">Defaults</span><span class="o">.</span><span class="n">create_tokenizer</span><span class="p">(</span><span class="n">nlp</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">spacy_tokenizer</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">orth_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">document</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 9.74 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_print_accuracy</span><span class="p">(</span><span class="n">text_clf</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">text_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test Accuracy is </span><span class="si">{</span><span class="n">clf_accuracy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">clf_accuracy</span>
+
+<span class="n">calc_print_accuracy</span><span class="p">(</span><span class="n">text_lr_clf</span><span class="p">,</span> <span class="n">twenty_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.79341476367499
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>82.79341476367499
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">spacy_tokenizer</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">STOP_WORDS</span><span class="p">))),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<span class="n">calc_print_accuracy</span><span class="p">(</span><span class="n">text_lr_clf</span><span class="p">,</span> <span class="n">twenty_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 78.18640467339351
+Wall time: 3min 16s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='right-next' id="next-link" href="Part-02-A.html" title="next page">Text Cleaning</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

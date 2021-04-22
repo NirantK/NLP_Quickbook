@@ -1,0 +1,1199 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KeyedVectors API &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modern Methods for Text Classification" href="Part-05%20Modern%20Text%20Classification.html" />
+    <link rel="prev" title="Leveraging Linguistics" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-01.html">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-B.html">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-04 Text Representations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-04 Text Representations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   KeyedVectors API
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-missing-in-both-word2vec-and-glove">
+     What is missing in both word2vec and GloVe?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;gensim: </span><span class="si">{</span><span class="n">gensim</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\Miniconda3\envs\nlp\lib\site-packages\gensim\utils.py:1197: UserWarning: detected Windows; aliasing chunkize to chunkize_serial
+  warnings.warn(&quot;detected Windows; aliasing chunkize to chunkize_serial&quot;)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gensim: 3.4.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s download some pre-trained GLove embeddings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -y tqdm
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solving environment: ...working... done
+
+# All requested packages already installed.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="k">class</span> <span class="nc">TqdmUpTo</span><span class="p">(</span><span class="n">tqdm</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bsize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">tsize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">bsize</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download data if the filename does not exist already</span>
+<span class="sd">    Uses Tqdm to show download progress</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">TqdmUpTo</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">unit_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">miniters</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">reporthook</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">update_to</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embedding_url</span> <span class="o">=</span> <span class="s1">&#39;http://nlp.stanford.edu/data/glove.6B.zip&#39;</span>
+<span class="n">get_data</span><span class="p">(</span><span class="n">embedding_url</span><span class="p">,</span> <span class="s1">&#39;data/glove.6B.zip&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # We need to run this only once, can unzip manually unzip to the data directory too</span>
+<span class="o">!</span>unzip data/glove.6B.zip 
+<span class="o">!</span>mv glove.6B.300d.txt data/glove.6B.300d.txt 
+<span class="o">!</span>mv glove.6B.200d.txt data/glove.6B.200d.txt 
+<span class="o">!</span>mv glove.6B.100d.txt data/glove.6B.100d.txt 
+<span class="o">!</span>mv glove.6B.50d.txt data/glove.6B.50d.txt 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archive:  data/glove.6B.zip
+  inflating: glove.6B.50d.txt        
+  inflating: glove.6B.100d.txt       
+  inflating: glove.6B.200d.txt       
+  inflating: glove.6B.300d.txt       
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.scripts.glove2word2vec</span> <span class="kn">import</span> <span class="n">glove2word2vec</span>
+<span class="n">glove_input_file</span> <span class="o">=</span> <span class="s1">&#39;data/glove.6B.300d.txt&#39;</span>
+
+<span class="n">word2vec_output_file</span> <span class="o">=</span> <span class="s1">&#39;data/glove.6B.300d.word2vec.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">word2vec_output_file</span><span class="p">):</span>
+    <span class="n">glove2word2vec</span><span class="p">(</span><span class="n">glove_input_file</span><span class="p">,</span> <span class="n">word2vec_output_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="keyedvectors-api">
+<h1>KeyedVectors API<a class="headerlink" href="#keyedvectors-api" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">KeyedVectors</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">word2vec_output_file</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># load the Stanford GloVe model from file, this is Disk I/O and can be slow</span>
+<span class="n">pretrained_w2v_model</span> <span class="o">=</span> <span class="n">KeyedVectors</span><span class="o">.</span><span class="n">load_word2vec_format</span><span class="p">(</span><span class="n">word2vec_output_file</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># binary=False format for human readable text (.txt) files, and binary=True for .bin files </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 1min 24s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate: (king - man) + woman = ?</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pretrained_w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;woman&#39;</span><span class="p">,</span> <span class="s1">&#39;king&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;man&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel_launcher.py:2: DeprecationWarning: Call to deprecated `wv` (Attribute will be removed in 4.0.0, use self instead).
+  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;queen&#39;, 0.6713277101516724)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate: (india - canada) +  = ?</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pretrained_w2v_model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;quora&#39;</span><span class="p">,</span> <span class="s1">&#39;facebook&#39;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;linkedin&#39;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;twitter&#39;, 0.37966805696487427)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pretrained_w2v_model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;india&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;indian&#39;, 0.7355823516845703),
+ (&#39;pakistan&#39;, 0.7285579442977905),
+ (&#39;delhi&#39;, 0.6846905946731567),
+ (&#39;bangladesh&#39;, 0.620319128036499),
+ (&#39;lanka&#39;, 0.609517514705658),
+ (&#39;sri&#39;, 0.6011613607406616),
+ (&#39;kashmir&#39;, 0.5746493935585022),
+ (&#39;nepal&#39;, 0.5421023964881897),
+ (&#39;pradesh&#39;, 0.5405810475349426),
+ (&#39;maharashtra&#39;, 0.518537700176239)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="what-is-missing-in-both-word2vec-and-glove">
+<h2>What is missing in both word2vec and GloVe?<a class="headerlink" href="#what-is-missing-in-both-word2vec-and-glove" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">pretrained_w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s1">&#39;nirant&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel_launcher.py:2: DeprecationWarning: Call to deprecated `wv` (Attribute will be removed in 4.0.0, use self instead).
+  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;word &#39;nirant&#39; not in vocabulary&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-handle-oov-words">
+<h1>How to handle OOV words?<a class="headerlink" href="#how-to-handle-oov-words" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ted_dataset</span> <span class="o">=</span> <span class="s2">&quot;https://wit3.fbk.eu/get.php?path=XML_releases/xml/ted_en-20160408.zip&amp;filename=ted_en-20160408.zip&quot;</span>
+<span class="n">get_data</span><span class="p">(</span><span class="n">ted_dataset</span><span class="p">,</span> <span class="s2">&quot;data/ted_en.zip&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">lxml.etree</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;data/ted_en.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;ted_en-20160408.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
+<span class="n">input_text</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//content/text()&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">input_text</span><span class="p">[:</span><span class="mi">500</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Here are two reasons companies fail: they only do more of the same, or they only do what&#39;s new.\nTo me the real, real solution to quality growth is figuring out the balance between two activities: exploration and exploitation. Both are necessary, but it can be too much of a good thing.\nConsider Facit. I&#39;m actually old enough to remember them. Facit was a fantastic company. They were born deep in the Swedish forest, and they made the best mechanical calculators in the world. Everybody used them. A&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="c1"># remove parenthesis </span>
+<span class="n">input_text_noparens</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\([^)]*\)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">input_text</span><span class="p">)</span>
+
+<span class="c1"># store as list of sentences</span>
+<span class="n">sentences_strings_ted</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">input_text_noparens</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(?:(?P&lt;precolon&gt;[^:]{,20}):)?(?P&lt;postcolon&gt;.*)$&#39;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+    <span class="n">sentences_strings_ted</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sent</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">m</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()[</span><span class="s1">&#39;postcolon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">sent</span><span class="p">)</span>
+
+<span class="c1"># store as list of lists of words</span>
+<span class="n">sentences_ted</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">sent_str</span> <span class="ow">in</span> <span class="n">sentences_strings_ted</span><span class="p">:</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-z0-9]+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">sent_str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">sentences_ted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sentences_ted</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;here&#39;, &#39;are&#39;, &#39;two&#39;, &#39;reasons&#39;, &#39;companies&#39;, &#39;fail&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;more&#39;, &#39;of&#39;, &#39;the&#39;, &#39;same&#39;, &#39;or&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;what&#39;, &#39;s&#39;, &#39;new&#39;], [&#39;to&#39;, &#39;me&#39;, &#39;the&#39;, &#39;real&#39;, &#39;real&#39;, &#39;solution&#39;, &#39;to&#39;, &#39;quality&#39;, &#39;growth&#39;, &#39;is&#39;, &#39;figuring&#39;, &#39;out&#39;, &#39;the&#39;, &#39;balance&#39;, &#39;between&#39;, &#39;two&#39;, &#39;activities&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;ted_clean_sentences.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">sentences_ted</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;ted_clean_sentences.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">sentences_ted</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sentences_ted</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;here&#39;, &#39;are&#39;, &#39;two&#39;, &#39;reasons&#39;, &#39;companies&#39;, &#39;fail&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;more&#39;, &#39;of&#39;, &#39;the&#39;, &#39;same&#39;, &#39;or&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;what&#39;, &#39;s&#39;, &#39;new&#39;], [&#39;to&#39;, &#39;me&#39;, &#39;the&#39;, &#39;real&#39;, &#39;real&#39;, &#39;solution&#39;, &#39;to&#39;, &#39;quality&#39;, &#39;growth&#39;, &#39;is&#39;, &#39;figuring&#39;, &#39;out&#39;, &#39;the&#39;, &#39;balance&#39;, &#39;between&#39;, &#39;two&#39;, &#39;activities&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-fasttext-embedddings">
+<h1>Train FastText Embedddings<a class="headerlink" href="#train-fasttext-embedddings" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models.fasttext</span> <span class="kn">import</span> <span class="n">FastText</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">fasttext_ted_model</span> <span class="o">=</span> <span class="n">FastText</span><span class="p">(</span><span class="n">sentences_ted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># sg = 1 denotes skipgram, else CBOW is used</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 5.48 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fasttext_ted_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;india&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;indians&#39;, 0.5911639928817749),
+ (&#39;indian&#39;, 0.5406097769737244),
+ (&#39;indiana&#39;, 0.4898717999458313),
+ (&#39;indicated&#39;, 0.44004374742507935),
+ (&#39;indicate&#39;, 0.4042605757713318),
+ (&#39;internal&#39;, 0.39166826009750366),
+ (&#39;interior&#39;, 0.3871103823184967),
+ (&#39;byproducts&#39;, 0.37529298663139343),
+ (&#39;princesses&#39;, 0.37265270948410034),
+ (&#39;indications&#39;, 0.369659960269928)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-word2vec-embeddings">
+<h1>Train word2vec Embeddings<a class="headerlink" href="#train-word2vec-embeddings" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models.word2vec</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">word2vec_ted_model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="o">=</span><span class="n">sentences_ted</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sg</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 1.44 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">word2vec_ted_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s2">&quot;india&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;bordered&#39;, 0.41709238290786743),
+ (&#39;hovering&#39;, 0.4083016514778137),
+ (&#39;almost&#39;, 0.3865964710712433),
+ (&#39;sad&#39;, 0.3704090118408203),
+ (&#39;supporters&#39;, 0.3616541624069214),
+ (&#39;spite&#39;, 0.3598758280277252),
+ (&#39;wrinkles&#39;, 0.3590206205844879),
+ (&#39;guaranteed&#39;, 0.3535975515842438),
+ (&#39;hd&#39;, 0.3512127995491028),
+ (&#39;assistant&#39;, 0.346971333026886)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fasttext-or-word2vec">
+<h1>fastText or word2vec?<a class="headerlink" href="#fasttext-or-word2vec" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="document-embeddings">
+<h1>Document Embeddings<a class="headerlink" href="#document-embeddings" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models.doc2vec</span> <span class="kn">import</span> <span class="n">Doc2Vec</span><span class="p">,</span> <span class="n">TaggedDocument</span>
+<span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">lxml.etree</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="s1">&#39;data/ted_en.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">z</span><span class="p">:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">etree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;ted_en-20160408.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">))</span>
+    
+<span class="n">talks</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//content/text()&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_corpus</span><span class="p">(</span><span class="n">talks</span><span class="p">,</span> <span class="n">tokens_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">talks</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tokens_only</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">gensim</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">simple_preprocess</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For training data, add tags</span>
+            <span class="k">yield</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">doc2vec</span><span class="o">.</span><span class="n">TaggedDocument</span><span class="p">(</span><span class="n">gensim</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">simple_preprocess</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">read_corpus</span><span class="p">(</span><span class="n">talks</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;generator object read_corpus at 0x00000218240FE990&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ted_talk_docs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">read_corpus</span><span class="p">(</span><span class="n">talks</span><span class="p">))</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ted_talk_docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TaggedDocument(words=[&#39;here&#39;, &#39;are&#39;, &#39;two&#39;, &#39;reasons&#39;, &#39;companies&#39;, &#39;fail&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;more&#39;, &#39;of&#39;, &#39;the&#39;, &#39;same&#39;, &#39;or&#39;, &#39;they&#39;, &#39;only&#39;, &#39;do&#39;, &#39;what&#39;, &#39;new&#39;, &#39;to&#39;, &#39;me&#39;, &#39;the&#39;, &#39;real&#39;, &#39;real&#39;, &#39;solution&#39;, &#39;to&#39;, &#39;quality&#39;, &#39;growth&#39;, &#39;is&#39;, &#39;figuring&#39;, &#39;out&#39;, &#39;the&#39;, &#39;balance&#39;, &#39;between&#39;, &#39;two&#39;, &#39;activities&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;, &#39;both&#39;, &#39;are&#39;, &#39;necessary&#39;, &#39;but&#39;, &#39;it&#39;, &#39;can&#39;, &#39;be&#39;, &#39;too&#39;, &#39;much&#39;, &#39;of&#39;, &#39;good&#39;, &#39;thing&#39;, &#39;consider&#39;, &#39;facit&#39;, &#39;actually&#39;, &#39;old&#39;, &#39;enough&#39;, &#39;to&#39;, &#39;remember&#39;, &#39;them&#39;, &#39;facit&#39;, &#39;was&#39;, &#39;fantastic&#39;, &#39;company&#39;, &#39;they&#39;, &#39;were&#39;, &#39;born&#39;, &#39;deep&#39;, &#39;in&#39;, &#39;the&#39;, &#39;swedish&#39;, &#39;forest&#39;, &#39;and&#39;, &#39;they&#39;, &#39;made&#39;, &#39;the&#39;, &#39;best&#39;, &#39;mechanical&#39;, &#39;calculators&#39;, &#39;in&#39;, &#39;the&#39;, &#39;world&#39;, &#39;everybody&#39;, &#39;used&#39;, &#39;them&#39;, &#39;and&#39;, &#39;what&#39;, &#39;did&#39;, &#39;facit&#39;, &#39;do&#39;, &#39;when&#39;, &#39;the&#39;, &#39;electronic&#39;, &#39;calculator&#39;, &#39;came&#39;, &#39;along&#39;, &#39;they&#39;, &#39;continued&#39;, &#39;doing&#39;, &#39;exactly&#39;, &#39;the&#39;, &#39;same&#39;, &#39;in&#39;, &#39;six&#39;, &#39;months&#39;, &#39;they&#39;, &#39;went&#39;, &#39;from&#39;, &#39;maximum&#39;, &#39;revenue&#39;, &#39;and&#39;, &#39;they&#39;, &#39;were&#39;, &#39;gone&#39;, &#39;gone&#39;, &#39;to&#39;, &#39;me&#39;, &#39;the&#39;, &#39;irony&#39;, &#39;about&#39;, &#39;the&#39;, &#39;facit&#39;, &#39;story&#39;, &#39;is&#39;, &#39;hearing&#39;, &#39;about&#39;, &#39;the&#39;, &#39;facit&#39;, &#39;engineers&#39;, &#39;who&#39;, &#39;had&#39;, &#39;bought&#39;, &#39;cheap&#39;, &#39;small&#39;, &#39;electronic&#39;, &#39;calculators&#39;, &#39;in&#39;, &#39;japan&#39;, &#39;that&#39;, &#39;they&#39;, &#39;used&#39;, &#39;to&#39;, &#39;double&#39;, &#39;check&#39;, &#39;their&#39;, &#39;calculators&#39;, &#39;laughter&#39;, &#39;facit&#39;, &#39;did&#39;, &#39;too&#39;, &#39;much&#39;, &#39;exploitation&#39;, &#39;but&#39;, &#39;exploration&#39;, &#39;can&#39;, &#39;go&#39;, &#39;wild&#39;, &#39;too&#39;, &#39;few&#39;, &#39;years&#39;, &#39;back&#39;, &#39;worked&#39;, &#39;closely&#39;, &#39;alongside&#39;, &#39;european&#39;, &#39;biotech&#39;, &#39;company&#39;, &#39;let&#39;, &#39;call&#39;, &#39;them&#39;, &#39;oncosearch&#39;, &#39;the&#39;, &#39;company&#39;, &#39;was&#39;, &#39;brilliant&#39;, &#39;they&#39;, &#39;had&#39;, &#39;applications&#39;, &#39;that&#39;, &#39;promised&#39;, &#39;to&#39;, &#39;diagnose&#39;, &#39;even&#39;, &#39;cure&#39;, &#39;certain&#39;, &#39;forms&#39;, &#39;of&#39;, &#39;blood&#39;, &#39;cancer&#39;, &#39;every&#39;, &#39;day&#39;, &#39;was&#39;, &#39;about&#39;, &#39;creating&#39;, &#39;something&#39;, &#39;new&#39;, &#39;they&#39;, &#39;were&#39;, &#39;extremely&#39;, &#39;innovative&#39;, &#39;and&#39;, &#39;the&#39;, &#39;mantra&#39;, &#39;was&#39;, &#39;when&#39;, &#39;we&#39;, &#39;only&#39;, &#39;get&#39;, &#39;it&#39;, &#39;right&#39;, &#39;or&#39;, &#39;even&#39;, &#39;we&#39;, &#39;want&#39;, &#39;it&#39;, &#39;perfect&#39;, &#39;the&#39;, &#39;sad&#39;, &#39;thing&#39;, &#39;is&#39;, &#39;before&#39;, &#39;they&#39;, &#39;became&#39;, &#39;perfect&#39;, &#39;even&#39;, &#39;good&#39;, &#39;enough&#39;, &#39;they&#39;, &#39;became&#39;, &#39;obsolete&#39;, &#39;oncosearch&#39;, &#39;did&#39;, &#39;too&#39;, &#39;much&#39;, &#39;exploration&#39;, &#39;first&#39;, &#39;heard&#39;, &#39;about&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;, &#39;about&#39;, &#39;years&#39;, &#39;ago&#39;, &#39;when&#39;, &#39;worked&#39;, &#39;as&#39;, &#39;visiting&#39;, &#39;scholar&#39;, &#39;at&#39;, &#39;stanford&#39;, &#39;university&#39;, &#39;the&#39;, &#39;founder&#39;, &#39;of&#39;, &#39;the&#39;, &#39;idea&#39;, &#39;is&#39;, &#39;jim&#39;, &#39;march&#39;, &#39;and&#39;, &#39;to&#39;, &#39;me&#39;, &#39;the&#39;, &#39;power&#39;, &#39;of&#39;, &#39;the&#39;, &#39;idea&#39;, &#39;is&#39;, &#39;its&#39;, &#39;practicality&#39;, &#39;exploration&#39;, &#39;exploration&#39;, &#39;is&#39;, &#39;about&#39;, &#39;coming&#39;, &#39;up&#39;, &#39;with&#39;, &#39;what&#39;, &#39;new&#39;, &#39;it&#39;, &#39;about&#39;, &#39;search&#39;, &#39;it&#39;, &#39;about&#39;, &#39;discovery&#39;, &#39;it&#39;, &#39;about&#39;, &#39;new&#39;, &#39;products&#39;, &#39;it&#39;, &#39;about&#39;, &#39;new&#39;, &#39;innovations&#39;, &#39;it&#39;, &#39;about&#39;, &#39;changing&#39;, &#39;our&#39;, &#39;frontiers&#39;, &#39;our&#39;, &#39;heroes&#39;, &#39;are&#39;, &#39;people&#39;, &#39;who&#39;, &#39;have&#39;, &#39;done&#39;, &#39;exploration&#39;, &#39;madame&#39;, &#39;curie&#39;, &#39;picasso&#39;, &#39;neil&#39;, &#39;armstrong&#39;, &#39;sir&#39;, &#39;edmund&#39;, &#39;hillary&#39;, &#39;etc&#39;, &#39;come&#39;, &#39;from&#39;, &#39;norway&#39;, &#39;all&#39;, &#39;our&#39;, &#39;heroes&#39;, &#39;are&#39;, &#39;explorers&#39;, &#39;and&#39;, &#39;they&#39;, &#39;deserve&#39;, &#39;to&#39;, &#39;be&#39;, &#39;we&#39;, &#39;all&#39;, &#39;know&#39;, &#39;that&#39;, &#39;exploration&#39;, &#39;is&#39;, &#39;risky&#39;, &#39;we&#39;, &#39;don&#39;, &#39;know&#39;, &#39;the&#39;, &#39;answers&#39;, &#39;we&#39;, &#39;don&#39;, &#39;know&#39;, &#39;if&#39;, &#39;we&#39;, &#39;re&#39;, &#39;going&#39;, &#39;to&#39;, &#39;find&#39;, &#39;them&#39;, &#39;and&#39;, &#39;we&#39;, &#39;know&#39;, &#39;that&#39;, &#39;the&#39;, &#39;risks&#39;, &#39;are&#39;, &#39;high&#39;, &#39;exploitation&#39;, &#39;is&#39;, &#39;the&#39;, &#39;opposite&#39;, &#39;exploitation&#39;, &#39;is&#39;, &#39;taking&#39;, &#39;the&#39;, &#39;knowledge&#39;, &#39;we&#39;, &#39;have&#39;, &#39;and&#39;, &#39;making&#39;, &#39;good&#39;, &#39;better&#39;, &#39;exploitation&#39;, &#39;is&#39;, &#39;about&#39;, &#39;making&#39;, &#39;our&#39;, &#39;trains&#39;, &#39;run&#39;, &#39;on&#39;, &#39;time&#39;, &#39;it&#39;, &#39;about&#39;, &#39;making&#39;, &#39;good&#39;, &#39;products&#39;, &#39;faster&#39;, &#39;and&#39;, &#39;cheaper&#39;, &#39;exploitation&#39;, &#39;is&#39;, &#39;not&#39;, &#39;risky&#39;, &#39;in&#39;, &#39;the&#39;, &#39;short&#39;, &#39;term&#39;, &#39;but&#39;, &#39;if&#39;, &#39;we&#39;, &#39;only&#39;, &#39;exploit&#39;, &#39;it&#39;, &#39;very&#39;, &#39;risky&#39;, &#39;in&#39;, &#39;the&#39;, &#39;long&#39;, &#39;term&#39;, &#39;and&#39;, &#39;think&#39;, &#39;we&#39;, &#39;all&#39;, &#39;have&#39;, &#39;memories&#39;, &#39;of&#39;, &#39;the&#39;, &#39;famous&#39;, &#39;pop&#39;, &#39;groups&#39;, &#39;who&#39;, &#39;keep&#39;, &#39;singing&#39;, &#39;the&#39;, &#39;same&#39;, &#39;songs&#39;, &#39;again&#39;, &#39;and&#39;, &#39;again&#39;, &#39;until&#39;, &#39;they&#39;, &#39;become&#39;, &#39;obsolete&#39;, &#39;or&#39;, &#39;even&#39;, &#39;pathetic&#39;, &#39;that&#39;, &#39;the&#39;, &#39;risk&#39;, &#39;of&#39;, &#39;exploitation&#39;, &#39;so&#39;, &#39;if&#39;, &#39;we&#39;, &#39;take&#39;, &#39;long&#39;, &#39;term&#39;, &#39;perspective&#39;, &#39;we&#39;, &#39;explore&#39;, &#39;if&#39;, &#39;we&#39;, &#39;take&#39;, &#39;short&#39;, &#39;term&#39;, &#39;perspective&#39;, &#39;we&#39;, &#39;exploit&#39;, &#39;small&#39;, &#39;children&#39;, &#39;they&#39;, &#39;explore&#39;, &#39;all&#39;, &#39;day&#39;, &#39;all&#39;, &#39;day&#39;, &#39;it&#39;, &#39;about&#39;, &#39;exploration&#39;, &#39;as&#39;, &#39;we&#39;, &#39;grow&#39;, &#39;older&#39;, &#39;we&#39;, &#39;explore&#39;, &#39;less&#39;, &#39;because&#39;, &#39;we&#39;, &#39;have&#39;, &#39;more&#39;, &#39;knowledge&#39;, &#39;to&#39;, &#39;exploit&#39;, &#39;on&#39;, &#39;the&#39;, &#39;same&#39;, &#39;goes&#39;, &#39;for&#39;, &#39;companies&#39;, &#39;companies&#39;, &#39;become&#39;, &#39;by&#39;, &#39;nature&#39;, &#39;less&#39;, &#39;innovative&#39;, &#39;as&#39;, &#39;they&#39;, &#39;become&#39;, &#39;more&#39;, &#39;competent&#39;, &#39;and&#39;, &#39;this&#39;, &#39;is&#39;, &#39;of&#39;, &#39;course&#39;, &#39;big&#39;, &#39;worry&#39;, &#39;to&#39;, &#39;ceos&#39;, &#39;and&#39;, &#39;hear&#39;, &#39;very&#39;, &#39;often&#39;, &#39;questions&#39;, &#39;phrased&#39;, &#39;in&#39;, &#39;different&#39;, &#39;ways&#39;, &#39;for&#39;, &#39;example&#39;, &#39;how&#39;, &#39;can&#39;, &#39;both&#39;, &#39;effectively&#39;, &#39;run&#39;, &#39;and&#39;, &#39;reinvent&#39;, &#39;my&#39;, &#39;company&#39;, &#39;or&#39;, &#39;how&#39;, &#39;can&#39;, &#39;make&#39;, &#39;sure&#39;, &#39;that&#39;, &#39;our&#39;, &#39;company&#39;, &#39;changes&#39;, &#39;before&#39;, &#39;we&#39;, &#39;become&#39;, &#39;obsolete&#39;, &#39;or&#39;, &#39;are&#39;, &#39;hit&#39;, &#39;by&#39;, &#39;crisis&#39;, &#39;so&#39;, &#39;doing&#39;, &#39;one&#39;, &#39;well&#39;, &#39;is&#39;, &#39;difficult&#39;, &#39;doing&#39;, &#39;both&#39;, &#39;well&#39;, &#39;as&#39;, &#39;the&#39;, &#39;same&#39;, &#39;time&#39;, &#39;is&#39;, &#39;art&#39;, &#39;pushing&#39;, &#39;both&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;, &#39;so&#39;, &#39;one&#39;, &#39;thing&#39;, &#39;we&#39;, &#39;ve&#39;, &#39;found&#39;, &#39;is&#39;, &#39;only&#39;, &#39;about&#39;, &#39;two&#39;, &#39;percent&#39;, &#39;of&#39;, &#39;companies&#39;, &#39;are&#39;, &#39;able&#39;, &#39;to&#39;, &#39;effectively&#39;, &#39;explore&#39;, &#39;and&#39;, &#39;exploit&#39;, &#39;at&#39;, &#39;the&#39;, &#39;same&#39;, &#39;time&#39;, &#39;in&#39;, &#39;parallel&#39;, &#39;but&#39;, &#39;when&#39;, &#39;they&#39;, &#39;do&#39;, &#39;the&#39;, &#39;payoffs&#39;, &#39;are&#39;, &#39;huge&#39;, &#39;so&#39;, &#39;we&#39;, &#39;have&#39;, &#39;lots&#39;, &#39;of&#39;, &#39;great&#39;, &#39;examples&#39;, &#39;we&#39;, &#39;have&#39;, &#39;nestlé&#39;, &#39;creating&#39;, &#39;nespresso&#39;, &#39;we&#39;, &#39;have&#39;, &#39;lego&#39;, &#39;going&#39;, &#39;into&#39;, &#39;animated&#39;, &#39;films&#39;, &#39;toyota&#39;, &#39;creating&#39;, &#39;the&#39;, &#39;hybrids&#39;, &#39;unilever&#39;, &#39;pushing&#39;, &#39;into&#39;, &#39;sustainability&#39;, &#39;there&#39;, &#39;are&#39;, &#39;lots&#39;, &#39;of&#39;, &#39;examples&#39;, &#39;and&#39;, &#39;the&#39;, &#39;benefits&#39;, &#39;are&#39;, &#39;huge&#39;, &#39;why&#39;, &#39;is&#39;, &#39;balancing&#39;, &#39;so&#39;, &#39;difficult&#39;, &#39;think&#39;, &#39;it&#39;, &#39;difficult&#39;, &#39;because&#39;, &#39;there&#39;, &#39;are&#39;, &#39;so&#39;, &#39;many&#39;, &#39;traps&#39;, &#39;that&#39;, &#39;keep&#39;, &#39;us&#39;, &#39;where&#39;, &#39;we&#39;, &#39;are&#39;, &#39;so&#39;, &#39;ll&#39;, &#39;talk&#39;, &#39;about&#39;, &#39;two&#39;, &#39;but&#39;, &#39;there&#39;, &#39;are&#39;, &#39;many&#39;, &#39;so&#39;, &#39;let&#39;, &#39;talk&#39;, &#39;about&#39;, &#39;the&#39;, &#39;perpetual&#39;, &#39;search&#39;, &#39;trap&#39;, &#39;we&#39;, &#39;discover&#39;, &#39;something&#39;, &#39;but&#39;, &#39;we&#39;, &#39;don&#39;, &#39;have&#39;, &#39;the&#39;, &#39;patience&#39;, &#39;or&#39;, &#39;the&#39;, &#39;persistence&#39;, &#39;to&#39;, &#39;get&#39;, &#39;at&#39;, &#39;it&#39;, &#39;and&#39;, &#39;make&#39;, &#39;it&#39;, &#39;work&#39;, &#39;so&#39;, &#39;instead&#39;, &#39;of&#39;, &#39;staying&#39;, &#39;with&#39;, &#39;it&#39;, &#39;we&#39;, &#39;create&#39;, &#39;something&#39;, &#39;new&#39;, &#39;but&#39;, &#39;the&#39;, &#39;same&#39;, &#39;goes&#39;, &#39;for&#39;, &#39;that&#39;, &#39;then&#39;, &#39;we&#39;, &#39;re&#39;, &#39;in&#39;, &#39;the&#39;, &#39;vicious&#39;, &#39;circle&#39;, &#39;of&#39;, &#39;actually&#39;, &#39;coming&#39;, &#39;up&#39;, &#39;with&#39;, &#39;ideas&#39;, &#39;but&#39;, &#39;being&#39;, &#39;frustrated&#39;, &#39;oncosearch&#39;, &#39;was&#39;, &#39;good&#39;, &#39;example&#39;, &#39;famous&#39;, &#39;example&#39;, &#39;is&#39;, &#39;of&#39;, &#39;course&#39;, &#39;xerox&#39;, &#39;but&#39;, &#39;we&#39;, &#39;don&#39;, &#39;only&#39;, &#39;see&#39;, &#39;this&#39;, &#39;in&#39;, &#39;companies&#39;, &#39;we&#39;, &#39;see&#39;, &#39;this&#39;, &#39;in&#39;, &#39;the&#39;, &#39;public&#39;, &#39;sector&#39;, &#39;as&#39;, &#39;well&#39;, &#39;we&#39;, &#39;all&#39;, &#39;know&#39;, &#39;that&#39;, &#39;any&#39;, &#39;kind&#39;, &#39;of&#39;, &#39;effective&#39;, &#39;reform&#39;, &#39;of&#39;, &#39;education&#39;, &#39;research&#39;, &#39;health&#39;, &#39;care&#39;, &#39;even&#39;, &#39;defense&#39;, &#39;takes&#39;, &#39;maybe&#39;, &#39;years&#39;, &#39;to&#39;, &#39;work&#39;, &#39;but&#39;, &#39;still&#39;, &#39;we&#39;, &#39;change&#39;, &#39;much&#39;, &#39;more&#39;, &#39;often&#39;, &#39;we&#39;, &#39;really&#39;, &#39;don&#39;, &#39;give&#39;, &#39;them&#39;, &#39;the&#39;, &#39;chance&#39;, &#39;another&#39;, &#39;trap&#39;, &#39;is&#39;, &#39;the&#39;, &#39;success&#39;, &#39;trap&#39;, &#39;facit&#39;, &#39;fell&#39;, &#39;into&#39;, &#39;the&#39;, &#39;success&#39;, &#39;trap&#39;, &#39;they&#39;, &#39;literally&#39;, &#39;held&#39;, &#39;the&#39;, &#39;future&#39;, &#39;in&#39;, &#39;their&#39;, &#39;hands&#39;, &#39;but&#39;, &#39;they&#39;, &#39;couldn&#39;, &#39;see&#39;, &#39;it&#39;, &#39;they&#39;, &#39;were&#39;, &#39;simply&#39;, &#39;so&#39;, &#39;good&#39;, &#39;at&#39;, &#39;making&#39;, &#39;what&#39;, &#39;they&#39;, &#39;loved&#39;, &#39;doing&#39;, &#39;that&#39;, &#39;they&#39;, &#39;wouldn&#39;, &#39;change&#39;, &#39;we&#39;, &#39;are&#39;, &#39;like&#39;, &#39;that&#39;, &#39;too&#39;, &#39;when&#39;, &#39;we&#39;, &#39;know&#39;, &#39;something&#39;, &#39;well&#39;, &#39;it&#39;, &#39;difficult&#39;, &#39;to&#39;, &#39;change&#39;, &#39;bill&#39;, &#39;gates&#39;, &#39;has&#39;, &#39;said&#39;, &#39;success&#39;, &#39;is&#39;, &#39;lousy&#39;, &#39;teacher&#39;, &#39;it&#39;, &#39;seduces&#39;, &#39;us&#39;, &#39;into&#39;, &#39;thinking&#39;, &#39;we&#39;, &#39;cannot&#39;, &#39;fail&#39;, &#39;that&#39;, &#39;the&#39;, &#39;challenge&#39;, &#39;with&#39;, &#39;success&#39;, &#39;so&#39;, &#39;think&#39;, &#39;there&#39;, &#39;are&#39;, &#39;some&#39;, &#39;lessons&#39;, &#39;and&#39;, &#39;think&#39;, &#39;they&#39;, &#39;apply&#39;, &#39;to&#39;, &#39;us&#39;, &#39;and&#39;, &#39;they&#39;, &#39;apply&#39;, &#39;to&#39;, &#39;our&#39;, &#39;companies&#39;, &#39;the&#39;, &#39;first&#39;, &#39;lesson&#39;, &#39;is&#39;, &#39;get&#39;, &#39;ahead&#39;, &#39;of&#39;, &#39;the&#39;, &#39;crisis&#39;, &#39;and&#39;, &#39;any&#39;, &#39;company&#39;, &#39;that&#39;, &#39;able&#39;, &#39;to&#39;, &#39;innovate&#39;, &#39;is&#39;, &#39;actually&#39;, &#39;able&#39;, &#39;to&#39;, &#39;also&#39;, &#39;buy&#39;, &#39;an&#39;, &#39;insurance&#39;, &#39;in&#39;, &#39;the&#39;, &#39;future&#39;, &#39;netflix&#39;, &#39;they&#39;, &#39;could&#39;, &#39;so&#39;, &#39;easily&#39;, &#39;have&#39;, &#39;been&#39;, &#39;content&#39;, &#39;with&#39;, &#39;earlier&#39;, &#39;generations&#39;, &#39;of&#39;, &#39;distribution&#39;, &#39;but&#39;, &#39;they&#39;, &#39;always&#39;, &#39;and&#39;, &#39;think&#39;, &#39;they&#39;, &#39;will&#39;, &#39;always&#39;, &#39;keep&#39;, &#39;pushing&#39;, &#39;for&#39;, &#39;the&#39;, &#39;next&#39;, &#39;battle&#39;, &#39;see&#39;, &#39;other&#39;, &#39;companies&#39;, &#39;that&#39;, &#39;say&#39;, &#39;ll&#39;, &#39;win&#39;, &#39;the&#39;, &#39;next&#39;, &#39;innovation&#39;, &#39;cycle&#39;, &#39;whatever&#39;, &#39;it&#39;, &#39;takes&#39;, &#39;second&#39;, &#39;one&#39;, &#39;think&#39;, &#39;in&#39;, &#39;multiple&#39;, &#39;time&#39;, &#39;scales&#39;, &#39;ll&#39;, &#39;share&#39;, &#39;chart&#39;, &#39;with&#39;, &#39;you&#39;, &#39;and&#39;, &#39;think&#39;, &#39;it&#39;, &#39;wonderful&#39;, &#39;one&#39;, &#39;any&#39;, &#39;company&#39;, &#39;we&#39;, &#39;look&#39;, &#39;at&#39;, &#39;taking&#39;, &#39;one&#39;, &#39;year&#39;, &#39;perspective&#39;, &#39;and&#39;, &#39;looking&#39;, &#39;at&#39;, &#39;the&#39;, &#39;valuation&#39;, &#39;of&#39;, &#39;the&#39;, &#39;company&#39;, &#39;innovation&#39;, &#39;typically&#39;, &#39;accounts&#39;, &#39;for&#39;, &#39;only&#39;, &#39;about&#39;, &#39;percent&#39;, &#39;so&#39;, &#39;when&#39;, &#39;we&#39;, &#39;think&#39;, &#39;one&#39;, &#39;year&#39;, &#39;innovation&#39;, &#39;isn&#39;, &#39;really&#39;, &#39;that&#39;, &#39;important&#39;, &#39;move&#39;, &#39;ahead&#39;, &#39;take&#39;, &#39;year&#39;, &#39;perspective&#39;, &#39;on&#39;, &#39;the&#39;, &#39;same&#39;, &#39;company&#39;, &#39;suddenly&#39;, &#39;innovation&#39;, &#39;and&#39;, &#39;ability&#39;, &#39;to&#39;, &#39;renew&#39;, &#39;account&#39;, &#39;for&#39;, &#39;percent&#39;, &#39;but&#39;, &#39;companies&#39;, &#39;can&#39;, &#39;choose&#39;, &#39;they&#39;, &#39;need&#39;, &#39;to&#39;, &#39;fund&#39;, &#39;the&#39;, &#39;journey&#39;, &#39;and&#39;, &#39;lead&#39;, &#39;the&#39;, &#39;long&#39;, &#39;term&#39;, &#39;third&#39;, &#39;invite&#39;, &#39;talent&#39;, &#39;don&#39;, &#39;think&#39;, &#39;it&#39;, &#39;possible&#39;, &#39;for&#39;, &#39;any&#39;, &#39;of&#39;, &#39;us&#39;, &#39;to&#39;, &#39;be&#39;, &#39;able&#39;, &#39;to&#39;, &#39;balance&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;, &#39;by&#39;, &#39;ourselves&#39;, &#39;think&#39;, &#39;it&#39;, &#39;team&#39;, &#39;sport&#39;, &#39;think&#39;, &#39;we&#39;, &#39;need&#39;, &#39;to&#39;, &#39;allow&#39;, &#39;challenging&#39;, &#39;think&#39;, &#39;the&#39;, &#39;mark&#39;, &#39;of&#39;, &#39;great&#39;, &#39;company&#39;, &#39;is&#39;, &#39;being&#39;, &#39;open&#39;, &#39;to&#39;, &#39;be&#39;, &#39;challenged&#39;, &#39;and&#39;, &#39;the&#39;, &#39;mark&#39;, &#39;of&#39;, &#39;good&#39;, &#39;corporate&#39;, &#39;board&#39;, &#39;is&#39;, &#39;to&#39;, &#39;constructively&#39;, &#39;challenge&#39;, &#39;think&#39;, &#39;that&#39;, &#39;also&#39;, &#39;what&#39;, &#39;good&#39;, &#39;parenting&#39;, &#39;is&#39;, &#39;about&#39;, &#39;last&#39;, &#39;one&#39;, &#39;be&#39;, &#39;skeptical&#39;, &#39;of&#39;, &#39;success&#39;, &#39;maybe&#39;, &#39;it&#39;, &#39;useful&#39;, &#39;to&#39;, &#39;think&#39;, &#39;back&#39;, &#39;at&#39;, &#39;the&#39;, &#39;old&#39;, &#39;triumph&#39;, &#39;marches&#39;, &#39;in&#39;, &#39;rome&#39;, &#39;when&#39;, &#39;the&#39;, &#39;generals&#39;, &#39;after&#39;, &#39;big&#39;, &#39;victory&#39;, &#39;were&#39;, &#39;given&#39;, &#39;their&#39;, &#39;celebration&#39;, &#39;riding&#39;, &#39;into&#39;, &#39;rome&#39;, &#39;on&#39;, &#39;the&#39;, &#39;carriage&#39;, &#39;they&#39;, &#39;always&#39;, &#39;had&#39;, &#39;companion&#39;, &#39;whispering&#39;, &#39;in&#39;, &#39;their&#39;, &#39;ear&#39;, &#39;remember&#39;, &#39;you&#39;, &#39;re&#39;, &#39;only&#39;, &#39;human&#39;, &#39;so&#39;, &#39;hope&#39;, &#39;made&#39;, &#39;the&#39;, &#39;point&#39;, &#39;balancing&#39;, &#39;exploration&#39;, &#39;and&#39;, &#39;exploitation&#39;, &#39;has&#39;, &#39;huge&#39;, &#39;payoff&#39;, &#39;but&#39;, &#39;it&#39;, &#39;difficult&#39;, &#39;and&#39;, &#39;we&#39;, &#39;need&#39;, &#39;to&#39;, &#39;be&#39;, &#39;conscious&#39;, &#39;want&#39;, &#39;to&#39;, &#39;just&#39;, &#39;point&#39;, &#39;out&#39;, &#39;two&#39;, &#39;questions&#39;, &#39;that&#39;, &#39;think&#39;, &#39;are&#39;, &#39;useful&#39;, &#39;first&#39;, &#39;question&#39;, &#39;is&#39;, &#39;looking&#39;, &#39;at&#39;, &#39;your&#39;, &#39;own&#39;, &#39;company&#39;, &#39;in&#39;, &#39;which&#39;, &#39;areas&#39;, &#39;do&#39;, &#39;you&#39;, &#39;see&#39;, &#39;that&#39;, &#39;the&#39;, &#39;company&#39;, &#39;is&#39;, &#39;at&#39;, &#39;the&#39;, &#39;risk&#39;, &#39;of&#39;, &#39;falling&#39;, &#39;into&#39;, &#39;success&#39;, &#39;traps&#39;, &#39;of&#39;, &#39;just&#39;, &#39;going&#39;, &#39;on&#39;, &#39;autopilot&#39;, &#39;and&#39;, &#39;what&#39;, &#39;can&#39;, &#39;you&#39;, &#39;do&#39;, &#39;to&#39;, &#39;challenge&#39;, &#39;second&#39;, &#39;question&#39;, &#39;is&#39;, &#39;when&#39;, &#39;did&#39;, &#39;explore&#39;, &#39;something&#39;, &#39;new&#39;, &#39;last&#39;, &#39;and&#39;, &#39;what&#39;, &#39;kind&#39;, &#39;of&#39;, &#39;effect&#39;, &#39;did&#39;, &#39;it&#39;, &#39;have&#39;, &#39;on&#39;, &#39;me&#39;, &#39;is&#39;, &#39;that&#39;, &#39;something&#39;, &#39;should&#39;, &#39;do&#39;, &#39;more&#39;, &#39;of&#39;, &#39;in&#39;, &#39;my&#39;, &#39;case&#39;, &#39;yes&#39;, &#39;so&#39;, &#39;let&#39;, &#39;me&#39;, &#39;leave&#39;, &#39;you&#39;, &#39;with&#39;, &#39;this&#39;, &#39;whether&#39;, &#39;you&#39;, &#39;re&#39;, &#39;an&#39;, &#39;explorer&#39;, &#39;by&#39;, &#39;nature&#39;, &#39;or&#39;, &#39;whether&#39;, &#39;you&#39;, &#39;tend&#39;, &#39;to&#39;, &#39;exploit&#39;, &#39;what&#39;, &#39;you&#39;, &#39;already&#39;, &#39;know&#39;, &#39;don&#39;, &#39;forget&#39;, &#39;the&#39;, &#39;beauty&#39;, &#39;is&#39;, &#39;in&#39;, &#39;the&#39;, &#39;balance&#39;, &#39;thank&#39;, &#39;you&#39;, &#39;applause&#39;], tags=[0])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Doc2Vec</span><span class="p">(</span><span class="n">dm</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">negative</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">hs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="n">cores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> model.build_vocab(ted_talk_docs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 1.4 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_1</span> <span class="o">=</span> <span class="s1">&#39;Modern medicine has changed the way we think about healthcare, life spans and by extension career and marriage&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_2</span> <span class="o">=</span> <span class="s1">&#39;Modern medicine is not just a boon to the rich, making the raw chemicals behind these is also pollutes the poorest neighborhoods&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_3</span> <span class="o">=</span> <span class="s1">&#39;Modern medicine has changed the way we think about healthcare, and increased life spans, delaying weddings&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">similarity_unseen_docs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_1</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">sentence_3</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.14454556996040863
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">similarity_unseen_docs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_1</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">sentence_2</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.04978240807521571
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> model.train(ted_talk_docs, total_examples=model.corpus_count, epochs=model.epochs)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 6.77 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">sentence_1</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.20152442,  0.07655947,  0.04110149, -0.09114903, -0.02466601,
+        0.10063498, -0.04590227, -0.16054891, -0.23367156, -0.07714292,
+       -0.32246125,  0.10532021,  0.11020374, -0.02373328, -0.06048575,
+        0.06041928, -0.20840394,  0.11885054, -0.09653657,  0.02215091,
+        0.01846626,  0.06881414, -0.01988592,  0.01138998,  0.06924792,
+        0.11989842,  0.09510404,  0.01230403,  0.05453861,  0.05833528,
+        0.22496092,  0.06185873,  0.15445319, -0.13073249,  0.1320086 ,
+        0.15955518,  0.09083826, -0.262743  ,  0.07112081, -0.12404393,
+       -0.07876749, -0.17020509, -0.08309909,  0.20299006, -0.07867863,
+       -0.19080839, -0.00371094, -0.2119167 , -0.11631834, -0.12984131,
+       -0.11451794,  0.12690201, -0.02519317,  0.23437414, -0.11313629,
+        0.06674401, -0.0190409 ,  0.3384525 , -0.13124712, -0.12843844,
+       -0.2605964 ,  0.22317892, -0.20078087, -0.05607577, -0.08431446,
+       -0.20859231,  0.15535517,  0.0073873 , -0.11435535,  0.16722508,
+       -0.0567028 ,  0.23436148, -0.1829926 ,  0.05211424, -0.14246033,
+        0.20756294,  0.03515876,  0.10574302, -0.05463392,  0.09465599,
+       -0.24758984, -0.04593265, -0.13151605,  0.3317288 , -0.13002025,
+       -0.37372893, -0.26798424, -0.27239782, -0.16636257,  0.19000524,
+        0.12744325, -0.14971398, -0.11483772, -0.01594907,  0.02319706,
+        0.03037767, -0.01439404,  0.08120204, -0.188371  , -0.21033412],
+      dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">similarity_unseen_docs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_1</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">sentence_3</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9073806748252071
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">similarity_unseen_docs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_1</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">sentence_2</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7626341790517841
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">similarity_unseen_docs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sentence_2</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">sentence_3</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8026655396100536
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-assessment">
+<h1>Model Assessment<a class="headerlink" href="#model-assessment" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ranks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ted_talk_docs</span><span class="p">)):</span>
+    <span class="n">inferred_vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">infer_vector</span><span class="p">(</span><span class="n">ted_talk_docs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">)</span>
+    <span class="n">sims</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="o">.</span><span class="n">most_similar</span><span class="p">([</span><span class="n">inferred_vector</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">docvecs</span><span class="p">))</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="p">[</span><span class="n">docid</span> <span class="k">for</span> <span class="n">docid</span><span class="p">,</span> <span class="n">sim</span> <span class="ow">in</span> <span class="n">sims</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+    <span class="n">ranks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">ranks</span><span class="p">)</span>  <span class="c1"># Results vary due to random seeding + very small corpus</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Counter({0: 2080, 3: 1, 4: 1, 1: 1, 2: 1, 6: 1})
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">doc_slice</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ted_talk_docs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">words</span><span class="p">)[:</span><span class="mi">500</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Document (</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1">): «</span><span class="si">{</span><span class="n">doc_slice</span><span class="si">}</span><span class="s1">»</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SIMILAR/DISSIMILAR DOCS PER MODEL </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">index</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;MOST&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MEDIAN&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;LEAST&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sims</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]:</span>
+      <span class="n">doc_slice</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ted_talk_docs</span><span class="p">[</span><span class="n">sims</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">words</span><span class="p">)[:</span><span class="mi">500</span><span class="p">]</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">sims</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="si">}</span><span class="s1">: «</span><span class="si">{</span><span class="n">doc_slice</span><span class="si">}</span><span class="s1">»</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Document (2084): «if you re here today and very happy that you are you ve all heard about how sustainable development will save us from ourselves however when we re not at ted we are often told that real sustainability policy agenda is just not feasible especially in large urban areas like new york city and that because most people with decision making powers in both the public and the private sector really don feel as though they re in danger the reason why here today in part is because of dog an abandoned puppy»
+
+SIMILAR/DISSIMILAR DOCS PER MODEL Doc2Vec(dbow,d100,n5,mc2,s0.001,t8)
+MOST (2084, 0.8938855528831482): «if you re here today and very happy that you are you ve all heard about how sustainable development will save us from ourselves however when we re not at ted we are often told that real sustainability policy agenda is just not feasible especially in large urban areas like new york city and that because most people with decision making powers in both the public and the private sector really don feel as though they re in danger the reason why here today in part is because of dog an abandoned puppy»
+
+MEDIAN (949, 0.40211787819862366): «we conventionally divide space into private and public realms and we know these legal distinctions very well because we ve become experts at protecting our private property and private space but we re less attuned to the nuances of the public what translates generic public space into qualitative space mean this is something that our studio has been working on for the past decade and we re doing this through some case studies large chunk of our work has been put into transforming this neglected i»
+
+LEAST (876, 0.11194153130054474): «so the machine going to talk you about is what call the greatest machine that never was it was machine that was never built and yet it will be built it was machine that was designed long before anyone thought about computers if you know anything about the history of computers you will know that in the and the simple computers were created that started the computer revolution we have today and you would be correct except for you have the wrong century the first computer was really designed in the»
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html" title="previous page">Leveraging Linguistics</a>
+    <a class='right-next' id="next-link" href="Part-05%20Modern%20Text%20Classification.html" title="next page">Modern Methods for Text Classification</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1449 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Learning for NLP &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Building your own Chatbot" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html" />
+    <link rel="prev" title="Modern Methods for Text Classification" href="Part-05%20Modern%20Text%20Classification.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-01.html">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-B.html">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-06 Deep Learning for NLP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-06 Deep Learning for NLP.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-the-data">
+   Getting the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-the-data">
+     Exploring the Data
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-target-dataset">
+     Multiple Target Dataset!
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-loaders-with-torchtext">
+     Data Loaders with torchtext
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conventions-and-style">
+       Conventions and Style
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-the-dataset-objects">
+     Exploring the Dataset Objects
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterators">
+     Iterators!
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bucketiterator">
+     BucketIterator
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batchwrapper">
+     BatchWrapper
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-a-text-classifier">
+     Training a Text Classifier
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#initializing-the-model">
+       Initializing the Model
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-loop">
+     Training Loop
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prediction-mode">
+     Prediction Mode
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#convert-predictions-to-a-pandas-dataframe">
+       Convert predictions to a pandas dataframe
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="deep-learning-for-nlp">
+<h1>Deep Learning for NLP<a class="headerlink" href="#deep-learning-for-nlp" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="understanding-deep-learning">
+<h1>Understanding Deep Learning<a class="headerlink" href="#understanding-deep-learning" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="kaggle-text-categorization-challenge">
+<h1>Kaggle: Text Categorization Challenge<a class="headerlink" href="#kaggle-text-categorization-challenge" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="getting-the-data">
+<h1>Getting the Data<a class="headerlink" href="#getting-the-data" title="Permalink to this headline">¶</a></h1>
+<p><strong>Direct Download</strong>: You can get the train and test data from the <a class="reference external" href="https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/data">data tab on challenge website</a>.</p>
+<div class="section" id="exploring-the-data">
+<h2>Exploring the Data<a class="headerlink" href="#exploring-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -y pandas
+<span class="o">!</span>conda install -y numpy
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: D:\Miniconda3\envs\nlp
+
+  added / updated specs: 
+    - pandas
+
+
+The following packages will be UPDATED:
+
+    pandas: 0.23.3-py36h830ac7b_0 --&gt; 0.23.4-py36h830ac7b_0
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: D:\Miniconda3\envs\nlp
+
+  added / updated specs: 
+    - numpy
+
+
+The following packages will be UPDATED:
+
+    numpy:      1.15.1-py36ha559c80_0 --&gt; 1.15.4-py36ha559c80_0
+    numpy-base: 1.15.1-py36h8128ebf_0 --&gt; 1.15.4-py36h8128ebf_0
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/train.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-3-81c8cd170b07&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/train.csv&quot;</span><span class="p">)</span>
+
+<span class="nn">D:\Miniconda3\envs\nlp\lib\site-packages\pandas\io\parsers.py</span> in <span class="ni">parser_f</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, escapechar, comment, encoding, dialect, tupleize_cols, error_bad_lines, warn_bad_lines, skipfooter, doublequote, delim_whitespace, low_memory, memory_map, float_precision)</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span>                     <span class="n">skip_blank_lines</span><span class="o">=</span><span class="n">skip_blank_lines</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> 
+<span class="ne">--&gt; </span><span class="mi">678</span>         <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">679</span> 
+<span class="g g-Whitespace">    </span><span class="mi">680</span>     <span class="n">parser_f</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">name</span>
+
+<span class="nn">D:\Miniconda3\envs\nlp\lib\site-packages\pandas\io\parsers.py</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span> 
+<span class="g g-Whitespace">    </span><span class="mi">439</span>     <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>     <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span> 
+<span class="g g-Whitespace">    </span><span class="mi">442</span>     <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+
+<span class="nn">D:\Miniconda3\envs\nlp\lib\site-packages\pandas\io\parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>             <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s1">&#39;has_index_names&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;has_index_names&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> 
+<span class="ne">--&gt; </span><span class="mi">787</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span> 
+<span class="g g-Whitespace">    </span><span class="mi">789</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">D:\Miniconda3\envs\nlp\lib\site-packages\pandas\io\parsers.py</span> in <span class="ni">_make_engine</span><span class="nt">(self, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span>     <span class="k">def</span> <span class="nf">_make_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span>         <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1014</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="n">CParserWrapper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span>             <span class="k">if</span> <span class="n">engine</span> <span class="o">==</span> <span class="s1">&#39;python&#39;</span><span class="p">:</span>
+
+<span class="nn">D:\Miniconda3\envs\nlp\lib\site-packages\pandas\io\parsers.py</span> in <span class="ni">__init__</span><span class="nt">(self, src, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1706</span>         <span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;usecols&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">usecols</span>
+<span class="g g-Whitespace">   </span><span class="mi">1707</span> 
+<span class="ne">-&gt; </span><span class="mi">1708</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_reader</span> <span class="o">=</span> <span class="n">parsers</span><span class="o">.</span><span class="n">TextReader</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1709</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1710</span>         <span class="n">passed_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="ow">is</span> <span class="kc">None</span>
+
+<span class="nn">pandas\_libs\parsers.pyx</span> in <span class="ni">pandas._libs.parsers.TextReader.__cinit__</span><span class="nt">()</span>
+
+<span class="nn">pandas\_libs\parsers.pyx</span> in <span class="ni">pandas._libs.parsers.TextReader._setup_parser_source</span><span class="nt">()</span>
+
+<span class="ne">FileNotFoundError</span>: File b&#39;data/train.csv&#39; does not exist
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/valid.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-target-dataset">
+<h2>Multiple Target Dataset!<a class="headerlink" href="#multiple-target-dataset" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/test.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="why-pytorch">
+<h1>Why PyTorch?<a class="headerlink" href="#why-pytorch" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="pytorch-and-torchtext">
+<h1>PyTorch and torchtext<a class="headerlink" href="#pytorch-and-torchtext" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -y pytorch cuda92 -c pytorch
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install --upgrade git+https://github.com/pytorch/text
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">torchtext</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">use_gpu</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">(),</span> <span class="s1">&#39;You either do not have a GPU or is not accessible to PyTorch&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see how many GPU devices are available to PyTorch on this machine</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-loaders-with-torchtext">
+<h2>Data Loaders with torchtext<a class="headerlink" href="#data-loaders-with-torchtext" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="conventions-and-style">
+<h3>Conventions and Style<a class="headerlink" href="#conventions-and-style" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchtext.data</span> <span class="kn">import</span> <span class="n">Field</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LABEL</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sequential</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_vocab</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokenize</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">TEXT</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">sequential</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchtext.data</span> <span class="kn">import</span> <span class="n">TabularDataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tv_datafields</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="c1"># we won&#39;t be needing the id, so we pass in None as the field</span>
+                 <span class="p">(</span><span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;toxic&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;severe_toxic&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;threat&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;obscene&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;insult&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">),</span>
+                 <span class="p">(</span><span class="s2">&quot;identity_hate&quot;</span><span class="p">,</span> <span class="n">LABEL</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trn</span><span class="p">,</span> <span class="n">vld</span> <span class="o">=</span> <span class="n">TabularDataset</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span>
+        <span class="n">path</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="c1"># the root directory where the data lies</span>
+        <span class="n">train</span><span class="o">=</span><span class="s1">&#39;train.csv&#39;</span><span class="p">,</span> <span class="n">validation</span><span class="o">=</span><span class="s2">&quot;valid.csv&quot;</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span>
+        <span class="n">skip_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># if your csv header has a header, make sure to pass this to ensure it doesn&#39;t get proceesed as data!</span>
+        <span class="n">fields</span><span class="o">=</span><span class="n">tv_datafields</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tst_datafields</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="c1"># we won&#39;t be needing the id, so we pass in None as the field</span>
+                 <span class="p">(</span><span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="n">TEXT</span><span class="p">)</span>
+                 <span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tst</span> <span class="o">=</span> <span class="n">TabularDataset</span><span class="p">(</span>
+        <span class="n">path</span><span class="o">=</span><span class="s2">&quot;data/test.csv&quot;</span><span class="p">,</span> <span class="c1"># the file path</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span>
+        <span class="n">skip_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># if your csv header has a header, make sure to pass this to ensure it doesn&#39;t get proceesed as data!</span>
+        <span class="n">fields</span><span class="o">=</span><span class="n">tst_datafields</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exploring-the-dataset-objects">
+<h2>Exploring the Dataset Objects<a class="headerlink" href="#exploring-the-dataset-objects" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trn</span><span class="p">,</span> <span class="n">vld</span><span class="p">,</span> <span class="n">tst</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;torchtext.data.dataset.TabularDataset at 0x176c45f30f0&gt;,
+ &lt;torchtext.data.dataset.TabularDataset at 0x176c45f3908&gt;,
+ &lt;torchtext.data.dataset.TabularDataset at 0x176c45f32b0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vld</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;torchtext.data.example.Example at 0x176c45f3978&gt;,
+ &lt;torchtext.data.example.Example at 0x176c45f3940&gt;,
+ &lt;torchtext.data.example.Example at 0x176c45f37f0&gt;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;comment_text&#39;, &#39;toxic&#39;, &#39;severe_toxic&#39;, &#39;threat&#39;, &#39;obscene&#39;, &#39;insult&#39;, &#39;identity_hate&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">trn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;comment_text&#39;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;explanation&#39;, &#39;why&#39;, &#39;the&#39;, &#39;edits&#39;, &#39;made&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TEXT</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">trn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torchtext.vocab.Vocab at 0x176c45f3400&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">freqs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>collections.Counter
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">freqs</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;the&#39;, 78), (&#39;to&#39;, 41), (&#39;you&#39;, 33), (&#39;of&#39;, 30), (&#39;and&#39;, 26)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">itos</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">stoi</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">itos</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">stoi</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(list, collections.defaultdict, 784, 784)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">stoi</span><span class="p">[</span><span class="s1">&#39;and&#39;</span><span class="p">],</span> <span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="o">.</span><span class="n">itos</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7, &#39;and&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="iterators">
+<h2>Iterators!<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torchtext.data</span> <span class="kn">import</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">BucketIterator</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bucketiterator">
+<h2>BucketIterator<a class="headerlink" href="#bucketiterator" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_iter</span><span class="p">,</span> <span class="n">val_iter</span> <span class="o">=</span> <span class="n">BucketIterator</span><span class="o">.</span><span class="n">splits</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">trn</span><span class="p">,</span> <span class="n">vld</span><span class="p">),</span> <span class="c1"># we pass in the datasets we want the iterator to draw data from</span>
+        <span class="n">batch_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
+        <span class="n">sort_key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">comment_text</span><span class="p">),</span> <span class="c1"># the BucketIterator needs to be told what function it should use to group the data.</span>
+        <span class="n">sort_within_batch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># we pass repeat=False because we want to wrap this Iterator layer.</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_iter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;torchtext.data.iterator.BucketIterator at 0x176c45f30b8&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">train_iter</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">())</span>
+<span class="n">batch</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torchtext.data.batch.Batch of size 25]
+	[.comment_text]:[torch.LongTensor of size 494x25]
+	[.toxic]:[torch.LongTensor of size 25]
+	[.severe_toxic]:[torch.LongTensor of size 25]
+	[.threat]:[torch.LongTensor of size 25]
+	[.obscene]:[torch.LongTensor of size 25]
+	[.insult]:[torch.LongTensor of size 25]
+	[.identity_hate]:[torch.LongTensor of size 25]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;batch_size&#39;, &#39;dataset&#39;, &#39;fields&#39;, &#39;comment_text&#39;, &#39;toxic&#39;, &#39;severe_toxic&#39;, &#39;threat&#39;, &#39;obscene&#39;, &#39;insult&#39;, &#39;identity_hate&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">],</span> <span class="n">trn</span><span class="p">,</span> <span class="n">batch</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">trn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;torchtext.data.dataset.TabularDataset at 0x176c45f30f0&gt;,
+ &lt;torchtext.data.dataset.TabularDataset at 0x176c45f30f0&gt;,
+ True)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_iter</span> <span class="o">=</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">tst</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_within_batch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">test_iter</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[torchtext.data.batch.Batch of size 33]
+	[.comment_text]:[torch.LongTensor of size 158x33]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="batchwrapper">
+<h2>BatchWrapper<a class="headerlink" href="#batchwrapper" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BatchWrapper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dl</span><span class="p">,</span> <span class="n">x_var</span><span class="p">,</span> <span class="n">y_vars</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dl</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_vars</span> <span class="o">=</span> <span class="n">dl</span><span class="p">,</span> <span class="n">x_var</span><span class="p">,</span> <span class="n">y_vars</span> <span class="c1"># we pass in the list of attributes for x and y</span>
+    
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dl</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_var</span><span class="p">)</span> <span class="c1"># we assume only one input in this wrapper</span>
+            
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_vars</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># we will concatenate y into a single tensor</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="nb">getattr</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">feat</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_vars</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">cuda</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_dl</span> <span class="o">=</span> <span class="n">BatchWrapper</span><span class="p">(</span><span class="n">train_iter</span><span class="p">,</span> <span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;severe_toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;obscene&quot;</span><span class="p">,</span> <span class="s2">&quot;threat&quot;</span><span class="p">,</span> <span class="s2">&quot;insult&quot;</span><span class="p">,</span> <span class="s2">&quot;identity_hate&quot;</span><span class="p">])</span>
+<span class="n">valid_dl</span> <span class="o">=</span> <span class="n">BatchWrapper</span><span class="p">(</span><span class="n">val_iter</span><span class="p">,</span> <span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;severe_toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;obscene&quot;</span><span class="p">,</span> <span class="s2">&quot;threat&quot;</span><span class="p">,</span> <span class="s2">&quot;insult&quot;</span><span class="p">,</span> <span class="s2">&quot;identity_hate&quot;</span><span class="p">])</span>
+<span class="n">test_dl</span> <span class="o">=</span> <span class="n">BatchWrapper</span><span class="p">(</span><span class="n">test_iter</span><span class="p">,</span> <span class="s2">&quot;comment_text&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">train_dl</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(tensor([[ 453,   63,   15,  ...,  454,  660,  778],
+         [ 523,    4,  601,  ...,   78,   11,  650],
+         [  30,  664,  242,  ...,    8,    2,   22],
+         ...,
+         [   1,    1,    1,  ...,    1,    1,    1],
+         [   1,    1,    1,  ...,    1,    1,    1],
+         [   1,    1,    1,  ...,    1,    1,    1]], device=&#39;cuda:0&#39;),
+ tensor([[ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 1.,  1.,  0.,  1.,  1.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 1.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 1.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.],
+         [ 0.,  0.,  0.,  0.,  0.,  0.]], device=&#39;cuda:0&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-a-text-classifier">
+<h2>Training a Text Classifier<a class="headerlink" href="#training-a-text-classifier" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleLSTMBaseline</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+                 <span class="n">spatial_dropout</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">num_linear</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span> <span class="c1"># don&#39;t forget to call this!</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">TEXT</span><span class="o">.</span><span class="n">vocab</span><span class="p">),</span> <span class="n">emb_dim</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">emb_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="n">num_linear</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">recurrent_dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_linear</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="n">hidden_dim</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_dim</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+        <span class="n">hdn</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+        <span class="n">feature</span> <span class="o">=</span> <span class="n">hdn</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_layers</span><span class="p">:</span>
+            <span class="n">feature</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predictor</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">preds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="initializing-the-model">
+<h3>Initializing the Model<a class="headerlink" href="#initializing-the-model" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">em_sz</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">nh</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">SimpleLSTMBaseline</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span> <span class="n">emb_dim</span><span class="o">=</span><span class="n">em_sz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SimpleLSTMBaseline(
+  (embedding): Embedding(784, 300)
+  (encoder): LSTM(300, 500, num_layers=2, dropout=0.1)
+  (linear_layers): ModuleList(
+    (0): Linear(in_features=500, out_features=500, bias=True)
+  )
+  (predictor): Linear(in_features=500, out_features=6, bias=True)
+)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_size</span><span class="p">(</span><span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the number of trainable parameters in any model</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        params (int): the total count of all model weights</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">model_parameters</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<span class="c1">#     model_parameters = model.parameters()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">size</span><span class="p">())</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model_parameters</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">params</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">model_size</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="si">}</span><span class="s1"> million parameters&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.096706 million parameters
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Putting together the pieces again</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">optim</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">)</span>
+<span class="n">loss_func</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCEWithLogitsLoss</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training-loop">
+<h2>Training Loop<a class="headerlink" href="#training-loop" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">epochs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">running_corrects</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span> <span class="c1"># turn on training mode</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">train_dl</span><span class="p">):</span> <span class="c1"># thanks to our wrapper, we can intuitively iterate over our data!</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_func</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        
+        <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+    <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">trn</span><span class="p">)</span>
+    
+    <span class="c1"># calculate the validation loss for this epoch</span>
+    <span class="n">val_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span> <span class="c1"># turn on evaluation mode</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">valid_dl</span><span class="p">:</span>
+        <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_func</span><span class="p">(</span><span class="n">preds</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">val_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">val_loss</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vld</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch: </span><span class="si">{}</span><span class="s1">, Training Loss: </span><span class="si">{:.4f}</span><span class="s1">, Validation Loss: </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">epoch_loss</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  2.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 1, Training Loss: 13.5037, Validation Loss: 4.6498
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  4.58it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 2, Training Loss: 7.8243, Validation Loss: 24.5401
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  3.35it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch: 3, Training Loss: 57.4577, Validation Loss: 4.0107
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="prediction-mode">
+<h2>Prediction Mode<a class="headerlink" href="#prediction-mode" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_preds</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">test_dl</span><span class="p">):</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="c1"># if you&#39;re data is on the GPU, you need to move the data back to the cpu</span>
+    <span class="c1"># preds = preds.data.cpu().numpy()</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">preds</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="c1"># the actual outputs of the model are logits, so we need to pass these values to the sigmoid function</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">preds</span><span class="p">))</span>
+    <span class="n">test_preds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">preds</span><span class="p">)</span>
+<span class="n">test_preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">test_preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00&lt;00:00,  9.64it/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="convert-predictions-to-a-pandas-dataframe">
+<h3>Convert predictions to a pandas dataframe<a class="headerlink" href="#convert-predictions-to-a-pandas-dataframe" title="Permalink to this headline">¶</a></h3>
+<p>This helps us convert the predictions to a more interpretable format. Let’s insert the predictions in the correct column and then we can preview few rows of the dataframe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/test.csv&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s2">&quot;toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;severe_toxic&quot;</span><span class="p">,</span> <span class="s2">&quot;obscene&quot;</span><span class="p">,</span> <span class="s2">&quot;threat&quot;</span><span class="p">,</span> <span class="s2">&quot;insult&quot;</span><span class="p">,</span> <span class="s2">&quot;identity_hate&quot;</span><span class="p">]):</span>
+    <span class="n">test_df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_preds</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>comment_text</th>
+      <th>toxic</th>
+      <th>severe_toxic</th>
+      <th>obscene</th>
+      <th>threat</th>
+      <th>insult</th>
+      <th>identity_hate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>00001cee341fdb12</td>
+      <td>Yo bitch Ja Rule is more succesful then you'll...</td>
+      <td>0.629146</td>
+      <td>0.116721</td>
+      <td>0.438606</td>
+      <td>0.156848</td>
+      <td>0.139696</td>
+      <td>0.388736</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0000247867823ef7</td>
+      <td>== From RfC == \r\n\r\n The title is fine as i...</td>
+      <td>0.629146</td>
+      <td>0.116721</td>
+      <td>0.438606</td>
+      <td>0.156848</td>
+      <td>0.139696</td>
+      <td>0.388736</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>00013b17ad220c46</td>
+      <td>" \r\n\r\n == Sources == \r\n\r\n * Zawe Ashto...</td>
+      <td>0.629146</td>
+      <td>0.116721</td>
+      <td>0.438606</td>
+      <td>0.156848</td>
+      <td>0.139696</td>
+      <td>0.388736</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Part-05%20Modern%20Text%20Classification.html" title="previous page">Modern Methods for Text Classification</a>
+    <a class='right-next' id="next-link" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html" title="next page">Building your own Chatbot</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

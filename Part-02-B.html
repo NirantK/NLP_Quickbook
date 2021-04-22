@@ -1,0 +1,1003 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spell Correction &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Leveraging Linguistics" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html" />
+    <link rel="prev" title="Text Cleaning" href="Part-02-A.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-01.html">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-02-B.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-02-B.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jellyfish">
+   Jellyfish
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phonetic-word-similarity">
+     Phonetic Word Similarity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-a-phonetic-encoding">
+       What is a phonetic encoding?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metaphone-levenshtein">
+       Metaphone + Levenshtein
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#american-soundex">
+       American Soundex
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-the-original-corpus-with-flashtext">
+   Updating the Original Corpus with FlashText
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python --version
+<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;nirant.bits@gmail.com&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.6.6 :: Anaconda, Inc.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="spell-correction">
+<h1>Spell Correction<a class="headerlink" href="#spell-correction" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="c1"># !{sys.executable} -m pip install fuzzywuzzy</span>
+<span class="c1"># alternative for 4-10x faster computation: </span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install fuzzywuzzy<span class="o">[</span>speedup<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting fuzzywuzzy[speedup]
+  Downloading https://files.pythonhosted.org/packages/d8/f1/5a267addb30ab7eaa1beab2b9323073815da4551076554ecc890a3595ec9/fuzzywuzzy-0.17.0-py2.py3-none-any.whl
+Requirement already satisfied: python-levenshtein&gt;=0.12; extra == &quot;speedup&quot; in d:\miniconda3\envs\nlp\lib\site-packages (from fuzzywuzzy[speedup]) (0.12.0)
+Requirement already satisfied: setuptools in d:\miniconda3\envs\nlp\lib\site-packages (from python-levenshtein&gt;=0.12; extra == &quot;speedup&quot;-&gt;fuzzywuzzy[speedup]) (39.2.0)
+Installing collected packages: fuzzywuzzy
+Successfully installed fuzzywuzzy-0.17.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">fuzz</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="s2">&quot;Electronic City Phase One&quot;</span><span class="p">,</span> <span class="s2">&quot;Electronic City Phase One, Bangalore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>82
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">partial_ratio</span><span class="p">(</span><span class="s2">&quot;Electronic City Phase One&quot;</span><span class="p">,</span> <span class="s2">&quot;Electronic City Phase One, Bangalore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">ratio</span><span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra D. Modi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>90
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">partial_ratio</span><span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra D. Modi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>77
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">token_sort_ratio</span><span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra D. Modi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>93
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fuzz</span><span class="o">.</span><span class="n">token_set_ratio</span><span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra D. Modi&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fuzzywuzzy</span> <span class="kn">import</span> <span class="n">process</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Gujrat&#39;</span>
+<span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gujarat&#39;</span><span class="p">,</span> <span class="s1">&#39;Gujjar&#39;</span><span class="p">,</span> <span class="s1">&#39;Gujarat Govt.&#39;</span><span class="p">]</span>
+<span class="c1"># Get a list of matches ordered by score, default limit to 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+
+<span class="c1"># If we want only the top one</span>
+<span class="n">process</span><span class="o">.</span><span class="n">extractOne</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Gujarat&#39;, 92), (&#39;Gujarat Govt.&#39;, 75), (&#39;Gujjar&#39;, 67)]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Gujarat&#39;, 92)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;Banglore&#39;</span>
+<span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Bangalore&#39;</span><span class="p">,</span> <span class="s1">&#39;Bengaluru&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+<span class="n">process</span><span class="o">.</span><span class="n">extractOne</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Bangalore&#39;, 94), (&#39;Bengaluru&#39;, 59)]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Bangalore&#39;, 94)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s take an example of a common search typo in online shopping:</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;chili&#39;</span>
+<span class="n">choices</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chilli&#39;</span><span class="p">,</span> <span class="s1">&#39;chilled&#39;</span><span class="p">,</span> <span class="s1">&#39;chilling&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+<span class="n">process</span><span class="o">.</span><span class="n">extractOne</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">choices</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;chilli&#39;, 91), (&#39;chilling&#39;, 77), (&#39;chilled&#39;, 67)]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;chilli&#39;, 91)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="jellyfish">
+<h2>Jellyfish<a class="headerlink" href="#jellyfish" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install jellyfish
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting jellyfish
+  Downloading https://files.pythonhosted.org/packages/61/3f/60ac86fb43dfbf976768e80674b5538e535f6eca5aa7806cf2fdfd63550f/jellyfish-0.6.1.tar.gz (132kB)
+Building wheels for collected packages: jellyfish
+  Running setup.py bdist_wheel for jellyfish: started
+  Running setup.py bdist_wheel for jellyfish: finished with status &#39;done&#39;
+  Stored in directory: C:\Users\nirantk\AppData\Local\pip\Cache\wheels\9c\6f\33\92bb9a4b4562a60ba6a80cedbab8907e48bc7a8b1f369ea0ae
+Successfully built jellyfish
+Installing collected packages: jellyfish
+Successfully installed jellyfish-0.6.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jellyfish</span>
+<span class="n">correct_example</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra Modi&#39;</span><span class="p">)</span>
+<span class="n">damodardas_example</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendra D. Modi&#39;</span><span class="p">)</span>
+<span class="n">modi_typo_example</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Narendra Modi&#39;</span><span class="p">,</span> <span class="s1">&#39;Narendar Modi&#39;</span><span class="p">)</span>
+<span class="n">gujarat_typo_example</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Gujarat&#39;</span><span class="p">,</span> <span class="s1">&#39;Gujrat&#39;</span><span class="p">)</span>
+
+<span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">correct_example</span><span class="p">,</span> <span class="n">damodardas_example</span><span class="p">,</span> <span class="n">modi_typo_example</span><span class="p">,</span> <span class="n">gujarat_typo_example</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_distance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">examples</span><span class="o">=</span><span class="n">examples</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ele</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">function</span><span class="p">(</span><span class="o">*</span><span class="n">ele</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">levenshtein_distance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Narendra Modi&#39;, &#39;Narendra Modi&#39;): 0
+(&#39;Narendra Modi&#39;, &#39;Narendra D. Modi&#39;): 3
+(&#39;Narendra Modi&#39;, &#39;Narendar Modi&#39;): 2
+(&#39;Gujarat&#39;, &#39;Gujrat&#39;): 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">damerau_levenshtein_distance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Narendra Modi&#39;, &#39;Narendra Modi&#39;): 0
+(&#39;Narendra Modi&#39;, &#39;Narendra D. Modi&#39;): 3
+(&#39;Narendra Modi&#39;, &#39;Narendar Modi&#39;): 1
+(&#39;Gujarat&#39;, &#39;Gujrat&#39;): 1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">hamming_distance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Narendra Modi&#39;, &#39;Narendra Modi&#39;): 0
+(&#39;Narendra Modi&#39;, &#39;Narendra D. Modi&#39;): 7
+(&#39;Narendra Modi&#39;, &#39;Narendar Modi&#39;): 2
+(&#39;Gujarat&#39;, &#39;Gujrat&#39;): 4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">jaro_distance</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Narendra Modi&#39;, &#39;Narendra Modi&#39;): 1.0
+(&#39;Narendra Modi&#39;, &#39;Narendra D. Modi&#39;): 0.9375
+(&#39;Narendra Modi&#39;, &#39;Narendar Modi&#39;): 0.9743589743589745
+(&#39;Gujarat&#39;, &#39;Gujrat&#39;): 0.8968253968253969
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">jaro_winkler</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Narendra Modi&#39;, &#39;Narendra Modi&#39;): 1.0
+(&#39;Narendra Modi&#39;, &#39;Narendra D. Modi&#39;): 0.9625
+(&#39;Narendra Modi&#39;, &#39;Narendar Modi&#39;): 0.9846153846153847
+(&#39;Gujarat&#39;, &#39;Gujrat&#39;): 0.9277777777777778
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="phonetic-word-similarity">
+<h3>Phonetic Word Similarity<a class="headerlink" href="#phonetic-word-similarity" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="what-is-a-phonetic-encoding">
+<h4>What is a phonetic encoding?<a class="headerlink" href="#what-is-a-phonetic-encoding" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jellyfish</span><span class="o">.</span><span class="n">soundex</span><span class="p">(</span><span class="s1">&#39;Jellyfish&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;J412&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jellyfish</span><span class="o">.</span><span class="n">nysiis</span><span class="p">(</span><span class="s1">&#39;Jellyfish&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;JALYF&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jellyfish</span><span class="o">.</span><span class="n">metaphone</span><span class="p">(</span><span class="s1">&#39;Jellyfish&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;JLFX&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jellyfish</span><span class="o">.</span><span class="n">match_rating_codex</span><span class="p">(</span><span class="s1">&#39;Jellyfish&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;JLLFSH&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="metaphone-levenshtein">
+<h4>Metaphone + Levenshtein<a class="headerlink" href="#metaphone-levenshtein" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">jellyfish</span><span class="o">.</span><span class="n">levenshtein_distance</span><span class="p">(</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">metaphone</span><span class="p">(</span><span class="s1">&#39;write&#39;</span><span class="p">),</span> <span class="n">jellyfish</span><span class="o">.</span><span class="n">metaphone</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">examples</span><span class="o">+=</span> <span class="p">[(</span><span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Mangalore&#39;</span><span class="p">,</span> <span class="s1">&#39;Bangalore&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Delhi&#39;</span><span class="p">,</span> <span class="s1">&#39;Dilli&#39;</span><span class="p">)]</span> <span class="c1"># adding a few examples to show how cool this is</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_phonetic_distance</span><span class="p">(</span><span class="n">phonetic_func</span><span class="p">,</span> <span class="n">distance_func</span><span class="p">,</span> <span class="n">examples</span><span class="o">=</span><span class="n">examples</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Word</span><span class="se">\t\t</span><span class="s2">Sound</span><span class="se">\t\t</span><span class="s2">Word</span><span class="se">\t\t\t</span><span class="s2">Sound</span><span class="se">\t\t</span><span class="s2">Phonetic Distance&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">:</span>
+        <span class="n">correct</span><span class="p">,</span> <span class="n">typo</span> <span class="o">=</span> <span class="n">ele</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ele</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">phonetic_correct</span><span class="p">,</span> <span class="n">phonetic_typo</span> <span class="o">=</span> <span class="n">phonetic_func</span><span class="p">(</span><span class="n">correct</span><span class="p">),</span> <span class="n">phonetic_func</span><span class="p">(</span><span class="n">typo</span><span class="p">)</span>
+        <span class="n">phonetic_distance</span> <span class="o">=</span> <span class="n">distance_func</span><span class="p">(</span><span class="n">phonetic_correct</span><span class="p">,</span> <span class="n">phonetic_typo</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">correct</span><span class="si">:</span><span class="s1">&lt;10</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">phonetic_correct</span><span class="si">:</span><span class="s1">&lt;10</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">typo</span><span class="si">:</span><span class="s1">&lt;20</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">phonetic_typo</span><span class="si">:</span><span class="s1">&lt;10</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">phonetic_distance</span><span class="si">:</span><span class="s1">&lt;10</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+        
+<span class="n">calculate_phonetic_distance</span><span class="p">(</span><span class="n">phonetic_func</span><span class="o">=</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">metaphone</span><span class="p">,</span> <span class="n">distance_func</span><span class="o">=</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">levenshtein_distance</span><span class="p">)</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Word		Sound		Word			Sound		Phonetic Distance
+Narendra Modi	NRNTR MT  	Narendra Modi       	NRNTR MT  	0         
+Narendra Modi	NRNTR MT  	Narendra D. Modi    	NRNTR T MT	2         
+Narendra Modi	NRNTR MT  	Narendar Modi       	NRNTR MT  	0         
+Gujarat   	KJRT      	Gujrat              	KJRT      	0         
+write     	RT        	right               	RT        	0         
+Mangalore 	MNKLR     	Bangalore           	BNKLR     	1         
+Delhi     	TLH       	Dilli               	TL        	1         
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="american-soundex">
+<h4>American Soundex<a class="headerlink" href="#american-soundex" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_phonetic_distance</span><span class="p">(</span><span class="n">phonetic_func</span><span class="o">=</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">soundex</span><span class="p">,</span> <span class="n">distance_func</span><span class="o">=</span><span class="n">jellyfish</span><span class="o">.</span><span class="n">levenshtein_distance</span><span class="p">)</span>        
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Word		Sound		Word			Sound		Phonetic Distance
+Narendra Modi	N653      	Narendra Modi       	N653      	0         
+Narendra Modi	N653      	Narendra D. Modi    	N653      	0         
+Narendra Modi	N653      	Narendar Modi       	N653      	0         
+Gujarat   	G263      	Gujrat              	G263      	0         
+write     	W630      	right               	R230      	2         
+Mangalore 	M524      	Bangalore           	B524      	1         
+Delhi     	D400      	Dilli               	D400      	0         
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="updating-the-original-corpus-with-flashtext">
+<h2>Updating the Original Corpus with FlashText<a class="headerlink" href="#updating-the-original-corpus-with-flashtext" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install flashtext
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting flashtext
+  Downloading https://files.pythonhosted.org/packages/81/d8/2cd0656eae456d615c2f1efbcae8dfca2cb871a31f34ba8925aba47d5e09/flashtext-2.7.tar.gz
+Building wheels for collected packages: flashtext
+  Running setup.py bdist_wheel for flashtext: started
+  Running setup.py bdist_wheel for flashtext: finished with status &#39;done&#39;
+  Stored in directory: C:\Users\nirantk\AppData\Local\pip\Cache\wheels\37\db\d7\fe74f7cb8e5c3afed90fe6f4967c933a6f13d81ab6b3d3128c
+Successfully built flashtext
+Installing collected packages: flashtext
+Successfully installed flashtext-2.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flashtext.keyword</span> <span class="kn">import</span> <span class="n">KeywordProcessor</span>
+<span class="n">keyword_processor</span> <span class="o">=</span> <span class="n">KeywordProcessor</span><span class="p">()</span>
+<span class="n">keyword_processor</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="s1">&#39;Delhi&#39;</span><span class="p">,</span> <span class="s1">&#39;NCR&#39;</span><span class="p">)</span> <span class="c1"># notice we are adding tuples here</span>
+<span class="n">keyword_processor</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="s1">&#39;Bombay&#39;</span><span class="p">,</span> <span class="s1">&#39;Mumbai&#39;</span><span class="p">)</span>
+<span class="n">keywords_found</span> <span class="o">=</span> <span class="n">keyword_processor</span><span class="o">.</span><span class="n">extract_keywords</span><span class="p">(</span><span class="s1">&#39;I love the food in Delhi and the people in Bombay&#39;</span><span class="p">)</span>
+<span class="n">keywords_found</span>
+<span class="c1"># [&#39;NCR&#39;, &#39;Mumbai&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;NCR&#39;, &#39;Mumbai&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>How about we replace them now?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flashtext.keyword</span> <span class="kn">import</span> <span class="n">KeywordProcessor</span>
+<span class="n">keyword_processor</span> <span class="o">=</span> <span class="n">KeywordProcessor</span><span class="p">()</span>
+<span class="n">keyword_processor</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="s1">&#39;Delhi&#39;</span><span class="p">,</span> <span class="s1">&#39;NCR&#39;</span><span class="p">)</span>
+<span class="n">keyword_processor</span><span class="o">.</span><span class="n">add_keyword</span><span class="p">(</span><span class="s1">&#39;Bombay&#39;</span><span class="p">,</span> <span class="s1">&#39;Mumbai&#39;</span><span class="p">)</span>
+<span class="n">replaced_sentence</span> <span class="o">=</span> <span class="n">keyword_processor</span><span class="o">.</span><span class="n">replace_keywords</span><span class="p">(</span><span class="s1">&#39;I love the food in Delhi and the people in Bombay&#39;</span><span class="p">)</span>
+<span class="n">replaced_sentence</span>
+<span class="c1"># &#39;I love the food in NCR and the people in Mumbai&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;I love the food in NCR and the people in Mumbai&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Part-02-A.html" title="previous page">Text Cleaning</a>
+    <a class='right-next' id="next-link" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html" title="next page">Leveraging Linguistics</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

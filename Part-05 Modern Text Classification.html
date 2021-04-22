@@ -1,0 +1,2739 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Methods for Text Classification &#8212; My book title</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deep Learning for NLP" href="Part-06%20Deep%20Learning%20for%20NLP.html" />
+    <link rel="prev" title="KeyedVectors API" href="Part-04%20Text%20Representations.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My book title</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-01.html">
+   Text Classification
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-A.html">
+   Text Cleaning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-02-B.html">
+   Spell Correction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+   KeyedVectors API
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
+   How to handle OOV words?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
+   Train FastText Embedddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
+   Train word2vec Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
+   fastText or word2vec?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
+   Document Embeddings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
+   Model Assessment
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Modern Methods for Text Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#ensemble-models">
+   Ensemble Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+   Deep Learning for NLP
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
+   Understanding Deep Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
+   Kaggle: Text Categorization Challenge
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
+   Getting the Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
+   Why PyTorch?
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
+   PyTorch and torchtext
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+   Building your own Chatbot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+   [Basic] Information Extraction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Natural Language Processing Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
+   Available as a Book: NLP in Python - Quickstart Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="READTHIS.html">
+   Leveraging Linguistics for Chat
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html">
+   Leveraging Linguistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#question-generation-using-dependency-parsing">
+   Question Generation using Dependency Parsing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="examples/03-spacy.html#level-up-question-and-answer">
+   Level Up: Question and Answer
+  </a>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="examples/03-spacy.html#facts-extraction-using-semi-structured-sentence-parsing">
+   Facts Extraction using Semi Structured Sentence Parsing
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html">
+     KeyedVectors API
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#how-to-handle-oov-words">
+     How to handle OOV words?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-fasttext-embedddings">
+     Train FastText Embedddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#train-word2vec-embeddings">
+     Train word2vec Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#fasttext-or-word2vec">
+     fastText or word2vec?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#document-embeddings">
+     Document Embeddings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/04-vectors.html#model-assessment">
+     Model Assessment
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html">
+     Modern Methods for Text Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#multinomial-naive-bayes">
+     Multinomial Naive Bayes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#automatically-fine-tuning">
+     Automatically Fine Tuning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/05-text-classification.html#ensemble-models">
+     Ensemble Models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/07-chatbots.html">
+     Building your own Chatbot
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
+   Deploying a ML model with Flask API
+  </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Part-05 Modern Text Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-05 Modern Text Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Modern Methods for Text Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#logistic-regression">
+     Logistic Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#remove-stop-words">
+       Remove Stop Words
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#increase-the-ngram-range">
+       Increase the Ngram Range
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multinomial-naive-bayes">
+   Multinomial Naive Bayes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-tf-idf">
+     Add TF-IDF
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Remove Stop Words
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-ngram-range-from-1-to-3">
+     Add Ngram Range from 1 to 3
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-fit-prior-to-false">
+     Change Fit Prior to False
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#support-vector-machine">
+     Support Vector Machine
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tree-baseed-models">
+     Tree Baseed Models
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#decision-trees">
+       Decision Trees
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#random-forest-classifier">
+     Random Forest Classifier
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-trees-classifier">
+     Extra Trees Classifier
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatically-fine-tuning">
+   Automatically Fine Tuning
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#randomizedsearch">
+     RandomizedSearch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ensemble-models">
+   Ensemble Models
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#voting-ensemble">
+     Voting Ensemble
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#simple-majority-aka-hard-voting">
+       Simple Majority (aka Hard Voting)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#soft-voting">
+         Soft Voting
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weighted-classifiers">
+       Weighted Classifiers
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="modern-methods-for-text-classification">
+<h1>Modern Methods for Text Classification<a class="headerlink" href="#modern-methods-for-text-classification" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlretrieve</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># if you are using the fastAI environment, all of these imports work</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TqdmUpTo</span><span class="p">(</span><span class="n">tqdm</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bsize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">tsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="n">tsize</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">bsize</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Download data if the filename does not exist already</span>
+<span class="sd">    Uses Tqdm to show download progress</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">TqdmUpTo</span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">unit_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">miniters</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">as</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">reporthook</span><span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">update_to</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s download some data:</span>
+<span class="n">data_url</span> <span class="o">=</span> <span class="s1">&#39;http://files.fast.ai/data/aclImdb.tgz&#39;</span>
+<span class="c1"># get_data(data_url, &#39;data/imdb.tgz&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Before we proceed, <em>manually extract the files</em> please!
+The <em>.tgz</em> extension is equivalent to <em>.tar.gz</em> here.</p>
+<p>On Windows, you might need a software like <em>7z</em>
+On Linux, you can probably use <em>tar -xvcf imdb.tgz</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span><span class="o">/</span><span class="s1">&#39;data&#39;</span><span class="o">/</span><span class="s1">&#39;aclImdb&#39;</span>
+<span class="k">assert</span> <span class="n">data_path</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is to check that we have extracted the files at the correct location</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">pathroute</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">data_path</span><span class="p">):</span>
+    <span class="n">next_path</span> <span class="o">=</span> <span class="n">pathroute</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">stop</span> <span class="ow">in</span> <span class="n">next_path</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test
+train
+all
+neg
+pos
+all
+neg
+pos
+unsup
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">/</span><span class="s1">&#39;train&#39;</span>
+<span class="n">test_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">/</span><span class="s1">&#39;test&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;read data into pandas dataframe&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">load_dir_reviews</span><span class="p">(</span><span class="n">reviews_path</span><span class="p">):</span>
+        <span class="n">files_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reviews_path</span><span class="o">.</span><span class="n">iterdir</span><span class="p">())</span>
+        <span class="n">reviews</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">files_list</span><span class="p">:</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="n">reviews</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;text&#39;</span><span class="p">:</span><span class="n">reviews</span><span class="p">})</span>
+        
+    
+    <span class="n">pos_path</span> <span class="o">=</span> <span class="n">dir_path</span><span class="o">/</span><span class="s1">&#39;pos&#39;</span>
+    <span class="n">neg_path</span> <span class="o">=</span> <span class="n">dir_path</span><span class="o">/</span><span class="s1">&#39;neg&#39;</span>
+    
+    <span class="n">pos_reviews</span><span class="p">,</span> <span class="n">neg_reviews</span> <span class="o">=</span> <span class="n">load_dir_reviews</span><span class="p">(</span><span class="n">pos_path</span><span class="p">),</span> <span class="n">load_dir_reviews</span><span class="p">(</span><span class="n">neg_path</span><span class="p">)</span>
+    
+    <span class="n">pos_reviews</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">neg_reviews</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pos_reviews</span><span class="p">,</span> <span class="n">neg_reviews</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># shuffle the rows</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># don&#39;t carry index from previous</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># drop the column &#39;index&#39; </span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">/</span><span class="s1">&#39;train&#39;</span>
+<span class="n">test_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">/</span><span class="s1">&#39;test&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">train_path</span><span class="p">)</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">test_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 24.6 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>text</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Well, I'm a few days late but what the hell......</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Just watched this and it was amazing. Was in s...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A hundred miles away from the scene of a grizz...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>This is a case where the script plays with the...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Final Draft - A screenwriter (James Van Der Be...</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test.to_csv(data_path/&#39;test.csv&#39;, index=False)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># train.to_csv(data_path/&#39;train.csv&#39;, index=False)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfTransformer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="logistic-regression">
+<h2>Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <span class="n">LR</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span> <span class="c1"># note that .fit function calls are inplace, and the Pipeline is not re-assigned</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 5.82 s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
+        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+        lowercase=True, max_df=1.0, max_features=None, min_df=1,
+        ngram_range=(1, 1), preprocessor=None, stop_words=None,
+        strip...ty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+          verbose=0, warm_start=False))])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_predicted</span> <span class="o">=</span> <span class="n">lr_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_acc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lr_predicted</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">lr_predicted</span><span class="p">)</span>
+<span class="n">lr_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.88316
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">imdb_acc</span><span class="p">(</span><span class="n">pipeline_clf</span><span class="p">):</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">pipeline_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">predictions</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="remove-stop-words">
+<h3>Remove Stop Words<a class="headerlink" href="#remove-stop-words" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lr_acc</span><span class="p">,</span> <span class="n">lr_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">)</span>
+<span class="n">lr_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.879
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="increase-the-ngram-range">
+<h3>Increase the Ngram Range<a class="headerlink" href="#increase-the-ngram-range" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">lr_acc</span><span class="p">,</span> <span class="n">lr_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">)</span>
+<span class="n">lr_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.866
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multinomial-naive-bayes">
+<h1>Multinomial Naive Bayes<a class="headerlink" href="#multinomial-naive-bayes" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span> <span class="k">as</span> <span class="n">MNB</span>
+<span class="n">mnb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">MNB</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">mnb_acc</span><span class="p">,</span> <span class="n">mnb_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">mnb_clf</span><span class="p">)</span>
+<span class="n">mnb_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.81356
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="add-tf-idf">
+<h2>Add TF-IDF<a class="headerlink" href="#add-tf-idf" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">MNB</span><span class="p">())])</span>
+<span class="n">mnb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">mnb_acc</span><span class="p">,</span> <span class="n">mnb_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">mnb_clf</span><span class="p">)</span>
+<span class="n">mnb_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.82956
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Remove Stop Words<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">MNB</span><span class="p">())])</span>
+<span class="n">mnb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">mnb_acc</span><span class="p">,</span> <span class="n">mnb_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">mnb_clf</span><span class="p">)</span>
+<span class="n">mnb_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.82992
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="add-ngram-range-from-1-to-3">
+<h2>Add Ngram Range from 1 to 3<a class="headerlink" href="#add-ngram-range-from-1-to-3" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">MNB</span><span class="p">())])</span>
+<span class="n">mnb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">mnb_acc</span><span class="p">,</span> <span class="n">mnb_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">mnb_clf</span><span class="p">)</span>
+<span class="n">mnb_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8572
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="change-fit-prior-to-false">
+<h2>Change Fit Prior to False<a class="headerlink" href="#change-fit-prior-to-false" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mnb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">MNB</span><span class="p">(</span><span class="n">fit_prior</span><span class="o">=</span><span class="kc">False</span><span class="p">))])</span>
+<span class="n">mnb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">mnb_acc</span><span class="p">,</span> <span class="n">mnb_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">mnb_clf</span><span class="p">)</span>
+<span class="n">mnb_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8572
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="support-vector-machine">
+<h2>Support Vector Machine<a class="headerlink" href="#support-vector-machine" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="n">svc_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">SVC</span><span class="p">())])</span>
+<span class="n">svc_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">svc_acc</span><span class="p">,</span> <span class="n">svc_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">svc_clf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">svc_acc</span><span class="p">)</span> <span class="c1"># 0.6562</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6562
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tree-baseed-models">
+<h2>Tree Baseed Models<a class="headerlink" href="#tree-baseed-models" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="decision-trees">
+<h3>Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> <span class="k">as</span> <span class="n">DTC</span>
+<span class="n">dtc_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">DTC</span><span class="p">())])</span>
+<span class="n">dtc_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">dtc_acc</span><span class="p">,</span> <span class="n">dtc_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">dtc_clf</span><span class="p">)</span>
+<span class="n">dtc_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7068
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="random-forest-classifier">
+<h2>Random Forest Classifier<a class="headerlink" href="#random-forest-classifier" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span> <span class="k">as</span> <span class="n">RFC</span>
+<span class="n">rfc_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">RFC</span><span class="p">())])</span>
+<span class="n">rfc_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">rfc_acc</span><span class="p">,</span> <span class="n">rfc_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">rfc_clf</span><span class="p">)</span>
+<span class="n">rfc_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.73472
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="extra-trees-classifier">
+<h2>Extra Trees Classifier<a class="headerlink" href="#extra-trees-classifier" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span> <span class="k">as</span> <span class="n">XTC</span>
+<span class="n">xtc_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">XTC</span><span class="p">())])</span>
+<span class="n">xtc_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">xtc_acc</span><span class="p">,</span> <span class="n">xtc_predictions</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">xtc_clf</span><span class="p">)</span>
+<span class="n">xtc_acc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.75096
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="automatically-fine-tuning">
+<h1>Automatically Fine Tuning<a class="headerlink" href="#automatically-fine-tuning" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="randomizedsearch">
+<h2>RandomizedSearch<a class="headerlink" href="#randomizedsearch" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">clf__C</span><span class="o">=</span><span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> 
+                  <span class="n">vect__stop_words</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;english&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+                  <span class="n">vect__ngram_range</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)],</span>
+                  <span class="n">vect__lowercase</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
+                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">,</span> <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RandomizedSearchCV(cv=3, error_score=&#39;raise&#39;,
+          estimator=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
+        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+        lowercase=True, max_df=1.0, max_features=None, min_df=1,
+        ngram_range=(1, 3), preprocessor=None, stop_words=&#39;english&#39;,
+        ...ty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+          verbose=0, warm_start=False))]),
+          fit_params=None, iid=True, n_iter=5, n_jobs=-1,
+          param_distributions={&#39;clf__C&#39;: [50, 75, 85, 100], &#39;vect__stop_words&#39;: [&#39;english&#39;, None], &#39;vect__ngram_range&#39;: [(1, 1), (1, 3)], &#39;vect__lowercase&#39;: [True, False]},
+          pre_dispatch=&#39;2*n_jobs&#39;, random_state=None, refit=True,
+          return_train_score=&#39;warn&#39;, scoring=&#39;accuracy&#39;, verbose=0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Calculated cross-validation accuracy: </span><span class="si">{</span><span class="n">random_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated cross-validation accuracy: 0.89884
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_random_clf</span> <span class="o">=</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_random_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
+        dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+        lowercase=True, max_df=1.0, max_features=None, min_df=1,
+        ngram_range=(1, 3), preprocessor=None, stop_words=None,
+        strip...ty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+          verbose=0, warm_start=False))])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imdb_acc</span><span class="p">(</span><span class="n">best_random_clf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.90096, array([1, 1, 0, ..., 0, 1, 1], dtype=int64))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_random_clf</span><span class="o">.</span><span class="n">steps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;vect&#39;, CountVectorizer(analyzer=&#39;word&#39;, binary=False, decode_error=&#39;strict&#39;,
+          dtype=&lt;class &#39;numpy.int64&#39;&gt;, encoding=&#39;utf-8&#39;, input=&#39;content&#39;,
+          lowercase=True, max_df=1.0, max_features=None, min_df=1,
+          ngram_range=(1, 3), preprocessor=None, stop_words=None,
+          strip_accents=None, token_pattern=&#39;(?u)\\b\\w\\w+\\b&#39;,
+          tokenizer=None, vocabulary=None)),
+ (&#39;tfidf&#39;,
+  TfidfTransformer(norm=&#39;l2&#39;, smooth_idf=True, sublinear_tf=False, use_idf=True)),
+ (&#39;clf&#39;,
+  LogisticRegression(C=75, class_weight=None, dual=False, fit_intercept=True,
+            intercept_scaling=1, max_iter=100, multi_class=&#39;ovr&#39;, n_jobs=1,
+            penalty=&#39;l2&#39;, random_state=None, solver=&#39;liblinear&#39;, tol=0.0001,
+            verbose=0, warm_start=False))]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">))),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">clf__C</span><span class="o">=</span><span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">lr_clf</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">grid_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+RemoteTraceback                           Traceback (most recent call last)
+RemoteTraceback: 
+&quot;&quot;&quot;
+Traceback (most recent call last):
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\_parallel_backends.py&quot;, line 350, in __call__
+    return self.func(*args, **kwargs)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py&quot;, line 131, in __call__
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py&quot;, line 131, in &lt;listcomp&gt;
+    return [func(*args, **kwargs) for func, args, kwargs in self.items]
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_validation.py&quot;, line 458, in _fit_and_score
+    estimator.fit(X_train, y_train, **fit_params)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py&quot;, line 248, in fit
+    Xt, fit_params = self._fit(X, y, **fit_params)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py&quot;, line 213, in _fit
+    **fit_params_steps[name])
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\memory.py&quot;, line 362, in __call__
+    return self.func(*args, **kwargs)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py&quot;, line 581, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **fit_params)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py&quot;, line 875, in fit_transform
+    X = self._sort_features(X, vocabulary)
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py&quot;, line 731, in _sort_features
+    X.indices = map_index.take(X.indices, mode=&#39;clip&#39;)
+MemoryError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File &quot;D:\Miniconda3\envs\nlp\lib\multiprocessing\pool.py&quot;, line 119, in worker
+    result = (True, func(*args, **kwds))
+  File &quot;D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\_parallel_backends.py&quot;, line 359, in __call__
+    raise TransportableException(text, e_type)
+sklearn.externals.joblib.my_exceptions.TransportableException: TransportableException
+___________________________________________________________________________
+MemoryError                                        Wed Sep 26 05:47:48 2018
+PID: 4472                   Python 3.6.6: D:\Miniconda3\envs\nlp\python.exe
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in __call__(self=&lt;sklearn.externals.joblib.parallel.BatchedCalls object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        self.items = [(&lt;function _fit_and_score&gt;, (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85}), {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;})]
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        func = &lt;function _fit_and_score&gt;
+        args = (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85})
+        kwargs = {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;}
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_validation.py in _fit_and_score(estimator=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, scorer={&#39;score&#39;: make_scorer(accuracy_score)}, train=array([    0,     1,     2, ..., 16685, 16686, 16687]), test=array([16641, 16643, 16644, ..., 24997, 24998, 24999]), verbose=0, parameters={&#39;clf__C&#39;: 85}, fit_params={}, return_train_score=&#39;warn&#39;, return_parameters=False, return_n_test_samples=True, return_times=True, error_score=&#39;raise&#39;)
+    453 
+    454     try:
+    455         if y_train is None:
+    456             estimator.fit(X_train, **fit_params)
+    457         else:
+--&gt; 458             estimator.fit(X_train, y_train, **fit_params)
+        estimator.fit = &lt;bound method Pipeline.fit of Pipeline(memory=No....0001,
+          verbose=0, warm_start=False))])&gt;
+        X_train = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y_train = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    459 
+    460     except Exception as e:
+    461         # Note fit time as time until error
+    462         fit_time = time.time() - start_time
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    243         Returns
+    244         -------
+    245         self : Pipeline
+    246             This estimator
+    247         &quot;&quot;&quot;
+--&gt; 248         Xt, fit_params = self._fit(X, y, **fit_params)
+        Xt = undefined
+        fit_params = {}
+        self._fit = &lt;bound method Pipeline._fit of Pipeline(memory=N....0001,
+          verbose=0, warm_start=False))])&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+    249         if self._final_estimator is not None:
+    250             self._final_estimator.fit(Xt, y, **fit_params)
+    251         return self
+    252 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    208                 else:
+    209                     cloned_transformer = clone(transformer)
+    210                 # Fit or load from cache the current transfomer
+    211                 Xt, fitted_transformer = fit_transform_one_cached(
+    212                     cloned_transformer, None, Xt, y,
+--&gt; 213                     **fit_params_steps[name])
+        fit_params_steps = {&#39;clf&#39;: {}, &#39;tfidf&#39;: {}, &#39;vect&#39;: {}}
+        name = &#39;vect&#39;
+    214                 # Replace the transformer of the step with the fitted
+    215                 # transformer. This is necessary when loading the transformer
+    216                 # from the cache.
+    217                 self.steps[step_idx] = (name, fitted_transformer)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\memory.py in __call__(self=NotMemorizedFunc(func=&lt;function _fit_transform_one at 0x000001D3E9EC6158&gt;), *args=(CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64), **kwargs={})
+    357     # Should be a light as possible (for speed)
+    358     def __init__(self, func):
+    359         self.func = func
+    360 
+    361     def __call__(self, *args, **kwargs):
+--&gt; 362         return self.func(*args, **kwargs)
+        self.func = &lt;function _fit_transform_one&gt;
+        args = (CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+        kwargs = {}
+    363 
+    364     def call_and_shelve(self, *args, **kwargs):
+    365         return NotMemorizedResult(self.func(*args, **kwargs))
+    366 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit_transform_one(transformer=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), weight=None, X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    576 
+    577 
+    578 def _fit_transform_one(transformer, weight, X, y,
+    579                        **fit_params):
+    580     if hasattr(transformer, &#39;fit_transform&#39;):
+--&gt; 581         res = transformer.fit_transform(X, y, **fit_params)
+        res = undefined
+        transformer.fit_transform = &lt;bound method CountVectorizer.fit_transform of C...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    582     else:
+    583         res = transformer.fit(X, y, **fit_params).transform(X)
+    584     # if we have a weight for this transformer, multiply output
+    585     if weight is None:
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in fit_transform(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), raw_documents=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+    870 
+    871         if self.binary:
+    872             X.data.fill(1)
+    873 
+    874         if not self.fixed_vocabulary_:
+--&gt; 875             X = self._sort_features(X, vocabulary)
+        X = &lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;
+        self._sort_features = &lt;bound method CountVectorizer._sort_features of ...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        vocabulary = &lt;class &#39;dict&#39;&gt; instance
+    876 
+    877             n_doc = X.shape[0]
+    878             max_doc_count = (max_df
+    879                              if isinstance(max_df, numbers.Integral)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in _sort_features(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), X=&lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;, vocabulary=&lt;class &#39;dict&#39;&gt; instance)
+    726         map_index = np.empty(len(sorted_features), dtype=np.int32)
+    727         for new_val, (term, old_val) in enumerate(sorted_features):
+    728             vocabulary[term] = new_val
+    729             map_index[old_val] = new_val
+    730 
+--&gt; 731         X.indices = map_index.take(X.indices, mode=&#39;clip&#39;)
+        X.indices = array([      0,       1,       2, ..., 3696111, 3696112, 3696113],
+      dtype=int32)
+        map_index.take = &lt;built-in method take of numpy.ndarray object&gt;
+    732         return X
+    733 
+    734     def _limit_features(self, X, vocabulary, high=None, low=None,
+    735                         limit=None):
+
+MemoryError: 
+___________________________________________________________________________
+&quot;&quot;&quot;
+
+The above exception was the direct cause of the following exception:
+
+TransportableException                    Traceback (most recent call last)
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in retrieve(self)
+    698                 if getattr(self._backend, &#39;supports_timeout&#39;, False):
+--&gt; 699                     self._output.extend(job.get(timeout=self.timeout))
+    700                 else:
+
+D:\Miniconda3\envs\nlp\lib\multiprocessing\pool.py in get(self, timeout)
+    643         else:
+--&gt; 644             raise self._value
+    645 
+
+TransportableException: TransportableException
+___________________________________________________________________________
+MemoryError                                        Wed Sep 26 05:47:48 2018
+PID: 4472                   Python 3.6.6: D:\Miniconda3\envs\nlp\python.exe
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in __call__(self=&lt;sklearn.externals.joblib.parallel.BatchedCalls object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        self.items = [(&lt;function _fit_and_score&gt;, (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85}), {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;})]
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        func = &lt;function _fit_and_score&gt;
+        args = (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85})
+        kwargs = {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;}
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_validation.py in _fit_and_score(estimator=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, scorer={&#39;score&#39;: make_scorer(accuracy_score)}, train=array([    0,     1,     2, ..., 16685, 16686, 16687]), test=array([16641, 16643, 16644, ..., 24997, 24998, 24999]), verbose=0, parameters={&#39;clf__C&#39;: 85}, fit_params={}, return_train_score=&#39;warn&#39;, return_parameters=False, return_n_test_samples=True, return_times=True, error_score=&#39;raise&#39;)
+    453 
+    454     try:
+    455         if y_train is None:
+    456             estimator.fit(X_train, **fit_params)
+    457         else:
+--&gt; 458             estimator.fit(X_train, y_train, **fit_params)
+        estimator.fit = &lt;bound method Pipeline.fit of Pipeline(memory=No....0001,
+          verbose=0, warm_start=False))])&gt;
+        X_train = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y_train = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    459 
+    460     except Exception as e:
+    461         # Note fit time as time until error
+    462         fit_time = time.time() - start_time
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    243         Returns
+    244         -------
+    245         self : Pipeline
+    246             This estimator
+    247         &quot;&quot;&quot;
+--&gt; 248         Xt, fit_params = self._fit(X, y, **fit_params)
+        Xt = undefined
+        fit_params = {}
+        self._fit = &lt;bound method Pipeline._fit of Pipeline(memory=N....0001,
+          verbose=0, warm_start=False))])&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+    249         if self._final_estimator is not None:
+    250             self._final_estimator.fit(Xt, y, **fit_params)
+    251         return self
+    252 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    208                 else:
+    209                     cloned_transformer = clone(transformer)
+    210                 # Fit or load from cache the current transfomer
+    211                 Xt, fitted_transformer = fit_transform_one_cached(
+    212                     cloned_transformer, None, Xt, y,
+--&gt; 213                     **fit_params_steps[name])
+        fit_params_steps = {&#39;clf&#39;: {}, &#39;tfidf&#39;: {}, &#39;vect&#39;: {}}
+        name = &#39;vect&#39;
+    214                 # Replace the transformer of the step with the fitted
+    215                 # transformer. This is necessary when loading the transformer
+    216                 # from the cache.
+    217                 self.steps[step_idx] = (name, fitted_transformer)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\memory.py in __call__(self=NotMemorizedFunc(func=&lt;function _fit_transform_one at 0x000001D3E9EC6158&gt;), *args=(CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64), **kwargs={})
+    357     # Should be a light as possible (for speed)
+    358     def __init__(self, func):
+    359         self.func = func
+    360 
+    361     def __call__(self, *args, **kwargs):
+--&gt; 362         return self.func(*args, **kwargs)
+        self.func = &lt;function _fit_transform_one&gt;
+        args = (CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+        kwargs = {}
+    363 
+    364     def call_and_shelve(self, *args, **kwargs):
+    365         return NotMemorizedResult(self.func(*args, **kwargs))
+    366 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit_transform_one(transformer=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), weight=None, X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    576 
+    577 
+    578 def _fit_transform_one(transformer, weight, X, y,
+    579                        **fit_params):
+    580     if hasattr(transformer, &#39;fit_transform&#39;):
+--&gt; 581         res = transformer.fit_transform(X, y, **fit_params)
+        res = undefined
+        transformer.fit_transform = &lt;bound method CountVectorizer.fit_transform of C...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    582     else:
+    583         res = transformer.fit(X, y, **fit_params).transform(X)
+    584     # if we have a weight for this transformer, multiply output
+    585     if weight is None:
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in fit_transform(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), raw_documents=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+    870 
+    871         if self.binary:
+    872             X.data.fill(1)
+    873 
+    874         if not self.fixed_vocabulary_:
+--&gt; 875             X = self._sort_features(X, vocabulary)
+        X = &lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;
+        self._sort_features = &lt;bound method CountVectorizer._sort_features of ...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        vocabulary = &lt;class &#39;dict&#39;&gt; instance
+    876 
+    877             n_doc = X.shape[0]
+    878             max_doc_count = (max_df
+    879                              if isinstance(max_df, numbers.Integral)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in _sort_features(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), X=&lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;, vocabulary=&lt;class &#39;dict&#39;&gt; instance)
+    726         map_index = np.empty(len(sorted_features), dtype=np.int32)
+    727         for new_val, (term, old_val) in enumerate(sorted_features):
+    728             vocabulary[term] = new_val
+    729             map_index[old_val] = new_val
+    730 
+--&gt; 731         X.indices = map_index.take(X.indices, mode=&#39;clip&#39;)
+        X.indices = array([      0,       1,       2, ..., 3696111, 3696112, 3696113],
+      dtype=int32)
+        map_index.take = &lt;built-in method take of numpy.ndarray object&gt;
+    732         return X
+    733 
+    734     def _limit_features(self, X, vocabulary, high=None, low=None,
+    735                         limit=None):
+
+MemoryError: 
+___________________________________________________________________________
+
+During handling of the above exception, another exception occurred:
+
+JoblibMemoryError                         Traceback (most recent call last)
+&lt;timed eval&gt; in &lt;module&gt;()
+
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_search.py in fit(self, X, y, groups, **fit_params)
+    638                                   error_score=self.error_score)
+    639           for parameters, (train, test) in product(candidate_params,
+--&gt; 640                                                    cv.split(X, y, groups)))
+    641 
+    642         # if one choose to see train score, &quot;out&quot; will contain train score info
+
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in __call__(self, iterable)
+    787                 # consumption.
+    788                 self._iterating = False
+--&gt; 789             self.retrieve()
+    790             # Make sure that we get a last message telling us we are done
+    791             elapsed_time = time.time() - self._start_time
+
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in retrieve(self)
+    738                     exception = exception_type(report)
+    739 
+--&gt; 740                     raise exception
+    741 
+    742     def __call__(self, iterable):
+
+JoblibMemoryError: JoblibMemoryError
+___________________________________________________________________________
+Multiprocessing exception:
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\runpy.py in _run_module_as_main(mod_name=&#39;ipykernel.__main__&#39;, alter_argv=1)
+    188         sys.exit(msg)
+    189     main_globals = sys.modules[&quot;__main__&quot;].__dict__
+    190     if alter_argv:
+    191         sys.argv[0] = mod_spec.origin
+    192     return _run_code(code, main_globals, None,
+--&gt; 193                      &quot;__main__&quot;, mod_spec)
+        mod_spec = ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...nlp\\lib\\site-packages\\ipykernel\\__main__.py&#39;)
+    194 
+    195 def run_module(mod_name, init_globals=None,
+    196                run_name=None, alter_sys=False):
+    197     &quot;&quot;&quot;Execute a module&#39;s code without importing it
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\runpy.py in _run_code(code=&lt;code object &lt;module&gt; at 0x000001B7102B10C0, fil...lib\site-packages\ipykernel\__main__.py&quot;, line 1&gt;, run_globals={&#39;__annotations__&#39;: {}, &#39;__builtins__&#39;: &lt;module &#39;builtins&#39; (built-in)&gt;, &#39;__cached__&#39;: r&#39;D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\__pycache__\__main__.cpython-36.pyc&#39;, &#39;__doc__&#39;: None, &#39;__file__&#39;: r&#39;D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\__main__.py&#39;, &#39;__loader__&#39;: &lt;_frozen_importlib_external.SourceFileLoader object&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;__spec__&#39;: ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...nlp\\lib\\site-packages\\ipykernel\\__main__.py&#39;), &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;D:\\Minicond...lp\\lib\\site-packages\\ipykernel\\kernelapp.py&#39;&gt;}, init_globals=None, mod_name=&#39;__main__&#39;, mod_spec=ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...nlp\\lib\\site-packages\\ipykernel\\__main__.py&#39;), pkg_name=&#39;ipykernel&#39;, script_name=None)
+     80                        __cached__ = cached,
+     81                        __doc__ = None,
+     82                        __loader__ = loader,
+     83                        __package__ = pkg_name,
+     84                        __spec__ = mod_spec)
+---&gt; 85     exec(code, run_globals)
+        code = &lt;code object &lt;module&gt; at 0x000001B7102B10C0, fil...lib\site-packages\ipykernel\__main__.py&quot;, line 1&gt;
+        run_globals = {&#39;__annotations__&#39;: {}, &#39;__builtins__&#39;: &lt;module &#39;builtins&#39; (built-in)&gt;, &#39;__cached__&#39;: r&#39;D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\__pycache__\__main__.cpython-36.pyc&#39;, &#39;__doc__&#39;: None, &#39;__file__&#39;: r&#39;D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\__main__.py&#39;, &#39;__loader__&#39;: &lt;_frozen_importlib_external.SourceFileLoader object&gt;, &#39;__name__&#39;: &#39;__main__&#39;, &#39;__package__&#39;: &#39;ipykernel&#39;, &#39;__spec__&#39;: ModuleSpec(name=&#39;ipykernel.__main__&#39;, loader=&lt;_f...nlp\\lib\\site-packages\\ipykernel\\__main__.py&#39;), &#39;app&#39;: &lt;module &#39;ipykernel.kernelapp&#39; from &#39;D:\\Minicond...lp\\lib\\site-packages\\ipykernel\\kernelapp.py&#39;&gt;}
+     86     return run_globals
+     87 
+     88 def _run_module_code(code, init_globals=None,
+     89                     mod_name=None, mod_spec=None,
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\__main__.py in &lt;module&gt;()
+      1 if __name__ == &#39;__main__&#39;:
+      2     from ipykernel import kernelapp as app
+----&gt; 3     app.launch_new_instance()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\traitlets\config\application.py in launch_instance(cls=&lt;class &#39;ipykernel.kernelapp.IPKernelApp&#39;&gt;, argv=None, **kwargs={})
+    653 
+    654         If a global instance already exists, this reinitializes and starts it
+    655         &quot;&quot;&quot;
+    656         app = cls.instance(**kwargs)
+    657         app.initialize(argv)
+--&gt; 658         app.start()
+        app.start = &lt;bound method IPKernelApp.start of &lt;ipykernel.kernelapp.IPKernelApp object&gt;&gt;
+    659 
+    660 #-----------------------------------------------------------------------------
+    661 # utility functions, for convenience
+    662 #-----------------------------------------------------------------------------
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\kernelapp.py in start(self=&lt;ipykernel.kernelapp.IPKernelApp object&gt;)
+    481         if self.poller is not None:
+    482             self.poller.start()
+    483         self.kernel.start()
+    484         self.io_loop = ioloop.IOLoop.current()
+    485         try:
+--&gt; 486             self.io_loop.start()
+        self.io_loop.start = &lt;bound method BaseAsyncIOLoop.start of &lt;tornado.platform.asyncio.AsyncIOMainLoop object&gt;&gt;
+    487         except KeyboardInterrupt:
+    488             pass
+    489 
+    490 launch_new_instance = IPKernelApp.launch_instance
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\tornado\platform\asyncio.py in start(self=&lt;tornado.platform.asyncio.AsyncIOMainLoop object&gt;)
+    122         except (RuntimeError, AssertionError):
+    123             old_loop = None
+    124         try:
+    125             self._setup_logging()
+    126             asyncio.set_event_loop(self.asyncio_loop)
+--&gt; 127             self.asyncio_loop.run_forever()
+        self.asyncio_loop.run_forever = &lt;bound method BaseEventLoop.run_forever of &lt;_Win...EventLoop running=True closed=False debug=False&gt;&gt;
+    128         finally:
+    129             asyncio.set_event_loop(old_loop)
+    130 
+    131     def stop(self):
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\asyncio\base_events.py in run_forever(self=&lt;_WindowsSelectorEventLoop running=True closed=False debug=False&gt;)
+    417             sys.set_asyncgen_hooks(firstiter=self._asyncgen_firstiter_hook,
+    418                                    finalizer=self._asyncgen_finalizer_hook)
+    419         try:
+    420             events._set_running_loop(self)
+    421             while True:
+--&gt; 422                 self._run_once()
+        self._run_once = &lt;bound method BaseEventLoop._run_once of &lt;_Windo...EventLoop running=True closed=False debug=False&gt;&gt;
+    423                 if self._stopping:
+    424                     break
+    425         finally:
+    426             self._stopping = False
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\asyncio\base_events.py in _run_once(self=&lt;_WindowsSelectorEventLoop running=True closed=False debug=False&gt;)
+   1429                         logger.warning(&#39;Executing %s took %.3f seconds&#39;,
+   1430                                        _format_handle(handle), dt)
+   1431                 finally:
+   1432                     self._current_handle = None
+   1433             else:
+-&gt; 1434                 handle._run()
+        handle._run = &lt;bound method Handle._run of &lt;Handle IOLoop._run_callback(functools.par...01B7150CA268&gt;))&gt;&gt;
+   1435         handle = None  # Needed to break cycles when an exception occurs.
+   1436 
+   1437     def _set_coroutine_wrapper(self, enabled):
+   1438         try:
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\asyncio\events.py in _run(self=&lt;Handle IOLoop._run_callback(functools.par...01B7150CA268&gt;))&gt;)
+    140             self._callback = None
+    141             self._args = None
+    142 
+    143     def _run(self):
+    144         try:
+--&gt; 145             self._callback(*self._args)
+        self._callback = &lt;bound method IOLoop._run_callback of &lt;tornado.platform.asyncio.AsyncIOMainLoop object&gt;&gt;
+        self._args = (functools.partial(&lt;function wrap.&lt;locals&gt;.null_wrapper at 0x000001B7150CA268&gt;),)
+    146         except Exception as exc:
+    147             cb = _format_callback_source(self._callback, self._args)
+    148             msg = &#39;Exception in callback {}&#39;.format(cb)
+    149             context = {
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\tornado\ioloop.py in _run_callback(self=&lt;tornado.platform.asyncio.AsyncIOMainLoop object&gt;, callback=functools.partial(&lt;function wrap.&lt;locals&gt;.null_wrapper at 0x000001B7150CA268&gt;))
+    754         &quot;&quot;&quot;Runs a callback with error handling.
+    755 
+    756         For use in subclasses.
+    757         &quot;&quot;&quot;
+    758         try:
+--&gt; 759             ret = callback()
+        ret = undefined
+        callback = functools.partial(&lt;function wrap.&lt;locals&gt;.null_wrapper at 0x000001B7150CA268&gt;)
+    760             if ret is not None:
+    761                 from tornado import gen
+    762                 # Functions that return Futures typically swallow all
+    763                 # exceptions and store them in the Future.  If a Future
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\tornado\stack_context.py in null_wrapper(*args=(), **kwargs={})
+    271         # Fast path when there are no active contexts.
+    272         def null_wrapper(*args, **kwargs):
+    273             try:
+    274                 current_state = _state.contexts
+    275                 _state.contexts = cap_contexts[0]
+--&gt; 276                 return fn(*args, **kwargs)
+        args = ()
+        kwargs = {}
+    277             finally:
+    278                 _state.contexts = current_state
+    279         null_wrapper._wrapped = True
+    280         return null_wrapper
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\zmq\eventloop\zmqstream.py in &lt;lambda&gt;()
+    531             return
+    532 
+    533         if state &amp; self.socket.events:
+    534             # events still exist that haven&#39;t been processed
+    535             # explicitly schedule handling to avoid missing events due to edge-triggered FDs
+--&gt; 536             self.io_loop.add_callback(lambda : self._handle_events(self.socket, 0))
+    537 
+    538     def _init_io_state(self):
+    539         &quot;&quot;&quot;initialize the ioloop event handler&quot;&quot;&quot;
+    540         with stack_context.NullContext():
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\zmq\eventloop\zmqstream.py in _handle_events(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, fd=&lt;zmq.sugar.socket.Socket object&gt;, events=0)
+    445             return
+    446         zmq_events = self.socket.EVENTS
+    447         try:
+    448             # dispatch events:
+    449             if zmq_events &amp; zmq.POLLIN and self.receiving():
+--&gt; 450                 self._handle_recv()
+        self._handle_recv = &lt;bound method ZMQStream._handle_recv of &lt;zmq.eventloop.zmqstream.ZMQStream object&gt;&gt;
+    451                 if not self.socket:
+    452                     return
+    453             if zmq_events &amp; zmq.POLLOUT and self.sending():
+    454                 self._handle_send()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\zmq\eventloop\zmqstream.py in _handle_recv(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;)
+    475             else:
+    476                 raise
+    477         else:
+    478             if self._recv_callback:
+    479                 callback = self._recv_callback
+--&gt; 480                 self._run_callback(callback, msg)
+        self._run_callback = &lt;bound method ZMQStream._run_callback of &lt;zmq.eventloop.zmqstream.ZMQStream object&gt;&gt;
+        callback = &lt;function wrap.&lt;locals&gt;.null_wrapper&gt;
+        msg = [&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;]
+    481         
+    482 
+    483     def _handle_send(self):
+    484         &quot;&quot;&quot;Handle a send event.&quot;&quot;&quot;
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\zmq\eventloop\zmqstream.py in _run_callback(self=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, callback=&lt;function wrap.&lt;locals&gt;.null_wrapper&gt;, *args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
+    427         close our socket.&quot;&quot;&quot;
+    428         try:
+    429             # Use a NullContext to ensure that all StackContexts are run
+    430             # inside our blanket exception handler rather than outside.
+    431             with stack_context.NullContext():
+--&gt; 432                 callback(*args, **kwargs)
+        callback = &lt;function wrap.&lt;locals&gt;.null_wrapper&gt;
+        args = ([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],)
+        kwargs = {}
+    433         except:
+    434             gen_log.error(&quot;Uncaught exception in ZMQStream callback&quot;,
+    435                           exc_info=True)
+    436             # Re-raise the exception so that IOLoop.handle_callback_exception
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\tornado\stack_context.py in null_wrapper(*args=([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],), **kwargs={})
+    271         # Fast path when there are no active contexts.
+    272         def null_wrapper(*args, **kwargs):
+    273             try:
+    274                 current_state = _state.contexts
+    275                 _state.contexts = cap_contexts[0]
+--&gt; 276                 return fn(*args, **kwargs)
+        args = ([&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;],)
+        kwargs = {}
+    277             finally:
+    278                 _state.contexts = current_state
+    279         null_wrapper._wrapped = True
+    280         return null_wrapper
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\kernelbase.py in dispatcher(msg=[&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;])
+    278         if self.control_stream:
+    279             self.control_stream.on_recv(self.dispatch_control, copy=False)
+    280 
+    281         def make_dispatcher(stream):
+    282             def dispatcher(msg):
+--&gt; 283                 return self.dispatch_shell(stream, msg)
+        msg = [&lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;, &lt;zmq.sugar.frame.Frame object&gt;]
+    284             return dispatcher
+    285 
+    286         for s in self.shell_streams:
+    287             s.on_recv(make_dispatcher(s), copy=False)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\kernelbase.py in dispatch_shell(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, msg={&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: datetime.datetime(2018, 9, 25, 23, 40, 27, 639848, tzinfo=tzutc()), &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;a6f2e7c3cb634e10b16d91097af28c58&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.2&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}})
+    228             self.log.warn(&quot;Unknown message type: %r&quot;, msg_type)
+    229         else:
+    230             self.log.debug(&quot;%s: %s&quot;, msg_type, msg)
+    231             self.pre_handler_hook()
+    232             try:
+--&gt; 233                 handler(stream, idents, msg)
+        handler = &lt;bound method Kernel.execute_request of &lt;ipykernel.ipkernel.IPythonKernel object&gt;&gt;
+        stream = &lt;zmq.eventloop.zmqstream.ZMQStream object&gt;
+        idents = [b&#39;a6f2e7c3cb634e10b16d91097af28c58&#39;]
+        msg = {&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: datetime.datetime(2018, 9, 25, 23, 40, 27, 639848, tzinfo=tzutc()), &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;a6f2e7c3cb634e10b16d91097af28c58&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.2&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}}
+    234             except Exception:
+    235                 self.log.error(&quot;Exception in message handler:&quot;, exc_info=True)
+    236             finally:
+    237                 self.post_handler_hook()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\kernelbase.py in execute_request(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, stream=&lt;zmq.eventloop.zmqstream.ZMQStream object&gt;, ident=[b&#39;a6f2e7c3cb634e10b16d91097af28c58&#39;], parent={&#39;buffers&#39;: [], &#39;content&#39;: {&#39;allow_stdin&#39;: True, &#39;code&#39;: &#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, &#39;silent&#39;: False, &#39;stop_on_error&#39;: True, &#39;store_history&#39;: True, &#39;user_expressions&#39;: {}}, &#39;header&#39;: {&#39;date&#39;: datetime.datetime(2018, 9, 25, 23, 40, 27, 639848, tzinfo=tzutc()), &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;session&#39;: &#39;a6f2e7c3cb634e10b16d91097af28c58&#39;, &#39;username&#39;: &#39;username&#39;, &#39;version&#39;: &#39;5.2&#39;}, &#39;metadata&#39;: {}, &#39;msg_id&#39;: &#39;0a644ca9c93a422b8ffb37b847a55c64&#39;, &#39;msg_type&#39;: &#39;execute_request&#39;, &#39;parent_header&#39;: {}})
+    394         if not silent:
+    395             self.execution_count += 1
+    396             self._publish_execute_input(code, parent, self.execution_count)
+    397 
+    398         reply_content = self.do_execute(code, silent, store_history,
+--&gt; 399                                         user_expressions, allow_stdin)
+        user_expressions = {}
+        allow_stdin = True
+    400 
+    401         # Flush output before sending the reply.
+    402         sys.stdout.flush()
+    403         sys.stderr.flush()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\ipkernel.py in do_execute(self=&lt;ipykernel.ipkernel.IPythonKernel object&gt;, code=&#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, silent=False, store_history=True, user_expressions={}, allow_stdin=True)
+    203 
+    204         self._forward_input(allow_stdin)
+    205 
+    206         reply_content = {}
+    207         try:
+--&gt; 208             res = shell.run_cell(code, store_history=store_history, silent=silent)
+        res = undefined
+        shell.run_cell = &lt;bound method ZMQInteractiveShell.run_cell of &lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;&gt;
+        code = &#39;%%time\ngrid_search.fit(X_train, y_train)&#39;
+        store_history = True
+        silent = False
+    209         finally:
+    210             self._restore_input()
+    211 
+    212         if res.error_before_exec is not None:
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\ipykernel\zmqshell.py in run_cell(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, *args=(&#39;%%time\ngrid_search.fit(X_train, y_train)&#39;,), **kwargs={&#39;silent&#39;: False, &#39;store_history&#39;: True})
+    532             )
+    533         self.payload_manager.write_payload(payload)
+    534 
+    535     def run_cell(self, *args, **kwargs):
+    536         self._last_traceback = None
+--&gt; 537         return super(ZMQInteractiveShell, self).run_cell(*args, **kwargs)
+        self.run_cell = &lt;bound method ZMQInteractiveShell.run_cell of &lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;&gt;
+        args = (&#39;%%time\ngrid_search.fit(X_train, y_train)&#39;,)
+        kwargs = {&#39;silent&#39;: False, &#39;store_history&#39;: True}
+    538 
+    539     def _showtraceback(self, etype, evalue, stb):
+    540         # try to preserve ordering of tracebacks and print statements
+    541         sys.stdout.flush()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\interactiveshell.py in run_cell(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, raw_cell=&#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, store_history=True, silent=False, shell_futures=True)
+   2657         -------
+   2658         result : :class:`ExecutionResult`
+   2659         &quot;&quot;&quot;
+   2660         try:
+   2661             result = self._run_cell(
+-&gt; 2662                 raw_cell, store_history, silent, shell_futures)
+        raw_cell = &#39;%%time\ngrid_search.fit(X_train, y_train)&#39;
+        store_history = True
+        silent = False
+        shell_futures = True
+   2663         finally:
+   2664             self.events.trigger(&#39;post_execute&#39;)
+   2665             if not silent:
+   2666                 self.events.trigger(&#39;post_run_cell&#39;, result)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\interactiveshell.py in _run_cell(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, raw_cell=&#39;%%time\ngrid_search.fit(X_train, y_train)&#39;, store_history=True, silent=False, shell_futures=True)
+   2780                 self.displayhook.exec_result = result
+   2781 
+   2782                 # Execute the user code
+   2783                 interactivity = &#39;none&#39; if silent else self.ast_node_interactivity
+   2784                 has_raised = self.run_ast_nodes(code_ast.body, cell_name,
+-&gt; 2785                    interactivity=interactivity, compiler=compiler, result=result)
+        interactivity = &#39;last_expr&#39;
+        compiler = &lt;IPython.core.compilerop.CachingCompiler object&gt;
+   2786                 
+   2787                 self.last_execution_succeeded = not has_raised
+   2788                 self.last_execution_result = result
+   2789 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\interactiveshell.py in run_ast_nodes(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, nodelist=[&lt;_ast.Expr object&gt;], cell_name=&#39;&lt;ipython-input-44-9855dc574354&gt;&#39;, interactivity=&#39;last&#39;, compiler=&lt;IPython.core.compilerop.CachingCompiler object&gt;, result=&lt;ExecutionResult object at 1b72d7d5e48, executio...rue silent=False shell_futures=True&gt; result=None&gt;)
+   2904                     return True
+   2905 
+   2906             for i, node in enumerate(to_run_interactive):
+   2907                 mod = ast.Interactive([node])
+   2908                 code = compiler(mod, cell_name, &quot;single&quot;)
+-&gt; 2909                 if self.run_code(code, result):
+        self.run_code = &lt;bound method InteractiveShell.run_code of &lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;&gt;
+        code = &lt;code object &lt;module&gt; at 0x000001B7176F58A0, file &quot;&lt;ipython-input-44-9855dc574354&gt;&quot;, line 1&gt;
+        result = &lt;ExecutionResult object at 1b72d7d5e48, executio...rue silent=False shell_futures=True&gt; result=None&gt;
+   2910                     return True
+   2911 
+   2912             # Flush softspace
+   2913             if softspace(sys.stdout, 0):
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\interactiveshell.py in run_code(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, code_obj=&lt;code object &lt;module&gt; at 0x000001B7176F58A0, file &quot;&lt;ipython-input-44-9855dc574354&gt;&quot;, line 1&gt;, result=&lt;ExecutionResult object at 1b72d7d5e48, executio...rue silent=False shell_futures=True&gt; result=None&gt;)
+   2958         outflag = True  # happens in more places, so it&#39;s easier as default
+   2959         try:
+   2960             try:
+   2961                 self.hooks.pre_run_code_hook()
+   2962                 #rprint(&#39;Running code&#39;, repr(code_obj)) # dbg
+-&gt; 2963                 exec(code_obj, self.user_global_ns, self.user_ns)
+        code_obj = &lt;code object &lt;module&gt; at 0x000001B7176F58A0, file &quot;&lt;ipython-input-44-9855dc574354&gt;&quot;, line 1&gt;
+        self.user_global_ns = {&#39;CountVectorizer&#39;: &lt;class &#39;sklearn.feature_extraction.text.CountVectorizer&#39;&gt;, &#39;DTC&#39;: &lt;class &#39;sklearn.tree.tree.DecisionTreeClassifier&#39;&gt;, &#39;GridSearchCV&#39;: &lt;class &#39;sklearn.model_selection._search.GridSearchCV&#39;&gt;, &#39;In&#39;: [&#39;&#39;, &#39;from pathlib import Path\nimport pandas as pd\nimp...the fastAI environment, all of these imports work&#39;, &#39;class TqdmUpTo(tqdm):\n    def update_to(self, b=...l = tsize\n        self.update(b * bsize - self.n)&#39;, &#39;def get_data(url, filename):\n    &quot;&quot;&quot;\n    Downloa...rlretrieve(url, filename, reporthook=t.update_to)&#39;, &quot;# Let&#39;s download some data:\ndata_url = &#39;http://f...clImdb.tgz&#39;\n# get_data(data_url, &#39;data/imdb.tgz&#39;)&quot;, &quot;data_path = Path(os.getcwd())/&#39;data&#39;/&#39;aclImdb&#39;\nassert data_path.exists()&quot;, &#39;for pathroute in os.walk(data_path):\n    next_pa...1]\n    for stop in next_path:\n        print(stop)&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, &#39;def read_data(dir_path):\n    &quot;&quot;&quot;read data into p...ce=True) # drop the column \&#39;index\&#39; \n    return df&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, r&quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;train ...d_data(train_path)\ntest = read_data(test_path)&#39;)&quot;, &#39;test[:5]&#39;, &quot;# test.to_csv(data_path/&#39;test.csv&#39;, index=False)&quot;, &quot;# train.to_csv(data_path/&#39;train.csv&#39;, index=False)&quot;, &quot;X_train, y_train = train[&#39;text&#39;], train[&#39;label&#39;]\nX_test, y_test = test[&#39;text&#39;], test[&#39;label&#39;]&quot;, &#39;from sklearn.pipeline import Pipeline\nfrom sklea...ion.text import CountVectorizer, TfidfTransformer&#39;, &#39;from sklearn.linear_model import LogisticRegression as LR&#39;, &quot;lr_clf = Pipeline([(&#39;vect&#39;, CountVectorizer()), (&#39;tfidf&#39;, TfidfTransformer()), (&#39;clf&#39;,LR())])&quot;, &quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;lr_clf...re inplace, and the Pipeline is not re-assigned&#39;)&quot;, &#39;lr_predicted = lr_clf.predict(X_test)&#39;, ...], &#39;LR&#39;: &lt;class &#39;sklearn.linear_model.logistic.LogisticRegression&#39;&gt;, &#39;MNB&#39;: &lt;class &#39;sklearn.naive_bayes.MultinomialNB&#39;&gt;, &#39;Out&#39;: {11:                                                 ... one of my favorite movies ever! along ...      1, 18: Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 20: 0.88312, 22: 0.879, 23: 0.86596, 25: 0.81356, 26: 0.82956, 27: 0.82992, 28: 0.8572, 29: 0.8572, ...}, &#39;Path&#39;: &lt;class &#39;pathlib.Path&#39;&gt;, &#39;Pipeline&#39;: &lt;class &#39;sklearn.pipeline.Pipeline&#39;&gt;, &#39;RFC&#39;: &lt;class &#39;sklearn.ensemble.forest.RandomForestClassifier&#39;&gt;, ...}
+        self.user_ns = {&#39;CountVectorizer&#39;: &lt;class &#39;sklearn.feature_extraction.text.CountVectorizer&#39;&gt;, &#39;DTC&#39;: &lt;class &#39;sklearn.tree.tree.DecisionTreeClassifier&#39;&gt;, &#39;GridSearchCV&#39;: &lt;class &#39;sklearn.model_selection._search.GridSearchCV&#39;&gt;, &#39;In&#39;: [&#39;&#39;, &#39;from pathlib import Path\nimport pandas as pd\nimp...the fastAI environment, all of these imports work&#39;, &#39;class TqdmUpTo(tqdm):\n    def update_to(self, b=...l = tsize\n        self.update(b * bsize - self.n)&#39;, &#39;def get_data(url, filename):\n    &quot;&quot;&quot;\n    Downloa...rlretrieve(url, filename, reporthook=t.update_to)&#39;, &quot;# Let&#39;s download some data:\ndata_url = &#39;http://f...clImdb.tgz&#39;\n# get_data(data_url, &#39;data/imdb.tgz&#39;)&quot;, &quot;data_path = Path(os.getcwd())/&#39;data&#39;/&#39;aclImdb&#39;\nassert data_path.exists()&quot;, &#39;for pathroute in os.walk(data_path):\n    next_pa...1]\n    for stop in next_path:\n        print(stop)&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, &#39;def read_data(dir_path):\n    &quot;&quot;&quot;read data into p...ce=True) # drop the column \&#39;index\&#39; \n    return df&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, r&quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;train ...d_data(train_path)\ntest = read_data(test_path)&#39;)&quot;, &#39;test[:5]&#39;, &quot;# test.to_csv(data_path/&#39;test.csv&#39;, index=False)&quot;, &quot;# train.to_csv(data_path/&#39;train.csv&#39;, index=False)&quot;, &quot;X_train, y_train = train[&#39;text&#39;], train[&#39;label&#39;]\nX_test, y_test = test[&#39;text&#39;], test[&#39;label&#39;]&quot;, &#39;from sklearn.pipeline import Pipeline\nfrom sklea...ion.text import CountVectorizer, TfidfTransformer&#39;, &#39;from sklearn.linear_model import LogisticRegression as LR&#39;, &quot;lr_clf = Pipeline([(&#39;vect&#39;, CountVectorizer()), (&#39;tfidf&#39;, TfidfTransformer()), (&#39;clf&#39;,LR())])&quot;, &quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;lr_clf...re inplace, and the Pipeline is not re-assigned&#39;)&quot;, &#39;lr_predicted = lr_clf.predict(X_test)&#39;, ...], &#39;LR&#39;: &lt;class &#39;sklearn.linear_model.logistic.LogisticRegression&#39;&gt;, &#39;MNB&#39;: &lt;class &#39;sklearn.naive_bayes.MultinomialNB&#39;&gt;, &#39;Out&#39;: {11:                                                 ... one of my favorite movies ever! along ...      1, 18: Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 20: 0.88312, 22: 0.879, 23: 0.86596, 25: 0.81356, 26: 0.82956, 27: 0.82992, 28: 0.8572, 29: 0.8572, ...}, &#39;Path&#39;: &lt;class &#39;pathlib.Path&#39;&gt;, &#39;Pipeline&#39;: &lt;class &#39;sklearn.pipeline.Pipeline&#39;&gt;, &#39;RFC&#39;: &lt;class &#39;sklearn.ensemble.forest.RandomForestClassifier&#39;&gt;, ...}
+   2964             finally:
+   2965                 # Reset our crash handler in place
+   2966                 sys.excepthook = old_excepthook
+   2967         except SystemExit as e:
+
+...........................................................................
+C:\Users\nirantk\Desktop\nlp-python-deep-learning\&lt;ipython-input-44-9855dc574354&gt; in &lt;module&gt;()
+----&gt; 1 get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;grid_search.fit(X_train, y_train)&#39;)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\interactiveshell.py in run_cell_magic(self=&lt;ipykernel.zmqshell.ZMQInteractiveShell object&gt;, magic_name=&#39;time&#39;, line=&#39;&#39;, cell=&#39;grid_search.fit(X_train, y_train)&#39;)
+   2162             # This will need to be updated if the internal calling logic gets
+   2163             # refactored, or else we&#39;ll be expanding the wrong variables.
+   2164             stack_depth = 2
+   2165             magic_arg_s = self.var_expand(line, stack_depth)
+   2166             with self.builtin_trap:
+-&gt; 2167                 result = fn(magic_arg_s, cell)
+        result = undefined
+        fn = &lt;bound method ExecutionMagics.time of &lt;IPython.core.magics.execution.ExecutionMagics object&gt;&gt;
+        magic_arg_s = &#39;&#39;
+        cell = &#39;grid_search.fit(X_train, y_train)&#39;
+   2168             return result
+   2169 
+   2170     def find_line_magic(self, magic_name):
+   2171         &quot;&quot;&quot;Find and return a line magic by name.
+
+...........................................................................
+C:\Users\nirantk\Desktop\nlp-python-deep-learning\&lt;decorator-gen-63&gt; in time(self=&lt;IPython.core.magics.execution.ExecutionMagics object&gt;, line=&#39;&#39;, cell=&#39;grid_search.fit(X_train, y_train)&#39;, local_ns=None)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\magic.py in &lt;lambda&gt;(f=&lt;function ExecutionMagics.time&gt;, *a=(&lt;IPython.core.magics.execution.ExecutionMagics object&gt;, &#39;&#39;, &#39;grid_search.fit(X_train, y_train)&#39;, None), **k={})
+    182     validate_type(magic_kind)
+    183 
+    184     # This is a closure to capture the magic_kind.  We could also use a class,
+    185     # but it&#39;s overkill for just that one bit of state.
+    186     def magic_deco(arg):
+--&gt; 187         call = lambda f, *a, **k: f(*a, **k)
+        f = &lt;function ExecutionMagics.time&gt;
+        a = (&lt;IPython.core.magics.execution.ExecutionMagics object&gt;, &#39;&#39;, &#39;grid_search.fit(X_train, y_train)&#39;, None)
+        k = {}
+    188 
+    189         if callable(arg):
+    190             # &quot;Naked&quot; decorator call (just @foo, no args)
+    191             func = arg
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\IPython\core\magics\execution.py in time(self=&lt;IPython.core.magics.execution.ExecutionMagics object&gt;, line=&#39;&#39;, cell=&#39;grid_search.fit(X_train, y_train)&#39;, local_ns=None)
+   1225         # time execution
+   1226         wall_st = wtime()
+   1227         if mode==&#39;eval&#39;:
+   1228             st = clock2()
+   1229             try:
+-&gt; 1230                 out = eval(code, glob, local_ns)
+        out = undefined
+        code = &lt;code object &lt;module&gt; at 0x000001B72D7D24B0, file &quot;&lt;timed eval&gt;&quot;, line 1&gt;
+        glob = {&#39;CountVectorizer&#39;: &lt;class &#39;sklearn.feature_extraction.text.CountVectorizer&#39;&gt;, &#39;DTC&#39;: &lt;class &#39;sklearn.tree.tree.DecisionTreeClassifier&#39;&gt;, &#39;GridSearchCV&#39;: &lt;class &#39;sklearn.model_selection._search.GridSearchCV&#39;&gt;, &#39;In&#39;: [&#39;&#39;, &#39;from pathlib import Path\nimport pandas as pd\nimp...the fastAI environment, all of these imports work&#39;, &#39;class TqdmUpTo(tqdm):\n    def update_to(self, b=...l = tsize\n        self.update(b * bsize - self.n)&#39;, &#39;def get_data(url, filename):\n    &quot;&quot;&quot;\n    Downloa...rlretrieve(url, filename, reporthook=t.update_to)&#39;, &quot;# Let&#39;s download some data:\ndata_url = &#39;http://f...clImdb.tgz&#39;\n# get_data(data_url, &#39;data/imdb.tgz&#39;)&quot;, &quot;data_path = Path(os.getcwd())/&#39;data&#39;/&#39;aclImdb&#39;\nassert data_path.exists()&quot;, &#39;for pathroute in os.walk(data_path):\n    next_pa...1]\n    for stop in next_path:\n        print(stop)&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, &#39;def read_data(dir_path):\n    &quot;&quot;&quot;read data into p...ce=True) # drop the column \&#39;index\&#39; \n    return df&#39;, &quot;train_path = data_path/&#39;train&#39;\ntest_path = data_path/&#39;test&#39;&quot;, r&quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;train ...d_data(train_path)\ntest = read_data(test_path)&#39;)&quot;, &#39;test[:5]&#39;, &quot;# test.to_csv(data_path/&#39;test.csv&#39;, index=False)&quot;, &quot;# train.to_csv(data_path/&#39;train.csv&#39;, index=False)&quot;, &quot;X_train, y_train = train[&#39;text&#39;], train[&#39;label&#39;]\nX_test, y_test = test[&#39;text&#39;], test[&#39;label&#39;]&quot;, &#39;from sklearn.pipeline import Pipeline\nfrom sklea...ion.text import CountVectorizer, TfidfTransformer&#39;, &#39;from sklearn.linear_model import LogisticRegression as LR&#39;, &quot;lr_clf = Pipeline([(&#39;vect&#39;, CountVectorizer()), (&#39;tfidf&#39;, TfidfTransformer()), (&#39;clf&#39;,LR())])&quot;, &quot;get_ipython().run_cell_magic(&#39;time&#39;, &#39;&#39;, &#39;lr_clf...re inplace, and the Pipeline is not re-assigned&#39;)&quot;, &#39;lr_predicted = lr_clf.predict(X_test)&#39;, ...], &#39;LR&#39;: &lt;class &#39;sklearn.linear_model.logistic.LogisticRegression&#39;&gt;, &#39;MNB&#39;: &lt;class &#39;sklearn.naive_bayes.MultinomialNB&#39;&gt;, &#39;Out&#39;: {11:                                                 ... one of my favorite movies ever! along ...      1, 18: Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 20: 0.88312, 22: 0.879, 23: 0.86596, 25: 0.81356, 26: 0.82956, 27: 0.82992, 28: 0.8572, 29: 0.8572, ...}, &#39;Path&#39;: &lt;class &#39;pathlib.Path&#39;&gt;, &#39;Pipeline&#39;: &lt;class &#39;sklearn.pipeline.Pipeline&#39;&gt;, &#39;RFC&#39;: &lt;class &#39;sklearn.ensemble.forest.RandomForestClassifier&#39;&gt;, ...}
+        local_ns = None
+   1231             except:
+   1232                 self.shell.showtraceback()
+   1233                 return
+   1234             end = clock2()
+
+...........................................................................
+C:\Users\nirantk\Desktop\nlp-python-deep-learning\&lt;timed eval&gt; in &lt;module&gt;()
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_search.py in fit(self=GridSearchCV(cv=3, error_score=&#39;raise&#39;,
+       e...ore=&#39;warn&#39;, scoring=&#39;accuracy&#39;,
+       verbose=0), X=0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, groups=None, **fit_params={})
+    635                                   return_train_score=self.return_train_score,
+    636                                   return_n_test_samples=True,
+    637                                   return_times=True, return_parameters=False,
+    638                                   error_score=self.error_score)
+    639           for parameters, (train, test) in product(candidate_params,
+--&gt; 640                                                    cv.split(X, y, groups)))
+        cv.split = &lt;bound method StratifiedKFold.split of Stratifie...ld(n_splits=3, random_state=None, shuffle=False)&gt;
+        X = 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64
+        groups = None
+    641 
+    642         # if one choose to see train score, &quot;out&quot; will contain train score info
+    643         if self.return_train_score:
+    644             (train_score_dicts, test_score_dicts, test_sample_counts, fit_time,
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in __call__(self=Parallel(n_jobs=-1), iterable=&lt;generator object BaseSearchCV.fit.&lt;locals&gt;.&lt;genexpr&gt;&gt;)
+    784             if pre_dispatch == &quot;all&quot; or n_jobs == 1:
+    785                 # The iterable was consumed all at once by the above for loop.
+    786                 # No need to wait for async callbacks to trigger to
+    787                 # consumption.
+    788                 self._iterating = False
+--&gt; 789             self.retrieve()
+        self.retrieve = &lt;bound method Parallel.retrieve of Parallel(n_jobs=-1)&gt;
+    790             # Make sure that we get a last message telling us we are done
+    791             elapsed_time = time.time() - self._start_time
+    792             self._print(&#39;Done %3i out of %3i | elapsed: %s finished&#39;,
+    793                         (len(self._output), len(self._output),
+
+---------------------------------------------------------------------------
+Sub-process traceback:
+---------------------------------------------------------------------------
+MemoryError                                        Wed Sep 26 05:47:48 2018
+PID: 4472                   Python 3.6.6: D:\Miniconda3\envs\nlp\python.exe
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in __call__(self=&lt;sklearn.externals.joblib.parallel.BatchedCalls object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        self.items = [(&lt;function _fit_and_score&gt;, (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85}), {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;})]
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\parallel.py in &lt;listcomp&gt;(.0=&lt;list_iterator object&gt;)
+    126     def __init__(self, iterator_slice):
+    127         self.items = list(iterator_slice)
+    128         self._size = len(self.items)
+    129 
+    130     def __call__(self):
+--&gt; 131         return [func(*args, **kwargs) for func, args, kwargs in self.items]
+        func = &lt;function _fit_and_score&gt;
+        args = (Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), 0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, {&#39;score&#39;: make_scorer(accuracy_score)}, array([    0,     1,     2, ..., 16685, 16686, 16687]), array([16641, 16643, 16644, ..., 24997, 24998, 24999]), 0, {&#39;clf__C&#39;: 85})
+        kwargs = {&#39;error_score&#39;: &#39;raise&#39;, &#39;fit_params&#39;: {}, &#39;return_n_test_samples&#39;: True, &#39;return_parameters&#39;: False, &#39;return_times&#39;: True, &#39;return_train_score&#39;: &#39;warn&#39;}
+    132 
+    133     def __len__(self):
+    134         return self._size
+    135 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\model_selection\_validation.py in _fit_and_score(estimator=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...lbert...
+Name: text, Length: 25000, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...999    1
+Name: label, Length: 25000, dtype: int64, scorer={&#39;score&#39;: make_scorer(accuracy_score)}, train=array([    0,     1,     2, ..., 16685, 16686, 16687]), test=array([16641, 16643, 16644, ..., 24997, 24998, 24999]), verbose=0, parameters={&#39;clf__C&#39;: 85}, fit_params={}, return_train_score=&#39;warn&#39;, return_parameters=False, return_n_test_samples=True, return_times=True, error_score=&#39;raise&#39;)
+    453 
+    454     try:
+    455         if y_train is None:
+    456             estimator.fit(X_train, **fit_params)
+    457         else:
+--&gt; 458             estimator.fit(X_train, y_train, **fit_params)
+        estimator.fit = &lt;bound method Pipeline.fit of Pipeline(memory=No....0001,
+          verbose=0, warm_start=False))])&gt;
+        X_train = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y_train = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    459 
+    460     except Exception as e:
+    461         # Note fit time as time until error
+    462         fit_time = time.time() - start_time
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    243         Returns
+    244         -------
+    245         self : Pipeline
+    246             This estimator
+    247         &quot;&quot;&quot;
+--&gt; 248         Xt, fit_params = self._fit(X, y, **fit_params)
+        Xt = undefined
+        fit_params = {}
+        self._fit = &lt;bound method Pipeline._fit of Pipeline(memory=N....0001,
+          verbose=0, warm_start=False))])&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+    249         if self._final_estimator is not None:
+    250             self._final_estimator.fit(Xt, y, **fit_params)
+    251         return self
+    252 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit(self=Pipeline(memory=None,
+     steps=[(&#39;vect&#39;, Count...0.0001,
+          verbose=0, warm_start=False))]), X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    208                 else:
+    209                     cloned_transformer = clone(transformer)
+    210                 # Fit or load from cache the current transfomer
+    211                 Xt, fitted_transformer = fit_transform_one_cached(
+    212                     cloned_transformer, None, Xt, y,
+--&gt; 213                     **fit_params_steps[name])
+        fit_params_steps = {&#39;clf&#39;: {}, &#39;tfidf&#39;: {}, &#39;vect&#39;: {}}
+        name = &#39;vect&#39;
+    214                 # Replace the transformer of the step with the fitted
+    215                 # transformer. This is necessary when loading the transformer
+    216                 # from the cache.
+    217                 self.steps[step_idx] = (name, fitted_transformer)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\externals\joblib\memory.py in __call__(self=NotMemorizedFunc(func=&lt;function _fit_transform_one at 0x000001D3E9EC6158&gt;), *args=(CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64), **kwargs={})
+    357     # Should be a light as possible (for speed)
+    358     def __init__(self, func):
+    359         self.func = func
+    360 
+    361     def __call__(self, *args, **kwargs):
+--&gt; 362         return self.func(*args, **kwargs)
+        self.func = &lt;function _fit_transform_one&gt;
+        args = (CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), None, 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+        kwargs = {}
+    363 
+    364     def call_and_shelve(self, *args, **kwargs):
+    365         return NotMemorizedResult(self.func(*args, **kwargs))
+    366 
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\pipeline.py in _fit_transform_one(transformer=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), weight=None, X=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64, **fit_params={})
+    576 
+    577 
+    578 def _fit_transform_one(transformer, weight, X, y,
+    579                        **fit_params):
+    580     if hasattr(transformer, &#39;fit_transform&#39;):
+--&gt; 581         res = transformer.fit_transform(X, y, **fit_params)
+        res = undefined
+        transformer.fit_transform = &lt;bound method CountVectorizer.fit_transform of C...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        X = 0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object
+        y = 0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64
+        fit_params = {}
+    582     else:
+    583         res = transformer.fit(X, y, **fit_params).transform(X)
+    584     # if we have a weight for this transformer, multiply output
+    585     if weight is None:
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in fit_transform(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), raw_documents=0        Antitrust falls right into that categor...&#39;t ac...
+Name: text, Length: 16668, dtype: object, y=0        0
+1        0
+2        1
+3        1
+4   ...687    1
+Name: label, Length: 16668, dtype: int64)
+    870 
+    871         if self.binary:
+    872             X.data.fill(1)
+    873 
+    874         if not self.fixed_vocabulary_:
+--&gt; 875             X = self._sort_features(X, vocabulary)
+        X = &lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;
+        self._sort_features = &lt;bound method CountVectorizer._sort_features of ...w+\\b&#39;,
+        tokenizer=None, vocabulary=None)&gt;
+        vocabulary = &lt;class &#39;dict&#39;&gt; instance
+    876 
+    877             n_doc = X.shape[0]
+    878             max_doc_count = (max_df
+    879                              if isinstance(max_df, numbers.Integral)
+
+...........................................................................
+D:\Miniconda3\envs\nlp\lib\site-packages\sklearn\feature_extraction\text.py in _sort_features(self=CountVectorizer(analyzer=&#39;word&#39;, binary=False, d...\w+\\b&#39;,
+        tokenizer=None, vocabulary=None), X=&lt;16668x3696114 sparse matrix of type &#39;&lt;class &#39;nu... stored elements in Compressed Sparse Row format&gt;, vocabulary=&lt;class &#39;dict&#39;&gt; instance)
+    726         map_index = np.empty(len(sorted_features), dtype=np.int32)
+    727         for new_val, (term, old_val) in enumerate(sorted_features):
+    728             vocabulary[term] = new_val
+    729             map_index[old_val] = new_val
+    730 
+--&gt; 731         X.indices = map_index.take(X.indices, mode=&#39;clip&#39;)
+        X.indices = array([      0,       1,       2, ..., 3696111, 3696112, 3696113],
+      dtype=int32)
+        map_index.take = &lt;built-in method take of numpy.ndarray object&gt;
+    732         return X
+    733 
+    734     def _limit_features(self, X, vocabulary, high=None, low=None,
+    735                         limit=None):
+
+MemoryError: 
+___________________________________________________________________________
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">steps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-45-ec1bd0e775ab&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">steps</span>
+
+<span class="ne">AttributeError</span>: &#39;GridSearchCV&#39; object has no attribute &#39;best_estimator_&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Calculated cross-validation accuracy: </span><span class="si">{</span><span class="n">grid_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">}</span><span class="s1"> while random_search was </span><span class="si">{</span><span class="n">random_search</span><span class="o">.</span><span class="n">best_score_</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">best_grid_clf</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">best_grid_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imdb_acc</span><span class="p">(</span><span class="n">best_grid_clf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="ensemble-models">
+<h1>Ensemble Models<a class="headerlink" href="#ensemble-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="voting-ensemble">
+<h2>Voting Ensemble<a class="headerlink" href="#voting-ensemble" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-majority-aka-hard-voting">
+<h3>Simple Majority (aka Hard Voting)<a class="headerlink" href="#simple-majority-aka-hard-voting" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">VotingClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">voting_clf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;xtc&#39;</span><span class="p">,</span> <span class="n">xtc_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;rfc&#39;</span><span class="p">,</span> <span class="n">rfc_clf</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;hard&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">voting_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hard_voting_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">voting_clf</span><span class="p">)</span>
+<span class="n">hard_voting_acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="soft-voting">
+<h4>Soft Voting<a class="headerlink" href="#soft-voting" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">voting_clf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">lr_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;mnb&#39;</span><span class="p">,</span> <span class="n">mnb_clf</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">voting_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soft_voting_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">voting_clf</span><span class="p">)</span>
+<span class="n">soft_voting_acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_acc</span> <span class="o">=</span> <span class="n">soft_voting_acc</span> <span class="o">-</span> <span class="n">lr_acc</span>
+<span class="k">if</span> <span class="n">gain_acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;We see that the soft voting gives us an absolute accuracy gain of </span><span class="si">{</span><span class="n">gain_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% &#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="weighted-classifiers">
+<h3>Weighted Classifiers<a class="headerlink" href="#weighted-classifiers" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">weighted_voting_clf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">lr_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;lr2&#39;</span><span class="p">,</span> <span class="n">lr_clf</span><span class="p">),(</span><span class="s1">&#39;rf&#39;</span><span class="p">,</span> <span class="n">xtc_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;mnb2&#39;</span><span class="p">,</span> <span class="n">mnb_clf</span><span class="p">),(</span><span class="s1">&#39;mnb&#39;</span><span class="p">,</span> <span class="n">mnb_clf</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">weighted_voting_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Repeat the experiment with ‘hard’ voting instead of ‘soft’ voting. This will tell you how does the voting strategy influence the accuracy of our ensembled classifier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weighted_voting_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">weighted_voting_clf</span><span class="p">)</span>
+<span class="n">weighted_voting_acc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gain_acc</span> <span class="o">=</span> <span class="n">weighted_voting_acc</span> <span class="o">-</span> <span class="n">lr_acc</span>
+<span class="k">if</span> <span class="n">gain_acc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;We see that the weighted voting gives us an absolute accuracy gain of </span><span class="si">{</span><span class="n">gain_acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">mnb_predictions</span><span class="p">,</span> <span class="n">lr_predictions</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># this is too high a correlation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">corr_voting_clf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="n">lr_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;mnb&#39;</span><span class="p">,</span> <span class="n">mnb_clf</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">corr_voting_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">corr_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">corr_voting_clf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">corr_acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">dtc_predictions</span><span class="p">,</span><span class="n">xtc_predictions</span> <span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># this is looks like a low correlation</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">low_corr_voting_clf</span> <span class="o">=</span> <span class="n">VotingClassifier</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;dtc&#39;</span><span class="p">,</span> <span class="n">dtc_clf</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;xtc&#39;</span><span class="p">,</span> <span class="n">xtc_clf</span><span class="p">)],</span> <span class="n">voting</span><span class="o">=</span><span class="s1">&#39;soft&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">low_corr_voting_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">low_corr_acc</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">imdb_acc</span><span class="p">(</span><span class="n">low_corr_voting_clf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">low_corr_acc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "conda-env-nlp-py"
+        },
+        kernelOptions: {
+            kernelName: "conda-env-nlp-py",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'conda-env-nlp-py'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Part-04%20Text%20Representations.html" title="previous page">KeyedVectors API</a>
+    <a class='right-next' id="next-link" href="Part-06%20Deep%20Learning%20for%20NLP.html" title="next page">Deep Learning for NLP</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
