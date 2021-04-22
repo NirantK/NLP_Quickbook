@@ -1,5 +1,5 @@
 # in _config.yml
-title: "My book title"
+title: "Quick NLP Projects"
 # logo: images/logo.png
 execute:
   execute_notebooks: "off"
