@@ -16,10 +16,10 @@ Each section builds on ideas and code from previous notebooks, but you can fill 
 - Perfect for Getting Started! We learn better with code-first approaches
 
 ## Chapter 02
-- [Text Cleaning](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-02-A.ipynb) notebook, code-first approaches with supporting explanation. Covers some simple ideas like:
+- [Text Cleaning](https://github.com/NirantK/nlp-python-deep-learning/blob/master/02-A.ipynb) notebook, code-first approaches with supporting explanation. Covers some simple ideas like:
   - Stop words removal
   - Lemmatization
-- [Spell Correction](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-02-B.ipynb) covers **almost everything** that you will ever need to get started with spell correction, similar words problems and so on
+- [Spell Correction](https://github.com/NirantK/nlp-python-deep-learning/blob/master/02-B.ipynb) covers **almost everything** that you will ever need to get started with spell correction, similar words problems and so on
 
 ## Chapter 03
 [Leveraging Linguistics](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-03%20NLP%20with%20spaCy%20and%20Textacy.ipynb) is an important toolkit in any practitioners toolkit. Using **spaCy** and textacy we look at two interesting challenges and how to tackle them: 
