@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Methods for Text Classification &#8212; Quick NLP Projects</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -54,16 +51,16 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Deep Learning for NLP" href="Part-06%20Deep%20Learning%20for%20NLP.html" />
-    <link rel="prev" title="KeyedVectors API" href="Part-04%20Text%20Representations.html" />
-
+    <link rel="next" title="Deep Learning for NLP" href="06_DL_for_NLP.html" />
+    <link rel="prev" title="KeyedVectors API" href="04_Text_Representations.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -72,88 +69,43 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Quick NLP Projects</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Quick NLP Projects</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-01.html">
+  <a class="reference internal" href="01-TextClassification_with_sklearn_spaCy.html">
    Text Classification
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-02-A.html">
+  <a class="reference internal" href="02-A.html">
    Text Cleaning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-02-B.html">
+  <a class="reference internal" href="02-B.html">
    Spell Correction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+  <a class="reference internal" href="03_spaCy.html">
    Leveraging Linguistics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
-   Question Generation using Dependency Parsing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
-   Level Up: Question and Answer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
-   Facts Extraction using Semi Structured Sentence Parsing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+  <a class="reference internal" href="04_Text_Representations.html">
    KeyedVectors API
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
-   How to handle OOV words?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
-   Train FastText Embedddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
-   Train word2vec Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
-   fastText or word2vec?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
-   Document Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
-   Model Assessment
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -162,57 +114,17 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="#multinomial-naive-bayes">
-   Multinomial Naive Bayes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#automatically-fine-tuning">
-   Automatically Fine Tuning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="#ensemble-models">
-   Ensemble Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+  <a class="reference internal" href="06_DL_for_NLP.html">
    Deep Learning for NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
-   Understanding Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
-   Kaggle: Text Categorization Challenge
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
-   Getting the Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
-   Why PyTorch?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
-   PyTorch and torchtext
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+  <a class="reference internal" href="07_Build_Chatbot_in_30minutes.html">
    Building your own Chatbot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+  <a class="reference internal" href="09_Basic_IE.html">
    [Basic] Information Extraction
   </a>
  </li>
@@ -221,22 +133,21 @@
    Natural Language Processing Notebooks
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
-   Available as a Book: NLP in Python - Quickstart Guide
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
    Deploying a ML model with Flask API
   </a>
-  <ul class="simple collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -275,7 +186,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Part-05 Modern Text Classification.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/05_Text_Classification.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -286,12 +197,12 @@
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -300,7 +211,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-05 Modern Text Classification.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/05_Text_Classification.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -317,17 +228,16 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Modern Methods for Text Classification
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#logistic-regression">
      Logistic Regression
@@ -351,7 +261,7 @@
   <a class="reference internal nav-link" href="#multinomial-naive-bayes">
    Multinomial Naive Bayes
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#add-tf-idf">
      Add TF-IDF
@@ -405,7 +315,7 @@
   <a class="reference internal nav-link" href="#automatically-fine-tuning">
    Automatically Fine Tuning
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#randomizedsearch">
      RandomizedSearch
@@ -417,7 +327,7 @@
   <a class="reference internal nav-link" href="#ensemble-models">
    Ensemble Models
   </a>
-  <ul class="nav section-nav flex-column">
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#voting-ensemble">
      Voting Ensemble
@@ -446,8 +356,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -2618,8 +2527,8 @@ ___________________________________________________________________________
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Part-04%20Text%20Representations.html" title="previous page">KeyedVectors API</a>
-    <a class='right-next' id="next-link" href="Part-06%20Deep%20Learning%20for%20NLP.html" title="next page">Deep Learning for NLP</a>
+    <a class='left-prev' id="prev-link" href="04_Text_Representations.html" title="previous page">KeyedVectors API</a>
+    <a class='right-next' id="next-link" href="06_DL_for_NLP.html" title="next page">Deep Learning for NLP</a>
 
         </div>
         
@@ -2640,11 +2549,9 @@ ___________________________________________________________________________
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>

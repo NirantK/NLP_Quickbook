@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Classification &#8212; Quick NLP Projects</title>
     
-  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -54,15 +51,15 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Text Cleaning" href="Part-02-A.html" />
-
+    <link rel="next" title="Text Cleaning" href="02-A.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -71,147 +68,62 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">Quick NLP Projects</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Quick NLP Projects</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1 current active">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 current">
   <a class="reference internal" href="#">
    Text Classification
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-02-A.html">
+  <a class="reference internal" href="02-A.html">
    Text Cleaning
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-02-B.html">
+  <a class="reference internal" href="02-B.html">
    Spell Correction
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html">
+  <a class="reference internal" href="03_spaCy.html">
    Leveraging Linguistics
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#question-generation-using-dependency-parsing">
-   Question Generation using Dependency Parsing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#level-up-question-and-answer">
-   Level Up: Question and Answer
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-03%20NLP%20with%20spaCy%20and%20Textacy.html#facts-extraction-using-semi-structured-sentence-parsing">
-   Facts Extraction using Semi Structured Sentence Parsing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html">
+  <a class="reference internal" href="04_Text_Representations.html">
    KeyedVectors API
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#how-to-handle-oov-words">
-   How to handle OOV words?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-fasttext-embedddings">
-   Train FastText Embedddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#train-word2vec-embeddings">
-   Train word2vec Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#fasttext-or-word2vec">
-   fastText or word2vec?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#document-embeddings">
-   Document Embeddings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-04%20Text%20Representations.html#model-assessment">
-   Model Assessment
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html">
+  <a class="reference internal" href="05_Text_Classification.html">
    Modern Methods for Text Classification
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#multinomial-naive-bayes">
-   Multinomial Naive Bayes
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#automatically-fine-tuning">
-   Automatically Fine Tuning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-05%20Modern%20Text%20Classification.html#ensemble-models">
-   Ensemble Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html">
+  <a class="reference internal" href="06_DL_for_NLP.html">
    Deep Learning for NLP
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#understanding-deep-learning">
-   Understanding Deep Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#kaggle-text-categorization-challenge">
-   Kaggle: Text Categorization Challenge
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#getting-the-data">
-   Getting the Data
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#why-pytorch">
-   Why PyTorch?
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-06%20Deep%20Learning%20for%20NLP.html#pytorch-and-torchtext">
-   PyTorch and torchtext
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.html">
+  <a class="reference internal" href="07_Build_Chatbot_in_30minutes.html">
    Building your own Chatbot
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="Part-10%20Bonus%20Content.html">
+  <a class="reference internal" href="09_Basic_IE.html">
    [Basic] Information Extraction
   </a>
  </li>
@@ -220,22 +132,21 @@
    Natural Language Processing Notebooks
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="README.html#available-as-a-book-nlp-in-python-quickstart-guide">
-   Available as a Book: NLP in Python - Quickstart Guide
-  </a>
- </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="Part-08%20Web%20Deployments/README.html">
    Deploying a ML model with Flask API
   </a>
-  <ul class="simple collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -274,7 +185,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/Part-01.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/01-TextClassification_with_sklearn_spaCy.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -285,12 +196,12 @@
 
             <!-- Source interaction buttons -->
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -299,7 +210,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Part-01.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/01-TextClassification_with_sklearn_spaCy.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -316,12 +227,11 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i>
-            Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-getting-started-tutorial-for-self-learners">
    A Getting Started Tutorial for Self Learners
@@ -356,8 +266,7 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
         </div>
     </div>
 </div>
@@ -372,12 +281,10 @@
 <h2>A Getting Started Tutorial for Self Learners<a class="headerlink" href="#a-getting-started-tutorial-for-self-learners" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">spacy</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>  <span class="c1"># import packages which help us download dataset and load intp python</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># numpy package is for fast numerical computation in Python</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>  <span class="c1"># import \\n    packages which help us download dataset and load intp python</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># numpy package is for fast numerical computation in Python</span>
 </pre></div>
 </div>
 </div>
@@ -386,33 +293,24 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the filenames and data from the 20 newsgroups dataset</span>
 <span class="c1"># This will download the datasets if you don&#39;t have them already</span>
-<span class="n">twenty_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
-<span class="n">twenty_test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">twenty_train</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">twenty_test</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download_if_missing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is this dataset about? </span>
-<span class="nb">print</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is this dataset about?</span>
+<span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>the 20 newsgroups by date dataset
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;From: lerxst@wam.umd.edu (where&#39;s my thing)\nSubject: WHAT car is this!?\nNntp-Posting-Host: rac3.wam.umd.edu\nOrganization: University of Maryland, College Park\nLines: 15\n\n I was wondering if anyone out there could enlighten me on this car I saw\nthe other day. It was a 2-door sports car, looked to be from the late 60s/\nearly 70s. It was called a Bricklin. The doors were really small. In addition,\nthe front bumper was separate from the rest of the body. This is \nall I know. If anyone can tellme a model name, engine specs, years\nof production, where this car is made, history, or whatever info you\nhave on this funky looking car, please e-mail.\n\nThanks,\n- IL\n   ---- brought to you by your neighborhood Lerxst ----\n\n\n\n\n&quot;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&quot;From: lerxst@wam.umd.edu (where&#39;s my thing)\nSubject: WHAT car is this!?\nNntp-Posting-Host: rac3.wam.umd.edu\nOrganization: University of Maryland, College Park\nLines: 15\n\n I was wondering if anyone out there could enlighten me on this car I saw\nthe other day. It was a 2-door sports car, looked to be from the late 60s/\nearly 70s. It was called a Bricklin. The doors were really small. In addition,\nthe front bumper was separate from the rest of the body. This is \nall I know. If anyone can tellme a model name, engine specs, years\nof production, where this car is made, history, or whatever info you\nhave on this funky looking car, please e-mail.\n\nThanks,\n- IL\n   ---- brought to you by your neighborhood Lerxst ----\n\n\n\n\n&quot;,
+ &quot;From: guykuo@carson.u.washington.edu (Guy Kuo)\nSubject: SI Clock Poll - Final Call\nSummary: Final call for SI clock reports\nKeywords: SI,acceleration,clock,upgrade\nArticle-I.D.: shelley.1qvfo9INNc3s\nOrganization: University of Washington\nLines: 11\nNNTP-Posting-Host: carson.u.washington.edu\n\nA fair number of brave souls who upgraded their SI clock oscillator have\nshared their experiences for this poll. Please send a brief message detailing\nyour experiences with the procedure. Top speed attained, CPU rated speed,\nadd on cards and adapters, heat sinks, hour of usage per day, floppy disk\nfunctionality with 800 and 1.4 m floppies are especially requested.\n\nI will be summarizing in the next two days, so please add to the network\nknowledge base if you have done the clock upgrade and haven&#39;t answered this\npoll. Thanks.\n\nGuy Kuo &lt;guykuo@u.washington.edu&gt;\n&quot;]
 </pre></div>
 </div>
 </div>
@@ -456,9 +354,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extracting features from text files</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+
 <span class="n">count_vect</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 <span class="n">X_train_counts</span> <span class="o">=</span> <span class="n">count_vect</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of Term Frequency Matrix: </span><span class="si">{</span><span class="n">X_train_counts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of Term Frequency Matrix: </span><span class="si">{</span><span class="n">X_train_counts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -471,9 +370,10 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span>
+
 <span class="n">tfidf_transformer</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">()</span>
 <span class="n">X_train_tfidf</span> <span class="o">=</span> <span class="n">tfidf_transformer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_counts</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Shape of TFIDF Matrix: </span><span class="si">{</span><span class="n">X_train_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of TFIDF Matrix: </span><span class="si">{</span><span class="n">X_train_tfidf</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -488,6 +388,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Machine Learning</span>
 <span class="c1"># Training Naive Bayes (NB) classifier on training data.</span>
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+
 <span class="n">clf</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_tfidf</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -496,7 +397,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Building a pipeline: We can write less code and do all of the above, by building a pipeline as follows:</span>
-<span class="n">text_nb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">MultinomialNB</span><span class="p">())])</span>
+<span class="n">text_nb_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;vect&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s2">&quot;tfidf&quot;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span>
+        <span class="p">(</span><span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">MultinomialNB</span><span class="p">()),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 <span class="n">text_nb_clf</span> <span class="o">=</span> <span class="n">text_nb_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -505,19 +412,26 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted</span> <span class="o">=</span> <span class="n">text_nb_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">naivebayes_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span>
+<span class="n">naivebayes_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test Accuracy is </span><span class="si">{</span><span class="n">naivebayes_clf_accuracy</span><span class="si">}</span><span class="s1"> %&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy is </span><span class="si">{</span><span class="n">naivebayes_clf_accuracy</span><span class="si">}</span><span class="s2"> %&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 77.38980350504514 %
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using Logistic Regression (LR) instead of Multinomial Naive Bayes</span>
 </pre></div>
 </div>
 </div>
@@ -532,13 +446,15 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;vect&#39;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;tfidf&#39;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span><span class="n">LR</span><span class="p">())])</span>
+<span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;vect&quot;</span><span class="p">,</span> <span class="n">CountVectorizer</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;tfidf&quot;</span><span class="p">,</span> <span class="n">TfidfTransformer</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;clf&quot;</span><span class="p">,</span> <span class="n">LR</span><span class="p">())]</span>
+<span class="p">)</span>
 <span class="n">text_lr_clf</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">twenty_train</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">twenty_train</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 9.78 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 1min 42s
 </pre></div>
 </div>
 </div>
@@ -546,13 +462,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr_predicted</span> <span class="o">=</span> <span class="n">text_lr_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-<span class="n">lr_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lr_predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Test Accuracy is </span><span class="si">{</span><span class="n">lr_clf_accuracy</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">lr_clf_accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">lr_predicted</span> <span class="o">==</span> <span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test Accuracy is </span><span class="si">{</span><span class="n">lr_clf_accuracy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.79341476367499
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.74030801911843
 </pre></div>
 </div>
 </div>
@@ -560,6 +476,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
 <span class="n">cf</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">twenty_test</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">lr_predicted</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -568,6 +485,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">cf</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -575,35 +493,35 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
   [
-    236,
+    237,
     2,
     0,
     0,
     1,
     1,
-    3,
+    4,
     0,
     3,
     3,
-    1,
+    0,
     1,
     2,
-    9,
+    8,
     2,
-    35,
-    3,
+    33,
+    2,
     4,
     1,
-    12
+    15
   ],
   [
-    2,
-    304,
-    13,
+    1,
+    307,
+    14,
     8,
     8,
-    19,
-    7,
+    17,
+    6,
     1,
     0,
     1,
@@ -611,53 +529,53 @@
     4,
     10,
     1,
-    5,
+    4,
     2,
     1,
     1,
-    1,
+    2,
     1
   ],
   [
-    1,
+    2,
     21,
-    294,
-    31,
+    289,
+    34,
     12,
-    10,
+    11,
     2,
     2,
-    1,
-    5,
-    0,
-    1,
-    1,
     2,
     4,
+    0,
+    1,
+    1,
+    1,
+    3,
     2,
     0,
     0,
-    4,
+    6,
     1
   ],
   [
     0,
-    12,
-    24,
-    283,
-    22,
-    2,
     13,
+    23,
+    284,
+    21,
+    2,
+    14,
     3,
-    1,
+    0,
     1,
     1,
     1,
     24,
     0,
-    4,
+    3,
     0,
-    0,
+    1,
     0,
     0,
     1
@@ -666,16 +584,16 @@
     0,
     5,
     6,
-    21,
+    22,
     319,
     1,
-    11,
-    1,
-    1,
+    10,
+    0,
+    0,
     5,
     1,
     0,
-    10,
+    12,
     0,
     1,
     0,
@@ -686,15 +604,15 @@
   ],
   [
     0,
-    41,
+    43,
     38,
     5,
     4,
     292,
     3,
     0,
-    1,
-    1,
+    0,
+    0,
     0,
     1,
     3,
@@ -735,13 +653,13 @@
     4,
     0,
     2,
-    12,
+    14,
     352,
-    4,
+    3,
     2,
     0,
     0,
-    13,
+    12,
     1,
     1,
     0,
@@ -759,7 +677,7 @@
     0,
     6,
     10,
-    379,
+    378,
     2,
     0,
     0,
@@ -769,7 +687,7 @@
     0,
     0,
     0,
-    0,
+    1,
     0
   ],
   [
@@ -778,11 +696,11 @@
     0,
     0,
     2,
-    0,
+    1,
     6,
     1,
     0,
-    368,
+    367,
     15,
     0,
     2,
@@ -800,25 +718,25 @@
     0,
     1,
     3,
-    1,
+    2,
     2,
     0,
     0,
     9,
-    382,
-    0,
-    0,
-    0,
+    379,
     0,
     0,
     0,
     0,
     1,
+    0,
+    0,
+    2,
     0
   ],
   [
     1,
-    7,
+    8,
     3,
     0,
     3,
@@ -828,32 +746,32 @@
     1,
     5,
     0,
-    352,
-    5,
+    349,
+    6,
     0,
     1,
     0,
     4,
     0,
-    3,
+    4,
     0
   ],
   [
-    1,
+    0,
     9,
     5,
     20,
     9,
-    4,
+    3,
     8,
     5,
     2,
-    3,
+    2,
     0,
-    10,
-    307,
+    9,
+    314,
     4,
-    5,
+    2,
     1,
     0,
     0,
@@ -866,19 +784,19 @@
     1,
     2,
     2,
-    2,
+    3,
+    15,
+    3,
+    4,
+    4,
+    0,
+    0,
     13,
+    327,
+    0,
+    2,
     1,
-    5,
-    4,
-    0,
-    0,
-    11,
-    331,
-    0,
-    3,
-    1,
-    3,
+    2,
     3,
     0
   ],
@@ -888,7 +806,7 @@
     0,
     0,
     2,
-    1,
+    2,
     2,
     1,
     0,
@@ -897,15 +815,15 @@
     0,
     2,
     6,
-    363,
+    361,
     1,
     2,
     0,
-    2,
+    3,
     0
   ],
   [
-    4,
+    2,
     4,
     2,
     1,
@@ -920,7 +838,7 @@
     2,
     1,
     3,
-    371,
+    373,
     0,
     0,
     0,
@@ -932,68 +850,68 @@
     0,
     1,
     1,
-    0,
+    1,
+    6,
+    4,
+    2,
+    4,
+    1,
     5,
+    1,
+    4,
+    2,
+    0,
+    319,
+    1,
+    9,
+    3
+  ],
+  [
+    10,
+    2,
+    0,
+    0,
+    0,
+    9,
+    1,
+    1,
+    1,
     3,
-    2,
-    4,
     1,
-    5,
+    0,
+    0,
     1,
+    0,
     4,
+    3,
+    328,
+    12,
+    0
+  ],
+  [
+    1,
     2,
     0,
-    326,
+    0,
     1,
-    7,
+    1,
+    4,
+    1,
+    1,
+    0,
+    0,
+    2,
+    2,
+    4,
+    8,
+    3,
+    95,
+    2,
+    182,
     1
   ],
   [
-    7,
-    2,
-    0,
-    0,
-    0,
-    9,
-    1,
-    1,
-    1,
-    3,
-    1,
-    1,
-    0,
-    0,
-    0,
-    3,
-    3,
-    333,
-    11,
-    0
-  ],
-  [
-    1,
-    2,
-    0,
-    0,
-    1,
-    1,
-    4,
-    1,
-    2,
-    0,
-    0,
-    2,
-    2,
-    4,
-    8,
-    4,
-    97,
-    2,
-    179,
-    0
-  ],
-  [
-    38,
+    39,
     4,
     0,
     0,
@@ -1002,17 +920,17 @@
     4,
     0,
     0,
-    2,
+    1,
     2,
     0,
     0,
     8,
     3,
-    48,
-    17,
+    41,
+    13,
     2,
-    9,
-    114
+    10,
+    124
   ]
 ]
 </pre></div>
@@ -1023,6 +941,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
@@ -1030,13 +949,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="n">linewidths</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="mi">90</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">200</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cf</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/Part-01_20_0.png" src="_images/Part-01_20_0.png" />
+<img alt="_images/01-TextClassification_with_sklearn_spaCy_20_0.png" src="_images/01-TextClassification_with_sklearn_spaCy_20_0.png" />
 </div>
 </div>
 </div>
@@ -1046,15 +965,15 @@
 <h3>Removing Stop Words<a class="headerlink" href="#removing-stop-words" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>If there is an error above, try:</p>
 <ul class="simple">
-<li><p>Windows:<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span></code> as <strong>Administrator</strong></p></li>
-<li><p>Linux:<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en</span> </code></p></li>
+<li><p>Windows:<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en_core_web_sm</span></code> as <strong>Administrator</strong></p></li>
+<li><p>Linux:<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">-m</span> <span class="pre">spacy</span> <span class="pre">download</span> <span class="pre">en_core_web_sm</span></code></p></li>
 </ul>
 </div>
 </div>
@@ -1068,7 +987,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;&#39;d&quot;,
+ &quot;&#39;ll&quot;,
+ &quot;&#39;m&quot;,
+ &quot;&#39;re&quot;,
+ &quot;&#39;s&quot;,
+ &quot;&#39;ve&quot;,
+ &#39;a&#39;,
  &#39;about&#39;,
  &#39;above&#39;,
  &#39;across&#39;,
@@ -1219,6 +1144,7 @@
  &#39;must&#39;,
  &#39;my&#39;,
  &#39;myself&#39;,
+ &quot;n&#39;t&quot;,
  &#39;name&#39;,
  &#39;namely&#39;,
  &#39;neither&#39;,
@@ -1235,6 +1161,8 @@
  &#39;nothing&#39;,
  &#39;now&#39;,
  &#39;nowhere&#39;,
+ &#39;n‘t&#39;,
+ &#39;n’t&#39;,
  &#39;of&#39;,
  &#39;off&#39;,
  &#39;often&#39;,
@@ -1372,7 +1300,19 @@
  &#39;your&#39;,
  &#39;yours&#39;,
  &#39;yourself&#39;,
- &#39;yourselves&#39;}
+ &#39;yourselves&#39;,
+ &#39;‘d&#39;,
+ &#39;‘ll&#39;,
+ &#39;‘m&#39;,
+ &#39;‘re&#39;,
+ &#39;‘s&#39;,
+ &#39;‘ve&#39;,
+ &#39;’d&#39;,
+ &#39;’ll&#39;,
+ &#39;’m&#39;,
+ &#39;’re&#39;,
+ &#39;’s&#39;,
+ &#39;’ve&#39;}
 </pre></div>
 </div>
 </div>
@@ -1384,7 +1324,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;There are 305 stopwords in spaCy&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;There are 326 stopwords in spaCy&#39;
 </pre></div>
 </div>
 </div>
@@ -1398,7 +1338,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;After adding your own stop words, spaCy will use 306 stopwords&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;After adding your own stop words, spaCy will use 327 stopwords&#39;
 </pre></div>
 </div>
 </div>
@@ -1451,7 +1391,7 @@ Python
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[I, learning, important, ideas, Natural, Language, Processing, ideas, Python]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[learning, important, ideas, Natural, Language, Processing, ideas, Python]
 </pre></div>
 </div>
 </div>
@@ -1465,15 +1405,14 @@ Python
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token:I	Lemmatized:-PRON-	Part-of-Speech-Tag:PRON
-Token:learning	Lemmatized:learn	Part-of-Speech-Tag:VERB
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Token:learning	Lemmatized:learn	Part-of-Speech-Tag:VERB
 Token:important	Lemmatized:important	Part-of-Speech-Tag:ADJ
 Token:ideas	Lemmatized:idea	Part-of-Speech-Tag:NOUN
-Token:Natural	Lemmatized:natural	Part-of-Speech-Tag:PROPN
-Token:Language	Lemmatized:language	Part-of-Speech-Tag:PROPN
-Token:Processing	Lemmatized:processing	Part-of-Speech-Tag:PROPN
+Token:Natural	Lemmatized:Natural	Part-of-Speech-Tag:PROPN
+Token:Language	Lemmatized:Language	Part-of-Speech-Tag:PROPN
+Token:Processing	Lemmatized:Processing	Part-of-Speech-Tag:PROPN
 Token:ideas	Lemmatized:idea	Part-of-Speech-Tag:NOUN
-Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
+Token:Python	Lemmatized:Python	Part-of-Speech-Tag:PROPN
 </pre></div>
 </div>
 </div>
@@ -1483,21 +1422,19 @@ Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
 <h2>Integrating back with our classifier pipeline<a class="headerlink" href="#integrating-back-with-our-classifier-pipeline" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">??</span>CountVectorizer
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spacy.lang.en</span> <span class="kn">import</span> <span class="n">English</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">English</span><span class="p">()</span><span class="o">.</span><span class="n">Defaults</span><span class="o">.</span><span class="n">create_tokenizer</span><span class="p">(</span><span class="n">nlp</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construction 1</span>
+<span class="kn">from</span> <span class="nn">spacy.tokenizer</span> <span class="kn">import</span> <span class="n">Tokenizer</span>
+<span class="kn">from</span> <span class="nn">spacy.lang.en</span> <span class="kn">import</span> <span class="n">English</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">English</span><span class="p">()</span>
+<span class="c1"># Create a blank Tokenizer with just the English vocab</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">spacy_tokenizer</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">orth_</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">document</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Let’s first run it without any spaCy tokenizer usage:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1507,7 +1444,7 @@ Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 9.74 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wall time: 1min 48s
 </pre></div>
 </div>
 </div>
@@ -1525,14 +1462,15 @@ Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.79341476367499
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 82.74030801911843
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>82.79341476367499
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>82.74030801911843
 </pre></div>
 </div>
 </div>
 </div>
+<p>Then, we run it by passing a custom tokenizer – in our case, from spaCy and a list of stop words – again from spaCy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
@@ -1543,8 +1481,21 @@ Token:Python	Lemmatized:python	Part-of-Speech-Tag:NOUN
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 78.18640467339351
-Wall time: 3min 16s
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\nirantk\miniconda3\envs\book\lib\site-packages\sklearn\linear_model\_logistic.py:765: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test Accuracy is 79.5539033457249
+Wall time: 4min 37s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79.5539033457249
 </pre></div>
 </div>
 </div>
@@ -1563,23 +1514,23 @@ Wall time: 3min 16s
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "conda-env-nlp-py"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "conda-env-nlp-py",
+            kernelName: "python3",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'conda-env-nlp-py'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
         
         <div class='prev-next-bottom'>
             
-    <a class='right-next' id="next-link" href="Part-02-A.html" title="next page">Text Cleaning</a>
+    <a class='right-next' id="next-link" href="02-A.html" title="next page">Text Cleaning</a>
 
         </div>
         
@@ -1600,11 +1551,9 @@ Wall time: 3min 16s
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  
   </body>
 </html>
