@@ -1,4 +1,4 @@
-jupyter-book
+jupyter-book==0.10.2
 jupyter
 black
 isort
