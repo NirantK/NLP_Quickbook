@@ -32,7 +32,7 @@ jobs:
     # Build a table of contents
     - name: ToC Build
       run: |
-        jupyter-book toc from-project .
+        jupyter-book toc .
     # Build the book
     - name: Build the book
       run: |
