@@ -47,7 +47,7 @@ Each section builds on ideas and code from previous notebooks, but you can fill 
 - Write our own data loaders, pre-processing, training loop and other utilities
 
 ## Chapter 07
-[Building your own Chatbot](https://github.com/NirantK/nlp-python-deep-learning/blob/master/Part-07%20Building%20your%20own%20Chatbot%20in%2030%20minutes.ipynb) from scratch in 30 minutes. We use this to explore unsupervised learning and put together several of the ideas we have already seen. 
+[Building your own Chatbot](https://github.com/NirantK/NLP_Quickbook/blob/master/07_Build_Chatbot_in_30minutes.ipynb) from scratch in 30 minutes. We use this to explore unsupervised learning and put together several of the ideas we have already seen. 
 - simpler, direct problem formulation instead of complicated chatbot tutorials commonly seen
 - intents, responses and templates in chat bot parlance
 - hacking word based similarity engine to work with little to no training samples
